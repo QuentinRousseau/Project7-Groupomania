@@ -1,0 +1,58 @@
+input {
+  display: flex;
+  align-self: center;
+  height: 20px;
+  width: 250px;
+  border-radius: 15px;
+  padding-left: 10px;
+}
+
+#login-SignIn {
+  margin-top: 15px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 150px;
+}
+
+.card {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 350px;
+  padding-right: 50px;
+  will-change: filter;
+  object-fit: cover;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #fd2d01);
+}
+.logoBlock {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 400px;
+  height: 200px;
+}
+.login-SignIn {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: lato;
+  background-color: #fd2d01;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  box-shadow: 0 0 15px #fd2d01;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
