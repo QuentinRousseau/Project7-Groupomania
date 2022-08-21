@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function Header() {
         Connexion
       </Link>
       <Link to="/signIn" className="link">
-        S'inscrire'
+        S'inscrire
       </Link>
     </nav>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import HomePage from "./components/HomePage/Home";
-import "./index.css";
+import "./main.scss";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -9,6 +9,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router exact path="/">
       <HomePage />
     </Router>
-    <Router path="/api"></Router>
   </React.StrictMode>
 );

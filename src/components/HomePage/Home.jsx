@@ -1,7 +1,8 @@
 import React from "react";
 //import homeLogo from "../../assets/homeLogo";
-import "./Home.scss";
+import "./home.scss";
 import Header from "../Header/Header.jsx";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -9,7 +10,11 @@ function HomePage() {
       <Header />
       <div className="logoBlock">
         <a href="https://vitejs.dev" target="_blank">
-          <img src="#" className="logo" alt="Groupomania logo" />
+          <img
+            src="../assets/homeLogo.png"
+            className="logo"
+            alt="Groupomania logo"
+          />
         </a>
       </div>
       <h1>Réseau Social d'entreprise</h1>
@@ -27,10 +32,7 @@ function HomePage() {
           size="10"
         ></input>
 
-        <button
-          id="login-SignIn"
-          onClick={() => setCount((count) => count + 1)}
-        >
+        <button id="login-SignIn" onClick={<Link to></Link>}>
           Connexion
         </button>
       </div>

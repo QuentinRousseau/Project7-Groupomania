@@ -5,6 +5,8 @@ input {
   width: 250px;
   border-radius: 15px;
   padding-left: 10px;
+  border: none;
+  box-shadow: 7px 7px 15px #4e5166;
 }
 
 #login-SignIn {
@@ -49,10 +51,17 @@ input {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  box-shadow: 0 0 15px #fd2d01;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button {
+  background-color: #fd2d01;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 7px 7px 15px #4e5166;
+  :hover {
+    box-shadow: 0 0 15px #fd2d01;
+  }
+  :focus-visible,
+  :focus {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
