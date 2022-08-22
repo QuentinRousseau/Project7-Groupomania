@@ -1,5 +1,5 @@
-const Post = await import("../models/Post");
-const fs = await import("fs");
+import Post from "../models/Post";
+import fs from "fs";
 
 exports.getAllPosts = async (req, res, next) => {
   try {

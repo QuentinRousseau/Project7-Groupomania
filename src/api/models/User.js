@@ -1,6 +1,5 @@
-const mongoose = await import("mongoose");
-
-const uniqueValidator = await import("mongoose-unique-validator");
+import mongoose from "mongoose";
+import uniqueValidator from "mongoose-unique-validator";
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
@@ -9,4 +8,4 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

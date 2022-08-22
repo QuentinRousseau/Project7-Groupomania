@@ -1,6 +1,6 @@
-const dotenv = await import("dotenv");
+import dotenv from "dotenv";
 
-module.exports = {
+export default {
   ...dotenv.config({ path: ".env" }).parsed,
   ...dotenv.config({ path: ".env.local" }).parsed,
 };

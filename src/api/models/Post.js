@@ -1,4 +1,4 @@
-const mongoose = await import("mongoose");
+import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema({
   userId: { type: String, required: true },
@@ -12,4 +12,4 @@ const postSchema = mongoose.Schema({
   usersDisliked: { type: [String] },
 });
 
-module.exports = mongoose.model("Post", postSchema);
+export default mongoose.model("Post", postSchema);

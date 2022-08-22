@@ -1,9 +1,8 @@
-const express = await import("express");
+import express from "express";
+import userCtrl from "../controllers/user";
 const router = express.Router();
-
-const userCtrl = await import("../controllers/user");
 
 router.post("/signup", userCtrl.signup);
 router.post("/login", userCtrl.login);
 
-module.exports = router;
+export default router;

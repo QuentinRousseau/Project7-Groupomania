@@ -1,5 +1,5 @@
-const mongoose = await import("mongoose");
-const { MONGODB_URL } = await import("./env");
+import mongoose from "mongoose";
+import { MONGODB_URL } from "./env";
 if (!MONGODB_URL) throw new Error("MONGODB_URL must be set in .env");
 
 const statusDB = mongoose
@@ -10,4 +10,4 @@ const statusDB = mongoose
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
-module.exports = statusDB;
+export default statusDB;

@@ -1,6 +1,6 @@
-const jwt = await import("../managers/jwt");
+import jwt from "../managers/jwt";
 
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1]; //enlève le Bearer
     const decodedToken = jwt.verify(token); // vérifie le token transmis avec le token placé dans .env.local
