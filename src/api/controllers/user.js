@@ -1,6 +1,6 @@
-const bcrypt = require("bcrypt");
-const jwt = require("../managers/jwt");
-const User = require("../models/User");
+const bcrypt = await import("bcrypt");
+const jwt = await import("../managers/jwt");
+const User = await import("../models/User");
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 exports.signup = async (req, res, next) => {

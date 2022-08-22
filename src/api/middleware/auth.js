@@ -1,4 +1,4 @@
-const jwt = require("../managers/jwt");
+const jwt = await import("../managers/jwt");
 
 module.exports = (req, res, next) => {
   try {

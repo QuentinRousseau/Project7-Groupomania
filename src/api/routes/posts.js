@@ -1,10 +1,10 @@
-const express = require("express");
+const express = await import("express");
 const router = express.Router();
 
-const auth = require("../middleware/auth");
-const multer = require("../middleware/multer-config");
+const auth = await import("../middleware/auth");
+const multer = await import("../middleware/multer-config");
 
-const Ctrl = require("../controllers/posts");
+const Ctrl = await import("../controllers/posts");
 
 router.get("/", auth, Ctrl.getAllPosts);
 router.get("/:id", auth, Ctrl.getOnePost);

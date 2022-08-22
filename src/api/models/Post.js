@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = await import("mongoose");
 
 const postSchema = mongoose.Schema({
   userId: { type: String, required: true },

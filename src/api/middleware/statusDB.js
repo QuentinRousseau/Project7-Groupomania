@@ -1,4 +1,4 @@
-const statusDB = require("../managers/mongoDB");
+const statusDB = await import("../managers/mongoDB");
 
 module.exports = (req, res, next) => {
   statusDB.then(() => next()).catch(() => next(new Error("DB not found"))),

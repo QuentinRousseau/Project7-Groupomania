@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = await import("dotenv");
 
 module.exports = {
   ...dotenv.config({ path: ".env" }).parsed,

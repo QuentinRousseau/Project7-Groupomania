@@ -8,7 +8,7 @@ function Header() {
       <Link to="/login" className="link">
         Connexion
       </Link>
-      <Link to="/signIn" className="link">
+      <Link to="/signUp" className="link">
         S'inscrire
       </Link>
     </nav>

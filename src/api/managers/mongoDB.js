@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { MONGODB_URL } = require("./env");
+const mongoose = await import("mongoose");
+const { MONGODB_URL } = await import("./env");
 if (!MONGODB_URL) throw new Error("MONGODB_URL must be set in .env");
 
 const statusDB = mongoose
