@@ -4,6 +4,8 @@ import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import env from "./managers/env";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export default helmet(
   env.NODE_ENV === "production" ? {} : { contentSecurityPolicy: false }

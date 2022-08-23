@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
-import { MONGODB_URL } from "./env";
-if (!MONGODB_URL) throw new Error("MONGODB_URL must be set in .env");
+import envlocal from "./env";
+const mongoDBUrl = envlocal;
+console.log(mongoDBUrl);
+if (!mongoDBUrl) throw new Error("mongoDBUrl must be set in .env");
 
 const statusDB = mongoose
-  .connect(MONGODB_URL, {
+  .connect(mongoDBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
