@@ -11,5 +11,6 @@ const postSchema = mongoose.Schema({
   usersLiked: { type: [String] },
   usersDisliked: { type: [String] },
 });
+const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 
-export default mongoose.model("Post", postSchema);
+export default Post;

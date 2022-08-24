@@ -1,6 +1,6 @@
 import express from "express";
 import auth from "../middleware/auth";
-import Ctrl from "../controllers/posts";
+import * as Ctrl from "../controllers/posts";
 import multer from "../middleware/multer-config";
 
 const router = express.Router();

@@ -9,8 +9,8 @@ function HomePage() {
   useEffect(() => {
     setDataLoading(true);
     try {
-      //const response = await fetch(`/api/posts`)
-      // const postsList = await response.json()
+      const response = await fetch(`/api/posts`)
+      const postsList = await response.json()
       setpostsList(postsList);
     } catch (error) {
       console.log(error);

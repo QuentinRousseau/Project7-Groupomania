@@ -1,7 +1,7 @@
 import Post from "../models/Post";
 import fs from "fs";
 
-exports.getAllPosts = async (req, res, next) => {
+export const getAllPosts = async (req, res, next) => {
   try {
     const posts = await Post.find().then((posts) => {
       res.status(200).json(posts);
@@ -12,7 +12,7 @@ exports.getAllPosts = async (req, res, next) => {
   }
 };
 
-exports.getOnePost = async (req, res, next) => {
+export const getOnePost = async (req, res, next) => {
   await Post.findOne({ _id: req.params.id })
     .then((post) => {
       res.status(200).json(post);
@@ -24,7 +24,7 @@ exports.getOnePost = async (req, res, next) => {
     });
 };
 
-exports.createPost = async (req, res, next) => {
+export const createPost = async (req, res, next) => {
   let postObject = await JSON.parse(req.body.post); // decoupe la requete en plusieurs champs
   delete postObject._id; // enleve l'id pour la remplacer plus tard
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
@@ -48,7 +48,7 @@ exports.createPost = async (req, res, next) => {
     .then(() => res.status(201).json({ message: "Objet enregistré !" }));
 };
 
-exports.modifyPost = async (req, res, next) => {
+export const modifyPost = async (req, res, next) => {
   const postObject = (await req.file)
     ? {
         ...JSON.parse(req.body.post),
@@ -68,7 +68,7 @@ exports.modifyPost = async (req, res, next) => {
     .catch((error) => res.status(401).json({ error }));
 };
 
-exports.deletePost = async (req, res, next) => {
+export const deletePost = async (req, res, next) => {
   const post = await Post.findOne({ _id: req.params.id });
 
   if (!post) return res.status(400).json({ error: "Post not found !" });
@@ -87,7 +87,7 @@ exports.deletePost = async (req, res, next) => {
   res.status(200).json({ message: "Objet supprimé !" });
 };
 
-exports.likeOrDislike = async (req, res, next) => {
+export const likeOrDislike = async (req, res, next) => {
   // getsauceId => const myPost
   // hasLike => myPost.userliked.includes(userId)
   // hasDislike => myPost.userdisLiked.includes(userId)

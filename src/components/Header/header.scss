@@ -4,6 +4,7 @@
   width: 150px;
 }
 nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   background-color: $primary-color;

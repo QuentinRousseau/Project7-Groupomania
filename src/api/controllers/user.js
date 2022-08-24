@@ -3,7 +3,7 @@ import jwt from "../managers/jwt";
 import User from "../models/User";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-exports.signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
   const { email, password } = req.body;
   if (!emailRegex.test(email))
     return res.status(401).json({ error: "Invalid email !" });
@@ -20,7 +20,7 @@ exports.signup = async (req, res, next) => {
   res.status(201).json({ message: "User created !" }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
 };
 
-exports.login = async (req, res, next) => {
+export const login = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(401).json({ error: "Invalid credentials !" });
   const valid = await bcrypt.compare(req.body.password, user.password);

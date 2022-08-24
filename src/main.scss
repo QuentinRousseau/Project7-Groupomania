@@ -1,19 +1,17 @@
-/*@import "components/HomePage/home";
-@import "components/Header/header";*/
+@import "./utils/style/color.scss";
+
 :root {
   font-family: lato, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: white;
-  background-color: gray;
+  background: lighten($tertiary-color, 60%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  width: 100%;
 }
 
 a {
@@ -26,7 +24,6 @@ a:hover {
 }
 
 body {
-  border: #747bff;
   margin: 0;
   display: flex;
   place-items: center;

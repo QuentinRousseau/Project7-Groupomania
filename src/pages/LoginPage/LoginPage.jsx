@@ -1,5 +1,4 @@
 import React from "react";
-//import homeLogo from "../../assets/homeLogo";
 import "./loginPage.scss";
 import Header from "../../components/Header/Header.jsx";
 import { Link } from "react-router-dom";
@@ -11,7 +10,7 @@ function HomePage() {
       <div className="logoBlock">
         <Link to="/posts" className="link">
           <img
-            src="#" //"../../assets/homeLogo.png"
+            src="../../assets/icon-left-font-monochrome-black.png" //"../../assets/homeLogo.png"
             className="logo"
             alt="Groupomania logo"
           />

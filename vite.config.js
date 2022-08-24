@@ -6,6 +6,7 @@ import history from "vite-plugin-history";
 console.log(mix);
 // https://vitejs.dev/config/
 export default defineConfig({
+  clearScreen: false,
   plugins: [
     mix.default({
       handler: "./src/api/index.js",
