@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET, JWT_EXPIRE } from "./env";
+import env from "./env";
+import envlocal from "./env";
+
+const JWT_SECRET = envlocal.JWT_SECRET;
+const JWT_EXPIRE = env.JWT_EXPIRE;
 console.log({ JWT_EXPIRE, JWT_SECRET });
 
 if (!JWT_SECRET) throw new Error(" JWT_SECRET must be set in .env");
