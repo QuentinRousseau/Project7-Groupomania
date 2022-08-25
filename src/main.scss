@@ -1,16 +1,13 @@
+@charset "utf-8";
 @import "./utils/style/color.scss";
+$primary: #fd2d01;
+@import "bulma/bulma.sass";
 
 :root {
   font-family: lato, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  background: lighten($tertiary-color, 60%);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
   width: 100%;
 }
 
@@ -20,7 +17,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ffd7d7;
+  color: $secondary-color;
 }
 
 body {
@@ -34,18 +31,6 @@ h1 {
   line-height: 1.1;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 #root {
   width: 100%;
   display: flex;

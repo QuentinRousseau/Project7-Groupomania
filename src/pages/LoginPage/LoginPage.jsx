@@ -2,45 +2,52 @@ import React from "react";
 import "./loginPage.scss";
 import Header from "../../components/Header/Header.jsx";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core";
 
-function HomePage() {
+function LoginPage() {
   return (
-    <div>
+    <div className="root">
       <Header />
       <div className="logoBlock">
         <Link to="/posts" className="link">
-          <img
-            src="../../assets/icon-left-font-monochrome-black.png" //"../../assets/homeLogo.png"
-            className="logo"
-            alt="Groupomania logo"
-          />
+          <img src="#" className="logo" alt="Groupomania logo" />
         </Link>
       </div>
       <div className="title">
-        <h1>Réseau Social d'entreprise</h1>
-        <p>Projet 7 - OpenClassrooms</p>
+        <h1 className="">Réseau Social d'entreprise</h1>
+        <p className="subtitle is-1">Projet 7 - OpenClassrooms</p>
       </div>
-      <div className="card">
-        <div className="card__box--1">
-          <label for="mail">Addresse Mail: </label>
-          <input type="text" id="mail" name="mail" required size="10"></input>
-        </div>
-        <div className="card__box--2">
-          <label for="password">Mot de passe: </label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            required
-            size="10"
-          ></input>
-        </div>
-        <button id="login-SignUp" type="submit">
-          Connexion
-        </button>
+
+      <div class="field">
+        <label class="label">Connexion</label>
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email"></input>
+          {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
+          <span class="icon is-small is-left">
+            <FontAwesomeIcon icon="fas fa-envelope" />
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+            {/** s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
+          </span>
+        </p>
       </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password"></input>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+
+      <button className="button is-medium" type="submit">
+        Connexion
+      </button>
     </div>
   );
 }
 
-export default HomePage;
+export default LoginPage;

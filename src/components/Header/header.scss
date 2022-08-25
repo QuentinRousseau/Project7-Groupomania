@@ -10,4 +10,9 @@ nav {
   background-color: $primary-color;
   width: 100%;
   box-shadow: 5px 2px 15px $tertiary-color;
+  height: 100px;
+}
+.buttons {
+  display: flex;
+  gap: 20px;
 }

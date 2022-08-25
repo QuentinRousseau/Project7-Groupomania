@@ -4,13 +4,19 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <nav>
-      <Link to="/login" className="link">
-        Connexion
-      </Link>
-      <Link to="/signUp" className="link">
-        S'inscrire
-      </Link>
+    <nav className="navbar-end">
+      <div className="navbar-item">
+        <div className="buttons">
+          <Link to="/SignUp">
+            <a className="button is-primary is-light">
+              <strong>Sign up</strong>
+            </a>
+          </Link>
+          <Link to="/Login">
+            <a className="button is-danger is-light">Log in</a>
+          </Link>
+        </div>
+      </div>
     </nav>
   );
 }
