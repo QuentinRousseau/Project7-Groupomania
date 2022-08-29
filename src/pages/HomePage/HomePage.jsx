@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react";
+import { useFetch } from "../../providers/fetch";
+("../../providers/fetch");
 import { Loader } from "../../components/Loader/Loader";
 
 function HomePage() {
-  const [postsList, setpostsList] = useState({});
-  const [isDataLoading, setDataLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setDataLoading(true);
-    try {
-      const response = await fetch(`/api/posts`)
-      const postsList = await response.json()
-      setpostsList(postsList);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setDataLoading(false);
-    }
-  }, []);
-
+  useFetch();
   if (error) return <span>Oulà , on a un problème !</span>;
   return (
     <div className="homePage">
