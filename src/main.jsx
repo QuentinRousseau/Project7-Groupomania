@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import "./main.scss";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router exact path="/">
-      <LoginPage />
+    <Router exact path="/login">
+      <SignUpPage />
     </Router>
   </React.StrictMode>
 );
