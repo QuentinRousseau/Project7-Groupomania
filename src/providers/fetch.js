@@ -51,7 +51,6 @@ export async function signUpFetch(e) {
 
 export async function loginFetch(e) {
   const user = { email, password };
-
   console.log(user);
 
   fetch("/api/auth/login", {
