@@ -35,7 +35,7 @@ export async function fetchPost(e) {
   });
 }
 
-export async function signUpFetch(e) {
+export async function signUpFetch(email, password) {
   const user = { email, password };
 
   console.log(user);
@@ -49,7 +49,7 @@ export async function signUpFetch(e) {
   });
 }
 
-export async function loginFetch(e) {
+export async function loginFetch(email, password) {
   const user = { email, password };
   console.log(user);
 

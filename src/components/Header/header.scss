@@ -4,15 +4,13 @@
   width: 150px;
 }
 nav {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
   background-color: $primary-color;
   width: 100%;
-  box-shadow: 5px 2px 15px $tertiary-color;
+  box-shadow: 5px 8px 15px $tertiary-color;
   height: 100px;
 }
 .buttons {
   display: flex;
   gap: 20px;
+  margin-right: 15px;
 }
