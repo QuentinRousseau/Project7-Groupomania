@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export async function useFetch() {
-  const [surveyData, setSurveyData] = useState({});
+  const [HomePageData, setHomePageData] = useState({});
   const [isDataLoading, setDataLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -10,8 +10,8 @@ export async function useFetch() {
       setDataLoading(true);
       try {
         const response = await fetch(`/api/posts`);
-        const { surveyData } = await response.json();
-        setSurveyData(surveyData);
+        const { HomePageData } = await response.json();
+        setHomePageData(HomePageData);
       } catch (err) {
         console.log("===== error =====", err);
         setError(true);
@@ -27,30 +27,15 @@ export async function useFetch() {
   }
 }
 
-export const submitPost = async (e) => {
-  e.preventDefault();
-  const tmp_date = new Date().toISOString().split("T");
-  const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
-  const post = { title, description, imageUrl, creationDate };
-
-  console.log(post);
-  useEffect(() => {
-    fetch("/api/posts", {
-      method: "POST",
-      headers: { "Content-Type": "applcation/json" },
-      body: JSON.stringify(post),
-    }).then(() => {
-      console.log("post créé");
-    });
-  });
-};
-
 export async function signUpFetch(email, password) {
+  const [userData, setUserData] = useState({});
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const user = { email, password };
+  setUserData(user);
 
   console.log(user);
+  console.log(userData);
 
   fetch("/api/auth/signup", {
     method: "POST",
@@ -76,6 +61,23 @@ export async function loginFetch(email, password) {
   });
 }
 
+export const submitPost = async (e) => {
+  e.preventDefault();
+  const tmp_date = new Date().toISOString().split("T");
+  const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
+  const post = { title, description, imageUrl, creationDate };
+
+  console.log(post);
+  useEffect(() => {
+    fetch("/api/posts", {
+      method: "POST",
+      headers: { "Content-Type": "applcation/json" },
+      body: JSON.stringify(post),
+    }).then(() => {
+      console.log("post créé");
+    });
+  });
+};
 /*
 export async function fetchAllPosts() {
     const [postsList, setpostsList] = useState({});

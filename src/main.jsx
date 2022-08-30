@@ -9,8 +9,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router exact path="/SignUp">
-      {/*<LoginPage />*/}
-      <SignUpPage />
+      <LoginPage />
+      {/*<SignUpPage />*/}
       {/*<HomePage />*/}
     </Router>
   </React.StrictMode>
