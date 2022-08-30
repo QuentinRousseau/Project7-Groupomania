@@ -1,20 +1,19 @@
 import { useState, useEffect } from "react";
 
-export async function useFetch(url) {
+export async function useFetch() {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!url) return;
     async function fetchData() {
-      const response = await fetch(url);
+      const response = await fetch("/api/posts");
       const data = await response.json();
       setData(data);
       setLoading(false);
     }
     setLoading(true);
     fetchData();
-  }, [url]);
+  }, []);
   return { isLoading, data };
 }
 

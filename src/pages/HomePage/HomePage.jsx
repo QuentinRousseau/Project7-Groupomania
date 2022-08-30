@@ -1,9 +1,10 @@
 import { useFetch } from "../../providers/fetch";
-("../../providers/fetch");
 //import { Loader } from "../../components/Loader/Loader";
+import { error } from "react";
 
 function HomePage() {
-  useFetch();
+  const url = window.location.href;
+  const postsList = useFetch(url);
   if (error) return <span>Oulà , on a un problème !</span>;
   return (
     <div className="homePage">

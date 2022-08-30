@@ -22,6 +22,7 @@ function LoginPage() {
         <div class="field">
           <label class="label">Connexion</label>
           <p class="control has-icons-left has-icons-right">
+            {/* Utilisation du switch , useState ou useEffect ? */}
             <input class="input" type="email" placeholder="Email"></input>
             {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
             <span class="icon is-small is-left">
