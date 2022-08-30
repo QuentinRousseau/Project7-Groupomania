@@ -23,7 +23,12 @@ function LoginPage() {
           <label class="label">Connexion</label>
           <p class="control has-icons-left has-icons-right">
             {/* Utilisation du switch , useState ou useEffect ? */}
-            <input class="input" type="email" placeholder="Email"></input>
+            <input
+              class="input"
+              id="email"
+              type="email"
+              placeholder="Email"
+            ></input>
             {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
             <span class="icon is-small is-left">
               <FontAwesomeIcon icon="fas fa-envelope" />
@@ -36,7 +41,12 @@ function LoginPage() {
         </div>
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password"></input>
+            <input
+              class="input"
+              id="password"
+              type="password"
+              placeholder="Password"
+            ></input>
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>

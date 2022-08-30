@@ -8,10 +8,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router exact path="/posts">
+    <Router exact path="/SignUp">
       {/*<LoginPage />*/}
-      {/*<SignUpPage />*/}
-      <HomePage />
+      <SignUpPage />
+      {/*<HomePage />*/}
     </Router>
   </React.StrictMode>
 );

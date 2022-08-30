@@ -1,40 +1,53 @@
 import { useState, useEffect } from "react";
 
 export async function useFetch() {
-  const [data, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [surveyData, setSurveyData] = useState({});
+  const [isDataLoading, setDataLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/posts");
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
+    async function fetchSurvey() {
+      setDataLoading(true);
+      try {
+        const response = await fetch(`/api/posts`);
+        const { surveyData } = await response.json();
+        setSurveyData(surveyData);
+      } catch (err) {
+        console.log("===== error =====", err);
+        setError(true);
+      } finally {
+        setDataLoading(false);
+      }
     }
-    setLoading(true);
-    fetchData();
+    fetchSurvey();
   }, []);
-  return { isLoading, data };
+
+  if (error) {
+    return <span>Oups il y a eu un problème</span>;
+  }
 }
 
-export async function fetchPost(e) {
+export const submitPost = async (e) => {
   e.preventDefault();
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
   const post = { title, description, imageUrl, creationDate };
 
   console.log(post);
-
-  fetch("/api/", {
-    method: "POST",
-    headers: { "Content-Type": "applcation/json" },
-    body: JSON.stringify(post),
-  }).then(() => {
-    console.log("post créé");
+  useEffect(() => {
+    fetch("/api/posts", {
+      method: "POST",
+      headers: { "Content-Type": "applcation/json" },
+      body: JSON.stringify(post),
+    }).then(() => {
+      console.log("post créé");
+    });
   });
-}
+};
 
 export async function signUpFetch(email, password) {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
   const user = { email, password };
 
   console.log(user);
@@ -49,6 +62,8 @@ export async function signUpFetch(email, password) {
 }
 
 export async function loginFetch(email, password) {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
   const user = { email, password };
   console.log(user);
 
@@ -60,6 +75,7 @@ export async function loginFetch(email, password) {
     console.log("user connecté");
   });
 }
+
 /*
 export async function fetchAllPosts() {
     const [postsList, setpostsList] = useState({});
@@ -107,3 +123,20 @@ export async function postModify(){
   
 }
 */
+
+/*{
+    /*
+  //const [data, setData] = useState({});
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/posts");
+      const data = await response.json();
+      setData(data);
+      setLoading(false);
+    }
+    setLoading(true);
+    fetchData();
+  }, []);
+  return { isLoading, data }; */
