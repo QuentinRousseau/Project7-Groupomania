@@ -28,14 +28,10 @@ export async function useFetch() {
 }
 
 export async function signUpFetch(email, password) {
-  const [userData, setUserData] = useState({});
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
   const user = { email, password };
   setUserData(user);
 
   console.log(user);
-  console.log(userData);
 
   fetch("/api/auth/signup", {
     method: "POST",
@@ -47,8 +43,6 @@ export async function signUpFetch(email, password) {
 }
 
 export async function loginFetch(email, password) {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
   const user = { email, password };
   console.log(user);
 

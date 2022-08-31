@@ -8,10 +8,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router exact path="/SignUp">
-      <LoginPage />
-      {/*<SignUpPage />*/}
-      {/*<HomePage />*/}
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/Login" element={<LoginPage />} />
+        {/*path = le chemin d'accès envoyé lors du clic, renvoie le composant LoginPage.*/}
+        <Route path="/SignUp" element={<SignUpPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </Router>
   </React.StrictMode>
 );
