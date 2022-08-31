@@ -1,12 +1,12 @@
 import "./header.scss";
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/homeLogo.png";
+import logo from "../../assets/homeLogo.png?url";
 
 function Header() {
   return (
     <nav
-      className="navbar is-full has-background-danger-light"
+      className="navbar is-full has-background-grey-light "
       role="navigation"
       aria-label="main navigation"
     >
@@ -16,7 +16,7 @@ function Header() {
           width="112"
           height="2000"
           alt="Logo de l'entreprise Groupomania"
-          className="image is-200x200 mr-6"
+          className="image is-200x200"
         ></img>
 
         <a
@@ -32,24 +32,17 @@ function Header() {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
-        <Link to={"/"}>
-          <div className="navbar-start">
-            <a className="navbar-item">Home</a>
-          </div>
-        </Link>
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <Link to="/SignUp">
-                <a className="button has-background-danger has-text-white">
-                  <strong>Sign up</strong>
-                </a>
-              </Link>
-              <Link to="/Login">
-                <a className="button is-danger is-light">Log in</a>
-              </Link>
-            </div>
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <div className="buttons">
+            <Link to="/SignUp">
+              <a className="button has-background-danger has-text-white">
+                <strong>Sign up</strong>
+              </a>
+            </Link>
+            <Link to="/Login">
+              <a className="button is-danger is-light">Log in</a>
+            </Link>
           </div>
         </div>
       </div>

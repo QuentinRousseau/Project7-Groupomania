@@ -29,7 +29,7 @@ export async function useFetch() {
 
 export async function signUpFetch(email, password) {
   const user = { email, password };
-  setUserData(user);
+
   console.log(user);
 
   const response = await fetch("/api/auth/signup", {

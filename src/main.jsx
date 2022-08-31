@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import HomePage from "./pages/HomePage/HomePage";
+import FeedPage from "./pages/FeedPage/FeedPage";
 import "./main.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<FeedPage />} />
         <Route path="/Login" element={<LoginPage />} />
         {/*path = le chemin d'accès envoyé lors du clic, renvoie le composant LoginPage.*/}
         <Route path="/SignUp" element={<SignUpPage />} />
