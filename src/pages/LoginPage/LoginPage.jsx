@@ -8,52 +8,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function LoginPage() {
   return (
     <div className="root">
-      <Header />
-      <div className="logoBlock">
-        <Link to="/posts" className="link">
-          <img src="#" className="logo" alt="Groupomania logo" />
-        </Link>
-      </div>
       <div className="title">
         <h1 className="">Réseau Social d'entreprise</h1>
         <p className="subtitle is-1">Projet 7 - OpenClassrooms</p>
       </div>
       <form onSubmit={loginFetch} className="log">
-        <div class="field">
-          <label class="label">Connexion</label>
-          <p class="control has-icons-left has-icons-right">
+        <div className="field">
+          <label className="label">Connexion</label>
+          <p className="control has-icons-left has-icons-right">
             {/* Utilisation du switch , useState ou useEffect ? */}
             <input
-              class="input"
+              className="input"
               id="email"
               type="email"
               placeholder="Email"
             ></input>
             {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
-            <span class="icon is-small is-left">
+            <span className="icon is-small is-left">
               <FontAwesomeIcon icon="fas fa-envelope" />
             </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
+            <span className="icon is-small is-right">
+              <i className="fas fa-check"></i>
               {/** s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
             </span>
           </p>
         </div>
-        <div class="field">
-          <p class="control has-icons-left">
+        <div className="field">
+          <p className="control has-icons-left">
             <input
-              class="input"
+              className="input"
               id="password"
               type="password"
               placeholder="Password"
             ></input>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
+            <span className="icon is-small is-left">
+              <i className="fas fa-lock"></i>
             </span>
           </p>
         </div>
         <div className="has-text-centered">
-          <button className="button is-medium is-primary" type="submit">
+          <button
+            className="button is-medium has-background-danger-dark"
+            type="submit"
+          >
             Connexion
           </button>
         </div>

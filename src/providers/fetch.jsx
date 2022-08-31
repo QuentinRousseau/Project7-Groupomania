@@ -30,16 +30,16 @@ export async function useFetch() {
 export async function signUpFetch(email, password) {
   const user = { email, password };
   setUserData(user);
-
   console.log(user);
 
-  fetch("/api/auth/signup", {
+  const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "applcation/json" },
     body: JSON.stringify(user),
   }).then(() => {
     console.log("user créé");
   });
+  return response;
 }
 
 export async function loginFetch(email, password) {

@@ -1,38 +1,7 @@
 @charset "utf-8";
 @import "./utils/style/color.scss";
-$primary: #fd2d01;
 @import "bulma/bulma.sass";
-
-:root {
-  font-family: lato, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  width: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: white;
-  text-decoration: none;
-}
-a:hover {
-  color: $secondary-color;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
 #root {
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
