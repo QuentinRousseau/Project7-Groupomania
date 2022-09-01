@@ -1,31 +1,6 @@
 @import "../../utils/style/color.scss";
-.homePage {
-  display: flex;
-  justify-content: center;
-}
 
-.titleBloc {
-  text-align: center;
-  padding-bottom: 30px;
-  color: $primary-color;
-  &__title {
-    font-size: 30px;
-  }
-  &__subtitle {
-    font-size: 20px;
-    font-weight: 300;
-  }
-}
-
-.loaderWrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.cardsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
+.card {
+  width: 300px;
+  margin: 24px;
 }

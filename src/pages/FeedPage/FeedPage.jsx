@@ -1,3 +1,4 @@
+import "./feedPage.scss";
 import { useFetch } from "../../providers/fetch";
 //import { Loader } from "../../components/Loader/Loader";
 import { error } from "react";
@@ -30,7 +31,8 @@ function HomePage() {
   return (
     <div className="homePage">
       <div className="title">
-        <h1 className="title is-1">Acceuil </h1>
+        <h1 className="title is-1">Accueil </h1>
+
         <h2 className="subtitle is-1">Découvrez les derniers posts !</h2>
       </div>
       {/* {isDataLoading ? (
@@ -52,7 +54,7 @@ function HomePage() {
       <div className="cardsContainer">
         <div className="card">
           <div className="card-image">
-            <figure className="image is-4by3">
+            <figure className="image is-48x48">
               <img src={images} alt="Placeholder image"></img>
             </figure>
           </div>

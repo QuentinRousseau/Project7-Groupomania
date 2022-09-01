@@ -6,7 +6,7 @@ import logo from "../../assets/homeLogoHeader.png?url";
 function Header() {
   return (
     <nav
-      className="navbar is-full has-background-grey-light is-shadowless "
+      className="navbar is-full is-shadowless "
       role="navigation"
       aria-label="main navigation"
     >

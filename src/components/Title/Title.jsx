@@ -12,7 +12,7 @@ function Title() {
             width="700"
             height="2000"
             alt="Logo de l'entreprise Groupomania"
-            className="image is-centered  is-hidden-touch mt-5"
+            className="image is-hidden-touch mt-5"
           ></img>
         </Link>
       </h1>

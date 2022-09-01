@@ -1,1 +1,10 @@
 @import "../../utils/style/color.scss";
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box {
+  max-width: 500px;
+  margin: auto;
+}
