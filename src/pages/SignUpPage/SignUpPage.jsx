@@ -21,7 +21,7 @@ function SignUpPage() {
     if (ret.console.error) setMessage(ret.error); //si erreur afficher celle ci
   }
   return (
-    <div className="column is-vcentered ">
+    <div className="column ">
       <Title />
 
       <div className="box">

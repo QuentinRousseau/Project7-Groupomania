@@ -1,86 +1,9 @@
-body input {
-  display: flex;
-  align-self: center;
-  height: 20px;
-  min-width: 230px;
-  border-radius: 15px;
-  padding-left: 10px;
-  border: none;
-  box-shadow: 7px 7px 15px #4e5166;
-}
-
-.card {
-  margin: 100px 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &__box {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 15px;
-    input {
-      margin: 0 15px;
-    }
-  }
-}
-
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.logo {
-  height: 350px;
-  padding-right: 50px;
-  will-change: filter;
-  object-fit: cover;
-  :hover {
-    filter: drop-shadow(0 0 2em #fd2d01);
-  }
-}
-
-.logoBlock {
-  display: flex;
-  justify-content: center;
+.box {
+  max-width: 500px;
   margin: auto;
-  width: 400px;
-  height: 200px;
-}
-.login-SignUp {
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: lato;
-  background-color: #fd2d01;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button {
-  width: 150px;
-  height: 20px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  border-radius: 20px;
-  border: none;
-  box-shadow: 7px 7px 15px #4e5166;
-  background-color: #fd2d01;
-  :hover {
-    box-shadow: 0 0 15px #fd2d01;
-  }
-  :focus-visible,
-  :focus {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
 }

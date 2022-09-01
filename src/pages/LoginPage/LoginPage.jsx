@@ -21,9 +21,9 @@ function LoginPage() {
     if (ret.console.error) setMessage(ret.error);
   }
   return (
-    <div className="column is-vcentered">
+    <div className="column">
       <Title />
-      <div className="box">
+      <div className="box ">
         <form onSubmit={loginFetch} className="log">
           <div className="field ">
             <label className="label">Connexion</label>
