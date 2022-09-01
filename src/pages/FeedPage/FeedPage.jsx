@@ -14,6 +14,17 @@ function HomePage() {
       postContent: "wallah c'est la description",
       creationDate: "28-08-2022",
     },
+    {
+      userId: 12,
+      title: "Test1",
+      description: "Description test",
+      imageUrl: "../../assets/images.png",
+      creationDate: 1519211809934,
+      likes: 0,
+      dislikes: 0,
+      usersLiked: [],
+      usersDisliked: [],
+    },
   ]; //useFetch(url);
   if (error) return <span>Oulà , on a un problème !</span>;
   return (
@@ -32,33 +43,33 @@ function HomePage() {
           <Card
             key={`${post}-${index}`}
             title={post.title}
-            picture={post.picture}
-            postContent={post.postContent}
+            picture={post.imageUrl}
+            postContent={post.description}
             creationDate={post.creationDate}
           />
         ))}
       </div>
       <div className="cardsContainer">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img src={images} alt="Placeholder image"></img>
             </figure>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
                   <img src={check} alt="Placeholder image"></img>
                 </figure>
               </div>
-              <div class="media-content">
-                <p class="title is-4">John Smith</p>
-                <p class="subtitle is-6">@johnsmith</p>
+              <div className="media-content">
+                <p className="title is-4">John Smith</p>
+                <p className="subtitle is-6">@johnsmith</p>
               </div>
             </div>
 
-            <div class="content">
+            <div className="content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               nec iaculis mauris. <a>@bulmaio</a>.<a href="#">#css</a>{" "}
               <a href="#">#responsive</a>
@@ -66,14 +77,14 @@ function HomePage() {
             </div>
           </div>
 
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item">
+          <footer className="card-footer">
+            <a href="#" className="card-footer-item">
               Save
             </a>
-            <a href="#" class="card-footer-item">
+            <a href="#" className="card-footer-item">
               Edit
             </a>
-            <a href="#" class="card-footer-item">
+            <a href="#" className="card-footer-item">
               Delete
             </a>
           </footer>

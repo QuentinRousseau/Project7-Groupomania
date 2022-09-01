@@ -4,8 +4,21 @@ import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { loginFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useField } from "../../utils/hooks/hooks";
+import { useState } from "react";
 
 function LoginPage() {
+  const [email, setEmail, emailMessage] = useField("", (value) => {
+    if (value.length < 3) return "Email trop court";
+  });
+  const [password, setPassword] = useField("");
+  const [message, setMessage] = useState("");
+  async function submit(e) {
+    e.preventDefault();
+    setMessage("Please wait ...");
+    const ret = await loginFetch(email, password);
+    console.log(ret);
+    if (ret.console.error) setMessage(ret.error);
+  }
   return (
     <div className="column is-vcentered">
       <div className="title">
@@ -29,7 +42,9 @@ function LoginPage() {
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
               <span className="icon is-small is-right">
-                <FontAwesomeIcon icon={faCheck} />
+                <FontAwesomeIcon
+                  icon={!emailMessage ? faCheck : faExclamationTriangle}
+                />
                 {/** s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
               </span>
             </p>

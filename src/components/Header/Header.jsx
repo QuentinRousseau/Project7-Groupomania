@@ -11,13 +11,15 @@ function Header() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <img
-          src={logo}
-          width="112"
-          height="2000"
-          alt="Logo de l'entreprise Groupomania"
-          className="image is-200x200"
-        ></img>
+        <Link to={"/"}>
+          <img
+            src={logo}
+            width="112"
+            height="2000"
+            alt="Logo de l'entreprise Groupomania"
+            className="image mt-3"
+          ></img>
+        </Link>
 
         <a
           role="button"
@@ -36,12 +38,12 @@ function Header() {
         <div className="navbar-item">
           <div className="buttons">
             <Link to="/SignUp">
-              <a className="button has-background-danger has-text-white">
+              <a className="button has-background-danger has-text-white  is-outlined">
                 <strong>Sign up</strong>
               </a>
             </Link>
             <Link to="/Login">
-              <a className="button is-danger is-light">Log in</a>
+              <a className="button is-danger is-light is-outlined">Log in</a>
             </Link>
           </div>
         </div>

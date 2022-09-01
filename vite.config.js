@@ -7,6 +7,7 @@ import eslint from "eslint";
 console.log(mix);
 // https://vitejs.dev/config/
 export default defineConfig({
+  //base: "/Login/",
   clearScreen: false,
   plugins: [
     mix.default({
@@ -19,6 +20,5 @@ export default defineConfig({
       rewrites: [{ from: "/api", to: (ctx) => ctx.request.url }], // précise de pas toucher à l'API.
     }),
     react(),
-    //  eslint(),
   ],
 });

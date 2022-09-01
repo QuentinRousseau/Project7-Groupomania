@@ -28,14 +28,13 @@ export async function useFetch() {
 }
 
 export async function signUpFetch(email, password) {
-  const user = { email, password };
-
-  console.log(user);
+  const user = { email, password }; //recupération des données saisies et creation de l'objet
+  console.log(user); //affichage de l'objet
 
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "applcation/json" },
-    body: JSON.stringify(user),
+    body: JSON.stringify(user), //mail: SyntheticBaseEvent et mdp: undefined. pourquoi
   }).then(() => {
     console.log("user créé");
   });

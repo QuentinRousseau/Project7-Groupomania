@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signUpPage.scss";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { signUpFetch } from "../../providers/fetch";
+import { loginFetch, signUpFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useField } from "../../utils/hooks/hooks";
 
 function SignUpPage() {
+  const [email, setEmail, emailMessage] = useField("", (value) => {
+    if (value.length < 3) return "Email trop court"; // vérif de l'adresse mail
+  });
+  const [password, setPassword] = useField(""); //verif du mdp
+  const [message, setMessage] = useState(""); // creation d'un message vide
+  async function submit(e) {
+    //lors de l'event submit
+    e.preventDefault();
+    setMessage("Please wait ..."); //attribution de la valeur au msg
+    const ret = await signUpFetch(email, password); // attente du fetch avec mail et mdp
+    console.log(ret); //affichage du retour
+    if (ret.console.error) setMessage(ret.error); //si erreur afficher celle ci
+  }
   return (
     <div className="column is-vcentered ">
       <div className="title">
@@ -23,8 +36,9 @@ function SignUpPage() {
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
               <span className="icon is-small is-right">
-                <FontAwesomeIcon icon={faCheck} />
-                {/**!emailMessage ? faCheck : faExclamationTriangle || s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
+                <FontAwesomeIcon
+                  icon={!emailMessage ? faCheck : faExclamationTriangle}
+                />
               </span>
             </p>
           </div>
