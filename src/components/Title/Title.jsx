@@ -5,7 +5,7 @@ import logo from "../../assets/homeLogo.png?url";
 function Title() {
   return (
     <div className="title">
-      <h1 className="title has-text-danger is-1 is-inline-block" id="">
+      <h1 className="title has-text-danger is-1 is-inline-block mr-6" id="">
         <Link to={"/"}>
           <img
             src={logo}
