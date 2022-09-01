@@ -4,6 +4,7 @@ import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { loginFetch, signUpFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useField } from "../../utils/hooks/hooks";
+import Title from "../../components/Title/Title";
 
 function SignUpPage() {
   const [email, setEmail, emailMessage] = useField("", (value) => {
@@ -21,10 +22,8 @@ function SignUpPage() {
   }
   return (
     <div className="column is-vcentered ">
-      <div className="title">
-        <h1 className="title is-2">Réseau Social d'entreprise</h1>
-        <p className="subtitle is-3">Projet 7 - OpenClassrooms</p>
-      </div>
+      <Title />
+
       <div className="box">
         <form onSubmit={signUpFetch} className="log">
           <div className="field">

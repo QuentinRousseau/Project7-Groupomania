@@ -1,12 +1,12 @@
 import "./header.scss";
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/homeLogo.png?url";
+import logo from "../../assets/homeLogoHeader.png?url";
 
 function Header() {
   return (
     <nav
-      className="navbar is-full has-background-grey-light "
+      className="navbar is-full has-background-grey-light is-shadowless "
       role="navigation"
       aria-label="main navigation"
     >
@@ -14,13 +14,12 @@ function Header() {
         <Link to={"/"}>
           <img
             src={logo}
-            width="112"
+            width="200"
             height="2000"
             alt="Logo de l'entreprise Groupomania"
-            className="image mt-3"
+            className="image is-hidden-desktop mt-5 "
           ></img>
         </Link>
-
         <a
           role="button"
           className="navbar-burger"
