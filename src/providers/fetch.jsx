@@ -35,23 +35,26 @@ export async function signUpFetch(email, password) {
     method: "POST",
     headers: { "Content-Type": "applcation/json" },
     body: JSON.stringify(user), //mail: SyntheticBaseEvent et mdp: undefined. pourquoi
-  }).then(() => {
-    console.log("user créé");
   });
-  return response;
+  if (!response.ok) {
+    return Promise.reject(await response.text()); //si la réponse n'est pas bonne; retour d'une promise rejeté
+  }
+  return response.json();
 }
 
 export async function loginFetch(email, password) {
   const user = { email, password };
   console.log(user);
 
-  fetch("/api/auth/login", {
+  const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "applcation/json" },
     body: JSON.stringify(user),
-  }).then(() => {
-    console.log("user connecté");
   });
+  if (!response.ok) {
+    return Promise.reject(await response.text()); //si la réponse n'est pas bonne; retour d'une promise rejeté
+  }
+  return response.json();
 }
 
 export const submitPost = async (e) => {

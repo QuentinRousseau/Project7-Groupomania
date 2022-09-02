@@ -8,23 +8,26 @@ import { useState } from "react";
 import Title from "../../components/Title/Title";
 
 function LoginPage() {
-  const [email, setEmail, emailMessage] = useField("", (value) => {
-    if (value.length < 3) return "Email trop court";
-  });
-  const [password, setPassword] = useField("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   async function submit(e) {
     e.preventDefault();
     setMessage("Please wait ...");
-    const ret = await loginFetch(email, password);
-    console.log(ret);
-    if (ret.console.error) setMessage(ret.error);
+    try {
+      const ret = await loginFetch(email, password);
+      console.log(ret);
+    } catch (e) {
+      setMessage(e);
+    }
   }
   return (
     <div className="column">
       <Title />
       <div className="box ">
-        <form onSubmit={loginFetch} className="log">
+        {" "}
+        {}
+        <form onSubmit={submit} className="log">
           <div className="field ">
             <label className="label">Connexion</label>
             <p className="control has-icons-left has-icons-right">
@@ -34,6 +37,7 @@ function LoginPage() {
                 id="email"
                 type="email"
                 placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
               ></input>
               {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
               <span className="icon is-small is-left">
@@ -41,7 +45,7 @@ function LoginPage() {
               </span>
               <span className="icon is-small is-right">
                 <FontAwesomeIcon
-                  icon={!emailMessage ? faCheck : faExclamationTriangle}
+                  icon={faCheck} //: faExclamationTriangle
                 />
                 {/** s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
               </span>
@@ -54,6 +58,7 @@ function LoginPage() {
                 id="password"
                 type="password"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faLock} />
@@ -67,6 +72,7 @@ function LoginPage() {
             >
               Connexion
             </button>
+            {message}
           </div>
         </form>
       </div>

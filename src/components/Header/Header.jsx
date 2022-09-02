@@ -36,13 +36,14 @@ function Header() {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <Link to="/SignUp">
-              <a className="button has-background-danger has-text-white  is-outlined">
-                <strong>Sign up</strong>
-              </a>
+            <Link
+              className="button has-background-danger has-text-white  is-outlined"
+              to="/SignUp"
+            >
+              <strong>Sign up</strong>
             </Link>
-            <Link to="/Login">
-              <a className="button is-danger is-light is-outlined">Log in</a>
+            <Link className="button is-danger is-light is-outlined" to="/Login">
+              Log in
             </Link>
           </div>
         </div>

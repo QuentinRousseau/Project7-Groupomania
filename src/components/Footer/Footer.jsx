@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Footer() {
   return (
-    <footer class="footer">
-      <div class="content has-text-centered is-small">
+    <footer className="footer">
+      <div className="content has-text-centered is-small">
         <p>
           <strong>Developpé</strong> par{" "}
           <a href="https://github.com/QuentinRousseau?tab=repositories">
