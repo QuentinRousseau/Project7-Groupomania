@@ -7,7 +7,7 @@ import eslint from "eslint";
 console.log(mix);
 // https://vitejs.dev/config/
 export default defineConfig({
-  //base: "/Login/",
+  //base: "/Login",
   clearScreen: false,
   plugins: [
     mix.default({
