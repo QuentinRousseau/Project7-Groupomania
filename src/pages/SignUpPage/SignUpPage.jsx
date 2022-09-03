@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import "./signUpPage.scss";
-import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faLock,
+  faCheck,
+  faExclamationTriangle,
+} from "@fortawesome/free-solid-svg-icons";
 import { signUpFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useField } from "../../utils/hooks/hooks";
 import Title from "../../components/Title/Title";
+import { handleChange } from "../../utils/tools/validation";
+import { Box } from "react-bulma-components";
+import Textinput from "../../components/Input/Textinput";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(""); //verif du mdp
   const [message, setMessage] = useState(""); // creation d'un message vide
+
   async function submit(e) {
     //lors de l'event submit
     e.preventDefault();
@@ -20,30 +28,26 @@ function SignUpPage() {
     } catch (e) {
       setMessage(e);
     }
+    if (ret) return <Redirect to="/posts" push />;
   }
   return (
     <div className="column ">
       <Title />
-
-      <div className="box">
+      <Box>
         <form onSubmit={submit} className="log">
           <div className="field">
             <label className="label">Inscription</label>
             <p className="control has-icons-left has-icons-right">
-              <input
-                className="input"
-                type="email"
-                placeholder="Email"
+              <Textinput
+                type="Email"
                 onChange={(e) => setEmail(e.target.value)}
-              ></input>
+              />
               {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
-              <span className="icon is-small is-right">
-                <FontAwesomeIcon
-                  icon={faCheck} //: faExclamationTriangle
-                />
+              <span className="icon is-small is-right ">
+                <FontAwesomeIcon icon={handleChange(email) && faCheck} />
               </span>
             </p>
           </div>
@@ -70,7 +74,7 @@ function SignUpPage() {
             {message}
           </div>
         </form>
-      </div>
+      </Box>
     </div>
   );
 }

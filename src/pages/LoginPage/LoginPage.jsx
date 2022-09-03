@@ -3,7 +3,6 @@ import "./loginPage.scss";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { loginFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useField } from "../../utils/hooks/hooks";
 import { useState } from "react";
 import Title from "../../components/Title/Title";
 
@@ -20,13 +19,12 @@ function LoginPage() {
     } catch (e) {
       setMessage(e);
     }
+    if (ret) return <Redirect to="/posts" push />;
   }
   return (
     <div className="column">
       <Title />
       <div className="box ">
-        {" "}
-        {}
         <form onSubmit={submit} className="log">
           <div className="field ">
             <label className="label">Connexion</label>
