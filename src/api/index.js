@@ -15,7 +15,7 @@ export const handler = express();
 handler.use(morgan("dev", { immediate: true }));
 handler.use(morgan("dev", { immediate: false }));
 handler.use(cors());
-handler.use(helmet); // fais crasher ? pourquoi
+handler.use(helmet);
 handler.use(express.json());
 
 handler.use(statusDB);

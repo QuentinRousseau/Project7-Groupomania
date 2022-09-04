@@ -1,7 +1,4 @@
-export const handleChange = (email) => {
+export const validMail = (email) => {
   const validMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  if (!validMail.test(email)) {
-    return false;
-  }
-  return true;
+  return validMail.test(email);
 };

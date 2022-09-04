@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
 export async function useFetch() {
-  const [HomePageData, setHomePageData] = useState({});
+  const [FeedpageData, setFeedpageData] = useState({});
   const [isDataLoading, setDataLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function fetchSurvey() {
+    async function fetchAllPosts() {
       setDataLoading(true);
       try {
         const response = await fetch(`/api/posts`);
-        const { HomePageData } = await response.json();
-        setHomePageData(HomePageData);
+        const { FeedpageData } = await response.json();
+        setFeedpageData(FeedpageData);
       } catch (err) {
         console.log("===== error =====", err);
         setError(true);
@@ -19,7 +19,7 @@ export async function useFetch() {
         setDataLoading(false);
       }
     }
-    fetchSurvey();
+    fetchAllPosts();
   }, []);
 
   if (error) {
@@ -33,7 +33,7 @@ export async function signUpFetch(email, password) {
 
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    headers: { "Content-Type": "applcation/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user), //mail: SyntheticBaseEvent et mdp: undefined. pourquoi
   });
   if (!response.ok) {
@@ -48,7 +48,7 @@ export async function loginFetch(email, password) {
 
   const response = await fetch("/api/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "applcation/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
   if (!response.ok) {
@@ -67,7 +67,7 @@ export const submitPost = async (e) => {
   useEffect(() => {
     fetch("/api/posts", {
       method: "POST",
-      headers: { "Content-Type": "applcation/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(post),
     }).then(() => {
       console.log("post créé");

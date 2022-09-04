@@ -1,15 +1,20 @@
 import React from "react";
-import { handleChange } from "../../utils/tools/validation";
 
-function TextInput({ value, handleChange, type, placeholder, isValid }) {
-  const classes = "input " + (isValid ? "is-succes" : "is-danger");
+function TextInput({ value, onChange, type, placeholder, isValid }) {
+  //on recupere les props dans le parent (box)
+  const classes = "input " + (isValid ? "is-success" : "is-danger");
+
+  const handleInputChange = (event) => {
+    onChange(event.target.value);
+  };
 
   return (
     <input
+      value={value}
       className={classes}
       type={type}
       placeholder={placeholder}
-      onBlur={handleChange}
+      onChange={handleInputChange}
     ></input>
   );
 }

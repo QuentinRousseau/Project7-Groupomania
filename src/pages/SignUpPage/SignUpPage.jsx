@@ -9,14 +9,18 @@ import {
 import { signUpFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Title from "../../components/Title/Title";
-import { handleChange } from "../../utils/tools/validation";
+import { validMail } from "../../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../../components/Input/Textinput";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
+  const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState(""); //verif du mdp
   const [message, setMessage] = useState(""); // creation d'un message vide
+
+  const navigateTo = useNavigate();
 
   async function submit(e) {
     //lors de l'event submit
@@ -25,11 +29,17 @@ function SignUpPage() {
     try {
       const ret = await signUpFetch(email, password);
       console.log(ret);
+      navigateTo("/"); //
     } catch (e) {
       setMessage(e);
     }
-    if (ret) return <Redirect to="/posts" push />;
   }
+
+  const handleEmailChange = (email) => {
+    setEmailValid(validMail(email)); //verifie l'email par un booleen
+    setEmail(email); //attribue la valeur de l'input a la variable email
+  };
+
   return (
     <div className="column ">
       <Title />
@@ -38,17 +48,22 @@ function SignUpPage() {
           <div className="field">
             <label className="label">Inscription</label>
             <p className="control has-icons-left has-icons-right">
-              <Textinput
-                type="Email"
-                onChange={(e) => setEmail(e.target.value)}
+              <Textinput //on attribue les props pour le composant Textinput
+                onChange={handleEmailChange}
+                value={email}
+                placeholder="Email"
+                type="text"
+                isValid={isEmailValid}
               />
-              {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
-              <span className="icon is-small is-right ">
-                <FontAwesomeIcon icon={handleChange(email) && faCheck} />
-              </span>
+              {isEmailValid && (
+                <span className="icon is-small is-right ">
+                  <FontAwesomeIcon icon={faCheck} />{" "}
+                  {/*si l'email est true , l'affichage de check est effectif */}
+                </span>
+              )}
             </p>
           </div>
           <div className="field">

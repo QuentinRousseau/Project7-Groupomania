@@ -3,9 +3,9 @@ import jwt from "../managers/jwt";
 import User from "../models/User";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-
 export const signup = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(req.body, email);
   if (!emailRegex.test(email))
     return res.status(401).json({ error: "Invalid email !" });
   if (password.length > 128)
