@@ -38,7 +38,7 @@ function SignUpPage() {
   return (
     <div className="column ">
       <Title />
-      <Box>
+      <Box id="connexionInput">
         <form onSubmit={submit} className="log">
           <div className="field">
             <label className="label">Inscription</label>

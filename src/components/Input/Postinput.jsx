@@ -6,34 +6,34 @@ import "./postinput.scss";
 function Postinput() {
   return (
     <Box id="postBox" className="has-background-danger-light">
-      <div class="field ">
-        <label class="label">Titre du post</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="Titre"></input>
+      <div className="field ">
+        <label className="label">Titre du post</label>
+        <div className="control">
+          <input className="input" type="text" placeholder="Titre"></input>
         </div>
       </div>
-      <div class="field">
-        <label class="label">Contenu</label>
-        <div class="control">
+      <div className="field">
+        <label className="label">Contenu</label>
+        <div className="control">
           <input
             id="postContentInput"
-            class="input"
+            className="input"
             type="text"
             placeholder="Contenu du post"
           ></input>
         </div>
       </div>
 
-      <div class="file is-small has-name is-danger is-centered">
-        <label class="file-label">
-          <input class="file-input" type="file" name="resume"></input>
-          <span class="file-cta">
-            <span class="file-icon">
+      <div className="file is-small has-name is-danger is-centered">
+        <label className="file-label">
+          <input className="file-input" type="file" name="resume"></input>
+          <span className="file-cta">
+            <span className="file-icon">
               <FontAwesomeIcon icon={faUpload} />
             </span>
-            <span class="file-label">Choose a file…</span>
+            <span className="file-label">Choisir un fichier</span>
           </span>
-          <span class="file-name has-background-white">...</span>
+          <span className="file-name has-background-white">...</span>
         </label>
       </div>
     </Box>

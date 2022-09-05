@@ -40,10 +40,10 @@ function Header() {
               className="button has-background-danger has-text-white  is-outlined"
               to="/SignUp"
             >
-              <strong>Sign up</strong>
+              <strong>S'inscrire</strong>
             </Link>
             <Link className="button is-danger is-light is-outlined" to="/Login">
-              Log in
+              Se Connecter
             </Link>
           </div>
         </div>

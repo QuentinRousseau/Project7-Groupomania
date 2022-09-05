@@ -1,23 +1,7 @@
 @import "../../utils/style/color.scss";
-
-.cardWrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  background-color: $secondary-color;
-  border-radius: 30px;
-  transition: 200ms;
-  &:hover {
-    cursor: pointer;
-    box-shadow: 2px 2px 10px $tertiary-color;
-  }
-  --title {
-    color: $primary-color;
-    font-size: 22px;
-    font-weight: bold;
-  }
-  --image {
-    object-fit: cover;
-    border-radius: 50%;
-  }
+.card-footer-item {
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  border-radius: 20px;
+  gap: 10px;
 }
