@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import "./signUpPage.scss";
-import {
-  faEnvelope,
-  faLock,
-  faCheck,
-  faExclamationTriangle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { signUpFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Title from "../../components/Title/Title";
@@ -29,7 +24,7 @@ function SignUpPage() {
     try {
       const ret = await signUpFetch(email, password);
       console.log(ret);
-      navigateTo("/"); //
+      navigateTo("/"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);
     }

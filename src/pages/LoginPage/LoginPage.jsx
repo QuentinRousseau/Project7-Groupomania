@@ -5,48 +5,61 @@ import { loginFetch } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Title from "../../components/Title/Title";
+import { validMail } from "../../utils/tools/validation";
+import { Box } from "react-bulma-components";
+import Textinput from "../../components/Input/Textinput";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
+  const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigateTo = useNavigate();
+
   async function submit(e) {
     e.preventDefault();
     setMessage("Please wait ...");
     try {
       const ret = await loginFetch(email, password);
       console.log(ret);
+      navigateTo("/");
     } catch (e) {
       setMessage(e);
     }
-    if (ret) return <Redirect to="/posts" push />;
   }
+
+  const handleEmailChange = (email) => {
+    setEmailValid(validMail(email)); //verifie l'email par un booleen
+    setEmail(email); //attribue la valeur de l'input a la variable email
+  };
+
   return (
     <div className="column">
       <Title />
-      <div className="box ">
+      <Box>
         <form onSubmit={submit} className="log">
           <div className="field ">
             <label className="label">Connexion</label>
             <p className="control has-icons-left has-icons-right">
-              {/* Utilisation du switch , useState ou useEffect ? */}
-              <input
-                className="input"
-                id="email"
-                type="email"
+              <Textinput //on attribue les props pour le composant Textinput
+                onChange={handleEmailChange}
+                value={email}
                 placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
+                type="text"
+                isValid={isEmailValid}
+              />
               {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
-              <span className="icon is-small is-right">
-                <FontAwesomeIcon
-                  icon={faCheck} //: faExclamationTriangle
-                />
-                {/** s'affiche si le mail est bon, sinon <FontAwesomeIcon icon="fas fa-exclamation-triangle"/> */}
-              </span>
+              {isEmailValid && (
+                <span className="icon is-small is-right ">
+                  <FontAwesomeIcon icon={faCheck} />{" "}
+                  {/*si l'email est true , l'affichage de check est effectif */}
+                </span>
+              )}
             </p>
           </div>
           <div className="field">
@@ -73,7 +86,7 @@ function LoginPage() {
             {message}
           </div>
         </form>
-      </div>
+      </Box>
     </div>
   );
 }
