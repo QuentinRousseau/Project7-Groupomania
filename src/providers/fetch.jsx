@@ -27,6 +27,7 @@ export async function useFetch() {
   }
 }
 
+/* function post request on submit */
 export async function signUpFetch(email, password) {
   const user = { email, password }; //recupération des données saisies et creation de l'objet
   console.log(user); //affichage de l'objet
@@ -41,7 +42,7 @@ export async function signUpFetch(email, password) {
   }
   return response.json();
 }
-
+/* function post request on submit */
 export async function loginFetch(email, password) {
   const user = { email, password };
   console.log(user);
