@@ -1,19 +1,39 @@
 import { Box } from "react-bulma-components";
+import { useState, useEffect } from "react";
 import { submitPost } from "../../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./postinput.scss";
 
 function Postinput() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  async function submit(e) {
+    e.preventDefault();
+    setMessage("Please wait ...");
+    try {
+      const ret = await submitPost(title, description, imageUrl);
+      console.log(ret);
+    } catch (e) {
+      setMessage(e);
+    }
+  }
   //lors du submitPost le title is not defined
   return (
     <Box id="postBox" className="has-background-danger-light">
-      <form onSubmit={submitPost}>
+      <form onSubmit={submit}>
         <h3 className="title is-3">Création d'un post</h3>
         <div className="field ">
           <label className="label">Titre du post</label>
           <div className="control">
-            <input className="input" type="text" placeholder="Titre"></input>
+            <input
+              className="input"
+              type="text"
+              placeholder="Titre"
+              value={title}
+            ></input>
           </div>
         </div>
         <div className="field">
@@ -24,6 +44,7 @@ function Postinput() {
               className="input"
               type="text"
               placeholder="Contenu du post"
+              value={description}
             ></input>
           </div>
         </div>
@@ -32,7 +53,12 @@ function Postinput() {
 
         <div className="file is-small has-name is-danger is-centered">
           <label className="file-label">
-            <input className="file-input" type="file" name="resume"></input>
+            <input
+              className="file-input"
+              type="file"
+              name="resume"
+              value={imageUrl}
+            ></input>
             <span className="file-cta">
               <span className="file-icon">
                 <FontAwesomeIcon icon={faUpload} />

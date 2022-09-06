@@ -58,23 +58,23 @@ export async function loginFetch(email, password) {
   return response.json();
 }
 
-export const submitPost = async (e) => {
-  e.preventDefault();
+export async function submitPost(title, description, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
   const post = { title, description, imageUrl, creationDate };
 
   console.log(post);
-  useEffect(() => {
-    fetch("/api/posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post),
-    }).then(() => {
-      console.log("post créé");
-    });
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(post),
   });
-};
+  if (!response) {
+    return Promise.reject(await response.text());
+  }
+  return response.json(), console.log("post créé");
+}
+
 /*
 export async function fetchAllPosts() {
     const [postsList, setpostsList] = useState({});
