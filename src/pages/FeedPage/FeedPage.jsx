@@ -6,8 +6,9 @@ import Card from "../../components/Card/Card";
 import Postinput from "../../components/Input/Postinput";
 import Title from "../../components/Title/Title";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply, faRetweet, faHeart } from "@fortawesome/free-solid-svg-icons";
+//Voir pour rajouter l'id du user sur l'url pour eviter de pouvoir revenir
+// sur le LoginPage ou le SignupPage
+// Adapter le fetch sur l'url modifiée ?
 
 function FeedPage() {
   const url = window.location.href;

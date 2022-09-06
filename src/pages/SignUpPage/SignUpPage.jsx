@@ -7,7 +7,7 @@ import Title from "../../components/Title/Title";
 import { validMail } from "../../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../../components/Input/Textinput";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUpPage() {
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
@@ -84,6 +84,9 @@ function SignUpPage() {
             {message}
           </div>
         </form>
+        <Link to={"/Login"} className="is-small has-text-black mx-auto">
+          Déjà inscrit ? Se Connecter
+        </Link>
       </Box>
     </div>
   );

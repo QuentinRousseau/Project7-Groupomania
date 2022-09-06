@@ -8,7 +8,7 @@ import Title from "../../components/Title/Title";
 import { validMail } from "../../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../../components/Input/Textinput";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -83,8 +83,15 @@ function LoginPage() {
             >
               Connexion
             </button>
-            {message}
+            <p>{message}</p>
           </div>
+          {/**rajouter l'url de l'id connecté en plus ? */}
+          <Link
+            to={"/SignUp"}
+            className="is-centered has-text-centered is-small has-text-black"
+          >
+            Pas encore insrcit ? Creer votre compte
+          </Link>
         </form>
       </Box>
     </div>

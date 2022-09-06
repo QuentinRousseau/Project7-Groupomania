@@ -1,7 +1,7 @@
 import "./card.scss";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function Card({
   userId,
@@ -37,7 +37,10 @@ function Card({
               <div className="level-left ">
                 <a className="level-item is-danger" aria-label="reply">
                   <span className="icon is-medium">
-                    <FontAwesomeIcon icon={faComment} className="iconsPost" />
+                    <FontAwesomeIcon
+                      icon={faHeartBroken}
+                      className="iconsPost"
+                    />
                   </span>
                 </a>
                 <a className="level-item is-danger" aria-label="like">
@@ -50,11 +53,11 @@ function Card({
           </div>{" "}
         </article>
         <footer className="card-footer ">
-          <button class="button is-small is-danger mx-1 ">Confirmer</button>
+          <button className="button is-small is-danger mx-1 ">Confirmer</button>
 
-          <button class="button is-small is-danger mx-1 ">Modifier</button>
+          <button className="button is-small is-danger mx-1 ">Modifier</button>
 
-          <button class="button is-small is-danger mx-1 ">Supprimer</button>
+          <button className="button is-small is-danger mx-1 ">Supprimer</button>
         </footer>
       </div>
     </div>
