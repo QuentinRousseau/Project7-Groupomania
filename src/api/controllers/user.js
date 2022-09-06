@@ -3,7 +3,7 @@ import jwt from "../managers/jwt";
 import User from "../models/User";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-export const signup = async (req, res, next) => {
+export async function signup(req, res, next) {
   const { email, password } = req.body;
   console.log(req.body, email);
   if (!emailRegex.test(email))
@@ -19,9 +19,9 @@ export const signup = async (req, res, next) => {
     }); // catch l'erreur et renvoie un code 400 plus un message specifiant le problème
 
   res.status(201).json({ message: "User created !" }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
-};
+}
 
-export const login = async (req, res, next) => {
+export async function login(req, res, next) {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(401).json({ error: "Invalid credentials !" });
   const valid = await bcrypt.compare(req.body.password, user.password);
@@ -31,4 +31,4 @@ export const login = async (req, res, next) => {
     userId: user._id,
     token: jwt.sign({ userId: user._id }), //config de jwt dans jwt.js
   });
-};
+}

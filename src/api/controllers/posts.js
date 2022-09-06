@@ -1,7 +1,7 @@
 import Post from "../models/Post";
 import fs from "fs";
 
-export const getAllPosts = async (req, res, next) => {
+export async function getAllPosts(req, res, next) {
   try {
     const posts = await Post.find().then((posts) => {
       res.status(200).json(posts);
@@ -10,9 +10,9 @@ export const getAllPosts = async (req, res, next) => {
     res.status(400).json({ error });
     throw new Error("no posts find ! ");
   }
-};
+}
 
-export const getOnePost = async (req, res, next) => {
+export async function getOnePost(req, res, next) {
   await Post.findOne({ _id: req.params.id })
     .then((post) => {
       res.status(200).json(post);
@@ -22,9 +22,9 @@ export const getOnePost = async (req, res, next) => {
         error: error,
       });
     });
-};
+}
 
-export const createPost = async (req, res, next) => {
+export async function createPost(req, res, next) {
   let postObject = await JSON.parse(req.body.post); // decoupe la requete en plusieurs champs
   delete postObject._id; // enleve l'id pour la remplacer plus tard
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
@@ -46,9 +46,9 @@ export const createPost = async (req, res, next) => {
       res.status(400).json({ error });
     })
     .then(() => res.status(201).json({ message: "Objet enregistré !" }));
-};
+}
 
-export const modifyPost = async (req, res, next) => {
+export async function modifyPost(req, res, next) {
   const postObject = (await req.file)
     ? {
         ...JSON.parse(req.body.post),
@@ -66,9 +66,9 @@ export const modifyPost = async (req, res, next) => {
   Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
     .then(() => res.status(200).json({ message: "Post modified !" }))
     .catch((error) => res.status(401).json({ error }));
-};
+}
 
-export const deletePost = async (req, res, next) => {
+export async function deletePost(req, res, next) {
   const post = await Post.findOne({ _id: req.params.id });
 
   if (!post) return res.status(400).json({ error: "Post not found !" });
@@ -85,9 +85,9 @@ export const deletePost = async (req, res, next) => {
   });
 
   res.status(200).json({ message: "Objet supprimé !" });
-};
+}
 
-export const likeOrDislike = async (req, res, next) => {
+export async function likeOrDislike(req, res, next) {
   // getsauceId => const myPost
   // hasLike => myPost.userliked.includes(userId)
   // hasDislike => myPost.userdisLiked.includes(userId)
@@ -132,4 +132,4 @@ export const likeOrDislike = async (req, res, next) => {
   await myPost.save().catch((error) => res.status(401).json({ error }));
 
   res.status(200).json({ message: " likes update !" });
-};
+}
