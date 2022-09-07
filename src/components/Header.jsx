@@ -1,9 +1,11 @@
 import "./header.scss";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";
 
 function Header() {
+  const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
+  const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
   return (
     <nav
       className="navbar is-full is-shadowless "
@@ -22,7 +24,8 @@ function Header() {
         </Link>
         <a
           role="button"
-          className="navbar-burger"
+          className={`navbar-burger ${active && "is-active"}`}
+          onClick={toggleActive}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -32,19 +35,23 @@ function Header() {
           <span aria-hidden="true"></span>
         </a>
       </div>
-
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <div className="buttons">
-            <Link
-              className="button has-background-danger has-text-white  is-outlined"
-              to="/SignUp"
-            >
-              <strong>S'inscrire</strong>
-            </Link>
-            <Link className="button is-danger is-light is-outlined" to="/Login">
-              Se Connecter
-            </Link>
+      <div className={`navbar-menu  ${active && "is-active"}`}>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <Link
+                className="button has-background-danger has-text-white  is-outlined"
+                to="/SignUp"
+              >
+                <strong>S'inscrire</strong>
+              </Link>
+              <Link
+                className="button is-danger is-light is-outlined"
+                to="/Login"
+              >
+                Se Connecter
+              </Link>
+            </div>
           </div>
         </div>
       </div>
