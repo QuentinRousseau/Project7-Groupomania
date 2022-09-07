@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./signUpPage.scss";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { signUpFetch } from "../../providers/fetch";
+import { signUpFetch } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Title from "../../components/Title/Title";
-import { validMail } from "../../utils/tools/validation";
+import Title from "../components/Title";
+import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
-import Textinput from "../../components/Input/Textinput";
+import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignUpPage() {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/homeLogo.png?url";
+import logo from "../assets/homeLogo.png?url";
 
 function Title() {
   return (

@@ -1,19 +1,23 @@
 import { Box } from "react-bulma-components";
 import { useState, useEffect } from "react";
-import { submitPost } from "../../providers/fetch";
+import { submitPost } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./postinput.scss";
+import { useNavigate } from "react-router-dom";
+import { useField } from "../utils/hooks/useField";
 
 function Postinput() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [title, setTitle] = useField();
+  const [description, setDescription] = useField();
+  const [imageUrl, setImageUrl] = useField();
+  const [message, setMessage] = useState("");
 
   async function submit(e) {
     e.preventDefault();
     setMessage("Please wait ...");
     try {
+      console.log("t'es dedans !");
       const ret = await submitPost(title, description, imageUrl);
       console.log(ret);
     } catch (e) {
@@ -24,7 +28,6 @@ function Postinput() {
   return (
     <Box id="postBox" className="has-background-danger-light">
       <form onSubmit={submit}>
-        <h3 className="title is-3">Création d'un post</h3>
         <div className="field ">
           <label className="label">Titre du post</label>
           <div className="control">
@@ -33,6 +36,7 @@ function Postinput() {
               type="text"
               placeholder="Titre"
               value={title}
+              onInput={setTitle}
             ></input>
           </div>
         </div>
@@ -45,6 +49,7 @@ function Postinput() {
               type="text"
               placeholder="Contenu du post"
               value={description}
+              onInput={setDescription}
             ></input>
           </div>
         </div>
@@ -58,6 +63,7 @@ function Postinput() {
               type="file"
               name="resume"
               value={imageUrl}
+              onInput={imageUrl ? "..." : setImageUrl}
             ></input>
             <span className="file-cta">
               <span className="file-icon">
@@ -65,11 +71,12 @@ function Postinput() {
               </span>
               <span className="file-label">Choisir un fichier</span>
             </span>
-            <span className="file-name has-background-white">...</span>
+            <span className="file-name has-background-white">{imageUrl}</span>
           </label>
           <button type="submit" className="button is-small is-danger mx-4 ">
             Confirmer
           </button>
+          {message}
         </div>
       </form>
     </Box>

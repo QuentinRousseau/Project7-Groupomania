@@ -1,11 +1,11 @@
-import SignUpPage from "../../pages/SignUpPage/SignUpPage";
-import LoginPage from "../../pages/LoginPage/LoginPage";
-import FeedPage from "../../pages/FeedPage/FeedPage";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
+import FeedPage from "./pages/FeedPage";
 
 import "./app.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export function App() {
   return (

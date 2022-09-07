@@ -64,7 +64,7 @@ export async function submitPost(title, description, imageUrl) {
   const post = { title, description, imageUrl, creationDate };
 
   console.log(post);
-  const response = await fetch("/api/posts", {
+  const response = await fetch("/api/posts/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(post),
@@ -72,7 +72,9 @@ export async function submitPost(title, description, imageUrl) {
   if (!response) {
     return Promise.reject(await response.text());
   }
-  return response.json(), console.log("post créé");
+  const data = await response.json();
+  console.log("post créé", data);
+  return data;
 }
 
 /*
