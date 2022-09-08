@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./signUpPage.scss";
-import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faEnvelope,
+  faLock,
+  faCheck,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { signUpFetch } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Title from "../components/Title";
@@ -14,6 +20,7 @@ function SignUpPage() {
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState(""); //verif du mdp
   const [message, setMessage] = useState(""); // creation d'un message vide
+  const [name, setName] = useState("");
 
   const navigateTo = useNavigate();
 
@@ -22,9 +29,9 @@ function SignUpPage() {
     e.preventDefault();
     setMessage("Please wait ..."); //attribution de la valeur au msg
     try {
-      const ret = await signUpFetch(email, password);
+      const ret = await signUpFetch(name, email, password);
       console.log(ret);
-      navigateTo("/"); // Fonction qui permet de rediriger vers un autre url
+      navigateTo("/Posts"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);
     }
@@ -42,6 +49,19 @@ function SignUpPage() {
         <form onSubmit={submit} className="log">
           <div className="field">
             <label className="label">Inscription</label>
+            <p className="control has-icons-left">
+              <input
+                className="input"
+                type="text"
+                placeholder="Nom"
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faUser} />
+              </span>
+            </p>
+          </div>{" "}
+          <div className="field">
             <p className="control has-icons-left has-icons-right">
               <Textinput //on attribue les props pour le composant Textinput
                 onChange={handleEmailChange}

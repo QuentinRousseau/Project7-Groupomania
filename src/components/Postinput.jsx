@@ -9,7 +9,7 @@ import { useField } from "../utils/hooks/useField";
 
 function Postinput() {
   const [title, setTitle] = useField();
-  const [description, setDescription] = useField();
+  const [postContent, setPostContent] = useField();
   const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
 
@@ -18,7 +18,7 @@ function Postinput() {
     setMessage("Please wait ...");
     try {
       console.log("t'es dedans !");
-      const ret = await submitPost(title, description, imageUrl);
+      const ret = await submitPost(title, postContent, imageUrl);
       console.log(ret);
     } catch (e) {
       setMessage(e);
@@ -48,8 +48,8 @@ function Postinput() {
               className="input"
               type="text"
               placeholder="Contenu du post"
-              value={description}
-              onInput={setDescription}
+              value={postContent}
+              onInput={setPostContent}
             ></input>
           </div>
         </div>

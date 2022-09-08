@@ -4,14 +4,14 @@ import User from "../models/User";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export async function signup(req, res, next) {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
   console.log(req.body, email);
   if (!emailRegex.test(email))
     return res.status(401).json({ error: "Invalid email !" });
   if (password.length > 128)
     return res.status(401).json({ error: "Password to long !" });
   const hash = await bcrypt.hash(req.body.password, 10); // attente de la réponse du hashage du mdp
-  const user = new User({ email, password: hash }); // creation de l'utilisateur en attribuant le mdp hash a la place de l'initial
+  const user = new User({ username, email, password: hash }); // creation de l'utilisateur en attribuant le mdp hash a la place de l'initial
   await user
     .save() // attente de la réponse de la sauvegarde de celui ci
     .catch((error) => {

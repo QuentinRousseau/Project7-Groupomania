@@ -10,7 +10,7 @@ export async function useFetch() {
       setDataLoading(true);
       try {
         const response = await fetch(`/api/posts`);
-        const { FeedpageData } = await response.json();
+        const FeedpageData = await response.json();
         setFeedpageData(FeedpageData);
       } catch (err) {
         console.log("===== error =====", err);
@@ -28,8 +28,8 @@ export async function useFetch() {
 }
 
 /* function post request on submit */
-export async function signUpFetch(email, password) {
-  const user = { email, password }; //recupération des données saisies et creation de l'objet
+export async function signUpFetch(name, email, password) {
+  const user = { name, email, password }; //recupération des données saisies et creation de l'objet
   console.log(user); //affichage de l'objet
 
   const response = await fetch("/api/auth/signup", {
@@ -58,10 +58,10 @@ export async function loginFetch(email, password) {
   return response.json();
 }
 
-export async function submitPost(title, description, imageUrl) {
+export async function submitPost(title, postContent, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
-  const post = { title, description, imageUrl, creationDate };
+  const post = { title, postContent, imageUrl, creationDate };
 
   console.log(post);
   const response = await fetch("/api/posts/", {

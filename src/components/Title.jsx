@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogo.png?url";
 
 function Title() {
   return (
     <div className="title">
       <h1 className="title has-text-danger is-1 is-inline-block mr-6" id="">
-        <Link to={"/"}>
+        <NavLink to={"/"}>
           <img
             src={logo}
             width="700"
@@ -14,7 +14,7 @@ function Title() {
             alt="Logo de l'entreprise Groupomania"
             className="image is-hidden-touch mt-5"
           ></img>
-        </Link>
+        </NavLink>
       </h1>
     </div>
   );

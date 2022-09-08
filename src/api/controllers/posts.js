@@ -1,6 +1,18 @@
 import Post from "../models/Post";
 import fs from "fs";
 
+//Dernier ajout de fonction pour rattacher l'user et ses posts
+
+export function getUserWithPosts(username) {
+  return User.findOne({ username: username })
+    .populate("posts")
+    .exec((err, posts) => {
+      console.log("Populated User " + posts);
+    });
+}
+
+// Fonctions déjà existantes
+
 export async function getAllPosts(req, res, next) {
   try {
     const posts = await Post.find().then((posts) => {
@@ -23,17 +35,6 @@ export async function getOnePost(req, res, next) {
       });
     });
 }
-//Dernier ajout de fonction pour rattacher l'user et ses posts
-
-export function getUserWithPosts(username) {
-  return User.findOne({ username: username })
-    .populate("posts")
-    .exec((err, posts) => {
-      console.log("Populated User " + posts);
-    });
-}
-
-// Fonctions déjà existantes
 
 export async function createPost(req, res, next) {
   let postObject = await JSON.parse(req.body.post); // decoupe la requete en plusieurs champs

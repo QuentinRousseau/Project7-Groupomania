@@ -8,7 +8,7 @@ import Title from "../components/Title";
 import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ function LoginPage() {
     try {
       const ret = await loginFetch(email, password);
       console.log(ret);
-      navigateTo("/");
+      navigateTo("/Posts");
     } catch (e) {
       setMessage(e);
     }
@@ -86,12 +86,12 @@ function LoginPage() {
             <p>{message}</p>
           </div>
           {/**rajouter l'url de l'id connecté en plus ? */}
-          <Link
+          <NavLink
             to={"/SignUp"}
             className="is-centered has-text-centered is-small has-text-black"
           >
             Pas encore insrcit ? Creer votre compte
-          </Link>
+          </NavLink>
         </form>
       </Box>
     </div>

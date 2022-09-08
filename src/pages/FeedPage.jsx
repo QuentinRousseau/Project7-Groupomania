@@ -1,5 +1,7 @@
 import "./feedPage.scss";
 import { useFetch } from "../providers/fetch";
+import { useParams } from "react-router-dom";
+import withAuth from "../components/withAuth";
 //import { Loader } from "../../components/Loader/Loader";
 import { error } from "react";
 import Card from "../components/Card";
@@ -11,23 +13,18 @@ import Title from "../components/Title";
 // Adapter le fetch sur l'url modifiée ?
 
 function FeedPage() {
-  const url = window.location.href;
-  let postsList = useFetch(url);
+  const { name } = useParams();
+  useFetch();
   if (error) return <span>Oulà , on a un problème !</span>;
   return (
     <div className="feedPage">
       <Title />
       <div className="title">
+        <p>{name}</p>
         <Postinput />
       </div>
 
-      {/*    {isDataLoading ? (
-        <div className="loaderWrapper">
-          <Loader />
-        </div>
-) : (*/}
       <Card></Card>
-      {/** )}*/}
     </div>
   );
 }
