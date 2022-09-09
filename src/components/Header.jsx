@@ -1,13 +1,9 @@
 import "./header.scss";
 import React, { useState } from "react";
-
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";
-import { useAuth } from "../utils/hooks/useAuth";
 
 function Header() {
-  const { onLogin } = useAuth();
-  const { onLogout } = useAuth();
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
 
@@ -51,18 +47,14 @@ function Header() {
               </NavLink>
 
               <NavLink to="/Login">
-                <button
-                  className="button is-danger is-light is-outlined"
-                  onClick={onLogin}
-                >
+                <button className="button is-danger is-light is-outlined">
                   Se Connecter
                 </button>
               </NavLink>
-              {token && (
-                <button type="button" onClick={onLogout}>
+
+              {/* <button type="button" onClick={onLogout}>
                   Sign Out
-                </button>
-              )}
+                </button> */}
             </div>
           </div>
         </div>

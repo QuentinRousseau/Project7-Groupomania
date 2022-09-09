@@ -9,17 +9,14 @@ import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/hooks/useAuth";
 
 function LoginPage() {
-  const { onLogin } = useAuth();
+  const navigateTo = useNavigate();
 
   const [email, setEmail] = useState("");
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
-  const navigateTo = useNavigate();
 
   async function submit(e) {
     e.preventDefault();
