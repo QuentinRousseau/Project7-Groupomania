@@ -31,7 +31,7 @@ function SignUpPage() {
     try {
       const ret = await signUpFetch(name, email, password);
       console.log(ret);
-      navigateTo("/Posts"); // Fonction qui permet de rediriger vers un autre url
+      navigateTo("/posts"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);
     }
@@ -104,7 +104,7 @@ function SignUpPage() {
             {message}
           </div>
         </form>
-        <Link to={"/Login"} className="is-small has-text-black mx-auto">
+        <Link to={"/login"} className="is-small has-text-black mx-auto">
           Déjà inscrit ? Se Connecter
         </Link>
       </Box>

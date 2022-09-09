@@ -3,6 +3,8 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import FeedPage from "./pages/FeedPage";
 import AdminFeedPage from "./pages/AdminFeedPage";
+import Users from "./pages/Users";
+import User from "./pages/User";
 import { useState } from "react";
 
 import "./app.scss";
@@ -54,18 +56,22 @@ export function App() {
       )}
 
       <Routes>
-        <Route path="Login" element={<LoginPage />} />
+        <Route path="login" element={<LoginPage />} />
         <Route index element={<LoginPage />} />
         {/*path = le chemin d'accès envoyé lors du clic, renvoie le composant LoginPage.*/}
-        <Route path="SignUp" element={<SignUpPage />} />
+        <Route path="signup" element={<SignUpPage />} />
+
         <Route
-          path="Posts"
+          path="posts"
           element={
             <ProtectedRoute isAllowed={!!user}>
               <FeedPage />
             </ProtectedRoute>
           }
         />
+        <Route path="users" element={<Users users={user} />}>
+          <Route path=":userId" element={<User />} />
+        </Route>
         <Route
           path="admin"
           element={

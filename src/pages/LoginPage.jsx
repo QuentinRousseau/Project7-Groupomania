@@ -24,7 +24,7 @@ function LoginPage() {
     try {
       const ret = await loginFetch(email, password);
       console.log(ret);
-      navigateTo("/Posts");
+      navigateTo("/posts");
     } catch (e) {
       setMessage(e);
     }
@@ -87,7 +87,7 @@ function LoginPage() {
           </div>
           {/**rajouter l'url de l'id connecté en plus ? */}
           <NavLink
-            to={"/SignUp"}
+            to={"/signup"}
             className="is-centered has-text-centered is-small has-text-black"
           >
             Pas encore insrcit ? Creer votre compte

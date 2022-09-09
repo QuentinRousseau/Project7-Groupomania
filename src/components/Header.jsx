@@ -41,12 +41,12 @@ function Header() {
             <div className="buttons">
               <NavLink
                 className="button has-background-danger has-text-white  is-outlined"
-                to="/SignUp"
+                to="/signup"
               >
                 <strong>S'inscrire</strong>
               </NavLink>
 
-              <NavLink to="/Login">
+              <NavLink to="/login">
                 <button className="button is-danger is-light is-outlined">
                   Se Connecter
                 </button>

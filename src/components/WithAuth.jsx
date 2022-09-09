@@ -8,7 +8,7 @@ function withAuth(Component) {
     if (isAuth) {
       return <Component />;
     } else {
-      return navigateTo("/Login");
+      return navigateTo("/login");
     }
   };
 
