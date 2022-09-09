@@ -3,17 +3,11 @@ import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";
+import { useAuth } from "../utils/hooks/useAuth";
 
-function Header({ history }) {
-  const isAuth = !!localStorage.getItem("token");
-  const loginUser = () => {
-    localStorage.setItem("token", "some-login-token");
-    history.push("/profile/Vijit");
-  };
-  const logoutUser = () => {
-    localStorage.removeItem("token");
-    history.push("/");
-  };
+function Header() {
+  const { onLogin } = useAuth();
+  const { onLogout } = useAuth();
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
 
@@ -24,15 +18,14 @@ function Header({ history }) {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <NavLink to={"/"}>
-          <img
-            src={logo}
-            width="200"
-            height="2000"
-            alt="Logo de l'entreprise Groupomania"
-            className="image is-hidden-desktop mt-5 "
-          ></img>
-        </NavLink>
+        <img
+          src={logo}
+          width="200"
+          height="2000"
+          alt="Logo de l'entreprise Groupomania"
+          className="image is-hidden-desktop mt-5 "
+        ></img>
+
         <a
           role="button"
           className={`navbar-burger ${active && "is-active"}`}
@@ -57,24 +50,18 @@ function Header({ history }) {
                 <strong>S'inscrire</strong>
               </NavLink>
 
-              {!isAuth ? (
-                <NavLink to="/Login">
-                  <button
-                    className="button is-danger is-light is-outlined"
-                    onClick={loginUser}
-                  >
-                    Se Connecter
-                  </button>
-                </NavLink>
-              ) : (
-                <NavLink to="/Login">
-                  <button
-                    className="button is-danger is-light is-outlined"
-                    onClick={logoutUser}
-                  >
-                    Se Deconnecter
-                  </button>
-                </NavLink>
+              <NavLink to="/Login">
+                <button
+                  className="button is-danger is-light is-outlined"
+                  onClick={onLogin}
+                >
+                  Se Connecter
+                </button>
+              </NavLink>
+              {token && (
+                <button type="button" onClick={onLogout}>
+                  Sign Out
+                </button>
               )}
             </div>
           </div>
