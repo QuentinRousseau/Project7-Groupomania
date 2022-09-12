@@ -16,7 +16,6 @@ function LoginPage() {
   const navigateTo = useNavigate();
 
   const { user, login } = useContext(UserContext);
-  const [id, setId] = useState();
 
   const [email, setEmail] = useState("");
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
@@ -29,8 +28,9 @@ function LoginPage() {
     try {
       const response = await loginFetch(email, password);
       console.log(response);
-      setUser(response);
-      login(user);
+      user.id = response.userId;
+      console.log(user);
+      login(user.id);
       console.log(user);
       navigateTo(`/posts`);
     } catch (e) {
