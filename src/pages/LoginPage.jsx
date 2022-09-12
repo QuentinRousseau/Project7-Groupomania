@@ -27,11 +27,11 @@ function LoginPage() {
     e.preventDefault();
     setMessage("Please wait ...");
     try {
-      const ret = await loginFetch(email, password);
-      console.log(ret);
-      setId(ret.id);
-      login(id);
-      console.log(login);
+      const response = await loginFetch(email, password);
+      console.log(response);
+      setUser(response);
+      login(user);
+      console.log(user);
       navigateTo(`/posts`);
     } catch (e) {
       setMessage(e);

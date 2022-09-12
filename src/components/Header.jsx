@@ -10,7 +10,7 @@ function Header() {
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
   const { user, login, logout } = useContext(UserContext);
 
-  console.log({ user, login, logout });
+  console.log({ user });
   return (
     <nav
       className="navbar is-full is-shadowless "
