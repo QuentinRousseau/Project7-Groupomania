@@ -21,8 +21,11 @@ import Footer from "./components/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export function App() {
+  // test pour le changement d'état ,
+  //si l'utilisateur est connecté, modifier le "Se Co " en "Se Deco"
   const [user, setUser] = useState(null);
 
+  //bas de données factice
   const handleLogin = () =>
     setUser({
       id: "6319f98d1e57ba9a42451490",
@@ -38,7 +41,7 @@ export function App() {
 
     <BrowserRouter>
       <Header />
-
+      {/* Boutons test */}
       {user ? (
         <button
           className="button is-danger is-light is-outlined"
@@ -64,7 +67,7 @@ export function App() {
         <Route
           path="posts"
           element={
-            <ProtectedRoute isAllowed={!!user}>
+            <ProtectedRoute isAllowed={!user}>
               <FeedPage />
             </ProtectedRoute>
           }
