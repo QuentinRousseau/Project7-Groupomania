@@ -3,7 +3,6 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import FeedPage from "./pages/FeedPage";
 import AdminFeedPage from "./pages/AdminFeedPage";
-
 import { useState } from "react";
 
 import "./app.scss";
@@ -23,7 +22,6 @@ export function App() {
   // test pour le changement d'état ,
   //si l'utilisateur est connecté, modifier le "Se Co " en "Se Deco"
   const [user, setUser] = useState(null);
-
   //bas de données factice
   const handleLogin = () =>
     setUser({
@@ -33,29 +31,9 @@ export function App() {
       roles: ["admin"],
     });
   const handleLogout = () => setUser(null);
-
   return (
-    // <Route path="/profile/:name"></Route>
-    //
-
     <BrowserRouter>
       <Header />
-      {/* Boutons test */}
-      {user ? (
-        <button
-          className="button is-danger is-light is-outlined"
-          onClick={handleLogout}
-        >
-          Sign Out
-        </button>
-      ) : (
-        <button
-          className="button has-background-danger has-text-white  is-outlined"
-          onClick={handleLogin}
-        >
-          Sign In
-        </button>
-      )}
 
       <Routes>
         <Route path="login" element={<LoginPage />} />

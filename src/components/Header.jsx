@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";
 
-function Header() {
+function Header(isAllowed) {
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
 
