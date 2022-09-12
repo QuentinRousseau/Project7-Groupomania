@@ -15,6 +15,7 @@ const postSchema = mongoose.Schema({
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);*/
 
 const postSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
   title: { type: String, required: true },
   postContent: { type: String, required: true },
   imageUrl: { type: String, required: true },
