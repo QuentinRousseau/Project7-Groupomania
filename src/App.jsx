@@ -30,7 +30,7 @@ export function App() {
         {/*path = le chemin d'accès envoyé lors du clic, renvoie le composant LoginPage.*/}
         <Route path="signup" element={<SignUpPage />} />
 
-        <Route path="posts" element={<FeedPage />} />
+        <Route path={`/posts`} element={<FeedPage />} />
         {/* <Route
           path="admin"
           element={

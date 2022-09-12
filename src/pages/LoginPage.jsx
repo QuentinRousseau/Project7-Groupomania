@@ -15,7 +15,7 @@ import UserContext from "../providers/UserContext";
 function LoginPage() {
   const navigateTo = useNavigate();
 
-  const { login } = useContext(UserContext);
+  const { user, login } = useContext(UserContext);
   const [id, setId] = useState();
 
   const [email, setEmail] = useState("");
@@ -30,8 +30,9 @@ function LoginPage() {
       const ret = await loginFetch(email, password);
       console.log(ret);
       setId(ret.id);
+      login(id);
       console.log(login);
-      navigateTo("/posts");
+      navigateTo(`/posts`);
     } catch (e) {
       setMessage(e);
     }
@@ -85,7 +86,6 @@ function LoginPage() {
           </div>
           <div className="has-text-centered">
             <button
-              onClick={() => login(id)}
               className="button is-medium has-background-danger has-text-white"
               type="submit"
             >

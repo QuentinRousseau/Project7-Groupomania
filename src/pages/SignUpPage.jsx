@@ -14,8 +14,13 @@ import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../providers/UserContext";
 
 function SignUpPage() {
+  const { login } = useContext(UserContext);
+  const [id, setId] = useState();
+
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState(""); //verif du mdp
@@ -31,6 +36,9 @@ function SignUpPage() {
     try {
       const ret = await signUpFetch(name, email, password);
       console.log(ret);
+      setId(ret.id);
+      console.log(login);
+      login(id);
       navigateTo("/posts"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);

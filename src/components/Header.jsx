@@ -43,12 +43,14 @@ function Header() {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <NavLink
-                className="button has-background-danger has-text-white  is-outlined"
-                to="/signup"
-              >
-                <strong>S'inscrire</strong>
-              </NavLink>
+              {!user.auth && (
+                <NavLink
+                  className="button has-background-danger has-text-white  is-outlined"
+                  to="/signup"
+                >
+                  <strong>S'inscrire</strong>
+                </NavLink>
+              )}
 
               <NavLink to="/login">
                 {user.auth ? (
@@ -67,10 +69,6 @@ function Header() {
                   </button>
                 )}
               </NavLink>
-
-              {/* <button type="button" onClick={onLogout}>
-                  Sign Out
-                </button> */}
             </div>
           </div>
         </div>
