@@ -6,8 +6,13 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./postinput.scss";
 import { useNavigate } from "react-router-dom";
 import { useField } from "../utils/hooks/useField";
+import { useContext } from "react";
+import UserContext from "../providers/UserContext";
 
 function Postinput() {
+  const { user, login } = useContext(UserContext);
+  console.log(user);
+
   const [title, setTitle] = useField();
   const [postContent, setPostContent] = useField();
   const [imageUrl, setImageUrl] = useField();
@@ -17,8 +22,8 @@ function Postinput() {
     e.preventDefault();
     setMessage("Please wait ...");
     try {
-      console.log("t'es dedans !");
-      const ret = await submitPost(title, postContent, imageUrl);
+      const userId = user.id;
+      const ret = await submitPost(userId, title, postContent, imageUrl);
       console.log(ret);
     } catch (e) {
       setMessage(e);

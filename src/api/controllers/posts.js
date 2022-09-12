@@ -38,9 +38,8 @@ export async function getOnePost(req, res, next) {
 
 export async function createPost(req, res, next) {
   let postObject = await JSON.parse(req.body.post); // decoupe la requete en plusieurs champs
-  console.log(postObject);
-  // delete postObject._id; // enleve l'id pour la remplacer plus tard
-  // delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
+  delete postObject._id; // enleve l'id pour la remplacer plus tard
+  delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
   const post = new Post({
     ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
     userId: req.auth.userId, // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs

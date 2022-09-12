@@ -29,7 +29,6 @@ function LoginPage() {
       const response = await loginFetch(email, password);
       console.log(response);
       user.id = response.userId;
-      console.log(user);
       login(user.id);
       console.log(user);
       navigateTo(`/posts`);

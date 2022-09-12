@@ -58,10 +58,10 @@ export async function loginFetch(email, password) {
   return response.json();
 }
 
-export async function submitPost(title, postContent, imageUrl) {
+export async function submitPost(userId, title, postContent, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
-  const post = { title, postContent, imageUrl, creationDate };
+  const post = { userId, title, postContent, imageUrl, creationDate };
 
   console.log(post);
   const response = await fetch("/api/posts/", {
@@ -69,6 +69,7 @@ export async function submitPost(title, postContent, imageUrl) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(post),
   });
+  console.log(response);
   if (!response) {
     return Promise.reject(await response.text());
   }
