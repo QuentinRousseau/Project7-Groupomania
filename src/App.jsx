@@ -3,8 +3,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import FeedPage from "./pages/FeedPage";
 import AdminFeedPage from "./pages/AdminFeedPage";
-import Users from "./pages/Users";
-import User from "./pages/User";
+
 import { useState } from "react";
 
 import "./app.scss";
@@ -72,10 +71,7 @@ export function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="users" element={<Users users={user} />}>
-          <Route path=":userId" element={<User />} />
-        </Route>
-        <Route
+        {/* <Route
           path="admin"
           element={
             <ProtectedRoute
@@ -85,7 +81,7 @@ export function App() {
               <AdminFeedPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

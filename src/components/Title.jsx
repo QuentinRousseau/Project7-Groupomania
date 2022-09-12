@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogo.png?url";
 
-function Title() {
+function Title(isAllowed) {
   return (
     <div className="title">
       <h1 className="title has-text-danger is-1 is-inline-block mr-6" id="">
-        <NavLink to={"/"}>
+        <NavLink to={isAllowed ? "/posts" : "/"}>
           <img
             src={logo}
             width="700"
