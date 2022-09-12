@@ -9,9 +9,14 @@ import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../providers/UserContext";
 
 function LoginPage() {
   const navigateTo = useNavigate();
+
+  const { login } = useContext(UserContext);
+  const [id, setId] = useState();
 
   const [email, setEmail] = useState("");
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
@@ -24,6 +29,8 @@ function LoginPage() {
     try {
       const ret = await loginFetch(email, password);
       console.log(ret);
+      setId(ret.id);
+      console.log(login);
       navigateTo("/posts");
     } catch (e) {
       setMessage(e);
@@ -78,6 +85,7 @@ function LoginPage() {
           </div>
           <div className="has-text-centered">
             <button
+              onClick={() => login(id)}
               className="button is-medium has-background-danger has-text-white"
               type="submit"
             >

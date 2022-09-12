@@ -2,11 +2,15 @@ import "./header.scss";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";
+import UserContext from "../providers/UserContext";
+import { useContext } from "react";
 
-function Header(isAllowed) {
+function Header() {
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
+  const { user, login, logout } = useContext(UserContext);
 
+  console.log({ user, login, logout });
   return (
     <nav
       className="navbar is-full is-shadowless "
@@ -47,9 +51,21 @@ function Header(isAllowed) {
               </NavLink>
 
               <NavLink to="/login">
-                <button className="button is-danger is-light is-outlined">
-                  Se Connecter
-                </button>
+                {user.auth ? (
+                  <button
+                    onClick={logout}
+                    className="button is-danger is-light is-outlined"
+                  >
+                    Se Deconnecter
+                  </button>
+                ) : (
+                  <button
+                    onClick={login}
+                    className="button is-danger is-light is-outlined"
+                  >
+                    Se Connecter
+                  </button>
+                )}
               </NavLink>
 
               {/* <button type="button" onClick={onLogout}>
