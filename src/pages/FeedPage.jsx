@@ -5,15 +5,7 @@ import Card from "../components/Card";
 import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 
-import { useContext } from "react";
-import UserContext from "../providers/UserContext";
-import { Navigate } from "react-router";
-
 function FeedPage() {
-  // const { user } = useContext(UserContext);
-  // console.log(user.auth);
-  // if (!user.auth) return <Navigate to={"/login"} />;
-
   useFetch();
   return (
     <div className="feedPage">

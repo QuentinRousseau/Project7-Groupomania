@@ -37,7 +37,10 @@ export async function getOnePost(req, res, next) {
 }
 
 export async function createPost(req, res, next) {
-  let postObject = await JSON.parse(req.body.post);
+  console.log("req.body", req.body);
+  console.log("body.post", req.body.post);
+  console.log("userId", req.auth);
+  let postObject = JSON.parse(req.body.post);
   console.log(postObject); // decoupe la requete en plusieurs champs
   delete postObject._id; // enleve l'id pour la remplacer plus tard
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard

@@ -4,7 +4,6 @@ import { submitPost } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./postinput.scss";
-import { useNavigate } from "react-router-dom";
 import { useField } from "../utils/hooks/useField";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
@@ -17,7 +16,6 @@ function Postinput() {
   const [postContent, setPostContent] = useField("");
   const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
-  console.log(title);
 
   async function submit(e) {
     e.preventDefault();
@@ -74,8 +72,8 @@ function Postinput() {
                 console.log(imageUrl);
               }}
               onInput={(e) => {
-                console.log(imageUrl);
                 setImageUrl(e.target.files[0]);
+                console.log(imageUrl);
               }}
             ></input>
             <span className="file-cta">
@@ -85,7 +83,8 @@ function Postinput() {
               <span className="file-label">Choisir un fichier</span>
             </span>
             <span className="file-name has-background-white">
-              {imageUrl?.name} {/*vérifie la donnée avant d'appeler le name*/}
+              {imageUrl?.name}
+              {/*le "?" vérifie la donnée avant d'appeler le name*/}
             </span>
           </label>
           <button type="submit" className="button is-small is-danger mx-4 ">
