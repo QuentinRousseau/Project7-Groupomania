@@ -72,7 +72,7 @@ function Postinput() {
               name="resume"
               files={imageUrl}
               onChange={(e) => {
-                setImageUrl(imageUrl.name);
+                setImageUrl(e.target.files[0]);
                 console.log(imageUrl);
               }}
             ></input>
