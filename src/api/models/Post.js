@@ -19,7 +19,7 @@ const postSchema = new mongoose.Schema({
   title: { type: String, required: true },
   postContent: { type: String, required: true },
   imageUrl: { type: String, required: true },
-  creationDate: { type: Number, required: true },
+  creationDate: { type: String, required: true },
   likes: { type: Number },
   dislikes: { type: Number },
   usersLiked: { type: [String] },

@@ -19,12 +19,16 @@ function Postinput() {
 
   async function submit(e) {
     e.preventDefault();
+    console.log(imageUrl, title, postContent);
     setMessage("Please wait ...");
     try {
       const userId = user.id;
-      const ret = await submitPost(userId, title, postContent, imageUrl);
+      console.log("on va faire le fetch");
+      const ret = await submitPost(userId, title, postContent, imageUrl.name);
+      console.log("on a eu le fetch !!");
       console.log(ret);
     } catch (e) {
+      console.log("on a loupé le fetch le fetch");
       setMessage(e);
     }
   }
@@ -68,11 +72,7 @@ function Postinput() {
               name="resume"
               files={imageUrl}
               onChange={(e) => {
-                setImageUrl(e.target.files[0]);
-                console.log(imageUrl);
-              }}
-              onInput={(e) => {
-                setImageUrl(e.target.files[0]);
+                setImageUrl(imageUrl.name);
                 console.log(imageUrl);
               }}
             ></input>
@@ -90,7 +90,7 @@ function Postinput() {
           <button type="submit" className="button is-small is-danger mx-4 ">
             Confirmer
           </button>
-          {message}
+          {JSON.stringify(message)}
         </div>
       </form>
     </Box>

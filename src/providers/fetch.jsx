@@ -74,6 +74,7 @@ export async function submitPost(userId, title, postContent, imageUrl) {
   const token = user.token;
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
+  console.log(userId, title, postContent, imageUrl, creationDate);
   const post = { userId, title, postContent, imageUrl, creationDate };
 
   console.log(token);
@@ -95,68 +96,3 @@ export async function submitPost(userId, title, postContent, imageUrl) {
   console.log("post créé", data);
   return data;
 }
-
-/*
-export async function fetchAllPosts() {
-    const [postsList, setpostsList] = useState({});
-    const [isDataLoading, setDataLoading] = useState(false);
-    const [error, setError] = useState(null);
-    
-      setDataLoading(true);
-      try {
-        const response = await fetch(`/api/posts`)
-        const postsList = await response.json()
-        setpostsList(postsList);
-      } catch (error) {
-        console.log(error);
-        setError(true);
-      } finally {
-        setDataLoading(false);
-        return postsList
-      }
-    };
-
-
-export async function fetchOnePost() {
-  const id = new URL(window.location.href).searchParams.get("id");
-  const [postsId, setpostsId] = useState({});
-  const [isDataLoading, setDataLoading] = useState(false);
-  const [error, setError] = useState(null);
-  
-    setDataLoading(true);
-    try {
-      const response = await fetch(`/api/posts/${id}`)
-      const postsId = await response.json()
-      setpostsId(postsId);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setDataLoading(false);
-      return postsId
-    }
-
-
-}
-
-export async function postModify(){
-  
-}
-*/
-
-/*{
-    /*
-  //const [data, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/posts");
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-    }
-    setLoading(true);
-    fetchData();
-  }, []);
-  return { isLoading, data }; */
