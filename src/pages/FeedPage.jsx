@@ -1,7 +1,6 @@
 import "./feedPage.scss";
 import { useFetch } from "../providers/fetch";
-import { Navigate, useParams } from "react-router-dom";
-import withAuth from "../components/withAuth";
+
 //import { Loader } from "../../components/Loader/Loader";
 import { error } from "react";
 import Card from "../components/Card";

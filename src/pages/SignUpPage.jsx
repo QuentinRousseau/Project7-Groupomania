@@ -36,7 +36,9 @@ function SignUpPage() {
       const response = await signUpFetch(name, email, password);
       console.log(response);
       user.id = response.userId;
+      user.token = response.token;
       login(user.id);
+      console.log(user);
       navigateTo("/posts"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);

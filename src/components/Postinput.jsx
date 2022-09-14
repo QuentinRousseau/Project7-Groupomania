@@ -10,7 +10,7 @@ import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 
 function Postinput() {
-  const { user, login } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   console.log(user);
 
   const [title, setTitle] = useField();
