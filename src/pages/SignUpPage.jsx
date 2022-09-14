@@ -14,12 +14,8 @@ import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "../providers/UserContext";
 
 function SignUpPage() {
-  const { user, login } = useContext(UserContext);
-
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState(""); //verif du mdp

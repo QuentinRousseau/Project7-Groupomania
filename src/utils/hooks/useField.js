@@ -6,7 +6,7 @@ export function useField(def) {
   function setField(ev) {
     //ev étant l'evenement
     const target = ev.target || ev;
-    const value = target.value || target;
+    const value = target.value ?? target;
     //lors d'un evenement ou une saisie texte, si
     //ces valeurs n'existent pas on prends l'evenement directement
     setValue(value); //on redéfinie la valeur

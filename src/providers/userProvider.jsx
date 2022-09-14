@@ -5,7 +5,7 @@ import UserContext from "./UserContext";
 
 export function userProvider({ children }) {
   // User is the name of the "data" that gets stored in context
-  const [user, setUser] = useState({ id: "", auth: true, token: "" });
+  const [user, setUser] = useState({ id: "", auth: false, token: "" });
 
   // Login updates the user data with a id parameter
   const login = (user) => {

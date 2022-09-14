@@ -1,19 +1,20 @@
 import "./feedPage.scss";
 import { useFetch } from "../providers/fetch";
-
 //import { Loader } from "../../components/Loader/Loader";
-import { error } from "react";
 import Card from "../components/Card";
 import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 
-//Voir pour rajouter l'id du user sur l'url pour eviter de pouvoir revenir
-// sur le LoginPage ou le SignupPage
-// Adapter le fetch sur l'url modifiée ?
+import { useContext } from "react";
+import UserContext from "../providers/UserContext";
+import { Navigate } from "react-router";
 
 function FeedPage() {
+  // const { user } = useContext(UserContext);
+  // console.log(user.auth);
+  // if (!user.auth) return <Navigate to={"/login"} />;
+
   useFetch();
-  if (error) return <span>Oulà , on a un problème !</span>;
   return (
     <div className="feedPage">
       <Title />

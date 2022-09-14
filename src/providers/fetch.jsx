@@ -6,12 +6,21 @@ export async function useFetch() {
   const [FeedpageData, setFeedpageData] = useState({});
   const [isDataLoading, setDataLoading] = useState(false);
   const [error, setError] = useState(false);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
+    const token = user.token;
     async function fetchAllPosts() {
       setDataLoading(true);
       try {
-        const response = await fetch(`/api/posts`);
+        const response = await fetch(`/api/posts`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const FeedpageData = await response.json();
         setFeedpageData(FeedpageData);
       } catch (err) {
@@ -62,14 +71,14 @@ export async function loginFetch(email, password) {
 
 export async function submitPost(userId, title, postContent, imageUrl) {
   const { user } = useContext(UserContext);
+  const token = user.token;
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
   const post = { userId, title, postContent, imageUrl, creationDate };
-  const token = user.token;
 
   console.log(token);
   console.log(post);
-  const response = await fetch("/api/posts/", {
+  const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
       Accept: "application/json",

@@ -13,10 +13,11 @@ function Postinput() {
   const { user } = useContext(UserContext);
   console.log(user);
 
-  const [title, setTitle] = useField();
-  const [postContent, setPostContent] = useField();
+  const [title, setTitle] = useField("");
+  const [postContent, setPostContent] = useField("");
   const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
+  console.log(title);
 
   async function submit(e) {
     e.preventDefault();
@@ -67,8 +68,15 @@ function Postinput() {
               className="file-input"
               type="file"
               name="resume"
-              value={imageUrl}
-              onInput={imageUrl ? "..." : setImageUrl}
+              files={imageUrl}
+              onChange={(e) => {
+                setImageUrl(e.target.files[0]);
+                console.log(imageUrl);
+              }}
+              onInput={(e) => {
+                console.log(imageUrl);
+                setImageUrl(e.target.files[0]);
+              }}
             ></input>
             <span className="file-cta">
               <span className="file-icon">
@@ -76,7 +84,9 @@ function Postinput() {
               </span>
               <span className="file-label">Choisir un fichier</span>
             </span>
-            <span className="file-name has-background-white">{imageUrl}</span>
+            <span className="file-name has-background-white">
+              {imageUrl?.name} {/*vérifie la donnée avant d'appeler le name*/}
+            </span>
           </label>
           <button type="submit" className="button is-small is-danger mx-4 ">
             Confirmer

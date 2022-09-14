@@ -11,12 +11,13 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Error from "./components/Error";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { ProtectedRoute } from "./components/ProtectedRoute";
 import UserContext from "./providers/UserContext";
 import { useContext } from "react";
+import ErrorPage from "./components/ErrorPage";
+import Logged from "./components/Logged";
 
 export function App() {
   const { user } = useContext(UserContext);
@@ -28,21 +29,16 @@ export function App() {
         <Route path="login" element={<LoginPage />} />
         <Route index element={<LoginPage />} />
         {/*path = le chemin d'accès envoyé lors du clic, renvoie le composant LoginPage.*/}
-        <Route path="signup" element={<SignUpPage />} />
+        <Route
+          path="signup"
+          element={user.auth ? <SignUpPage /> : <LoginPage />}
+        />
 
-        <Route path={`/posts`} element={<FeedPage />} />
-        {/* <Route
-          path="admin"
-          element={
-            <ProtectedRoute
-              redirectPath="/home"
-              isAllowed={!!user && user.roles.includes("admin")}
-            >
-              <AdminFeedPage />
-            </ProtectedRoute>
-          }
-        /> */}
-        <Route path="*" element={<Error />} />
+        <Route
+          path={`/posts`}
+          element={user.auth ? <FeedPage /> : <LoginPage />}
+        />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
