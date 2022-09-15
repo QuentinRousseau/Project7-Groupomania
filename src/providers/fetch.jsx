@@ -69,9 +69,7 @@ export async function loginFetch(email, password) {
   return response.json();
 }
 
-export async function submitPost(userId, title, postContent, imageUrl) {
-  const { user } = useContext(UserContext);
-  const token = user.token;
+export async function submitPost(token, userId, title, postContent, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
   console.log(userId, title, postContent, imageUrl, creationDate);

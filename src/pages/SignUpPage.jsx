@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./signUpPage.scss";
 
 import {
@@ -14,6 +14,7 @@ import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../providers/UserContext";
 
 function SignUpPage() {
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
@@ -21,6 +22,7 @@ function SignUpPage() {
   const [password, setPassword] = useState(""); //verif du mdp
   const [message, setMessage] = useState(""); // creation d'un message vide
   const [name, setName] = useState("");
+  const { user, login } = useContext(UserContext);
 
   const navigateTo = useNavigate();
 
@@ -35,7 +37,8 @@ function SignUpPage() {
       user.token = response.token;
       login(user.id);
       console.log(user);
-      navigateTo("/posts"); // Fonction qui permet de rediriger vers un autre url
+      navigateTo(`/posts`);
+      console.log("il est sensé aller sur /posts"); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);
     }
@@ -105,7 +108,7 @@ function SignUpPage() {
             >
               S'inscrire
             </button>
-            {message}
+            {JSON.stringify(message)}
           </div>
         </form>
         <Link to={"/login"} className="is-small has-text-black mx-auto">

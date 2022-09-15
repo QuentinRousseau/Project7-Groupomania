@@ -61,10 +61,7 @@ function Header() {
                     Se Deconnecter
                   </button>
                 ) : (
-                  <button
-                    onClick={login}
-                    className="button is-danger is-light is-outlined"
-                  >
+                  <button className="button is-danger is-light is-outlined">
                     Se Connecter
                   </button>
                 )}

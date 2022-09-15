@@ -19,6 +19,7 @@ export async function signup(req, res, next) {
     }); // catch l'erreur et renvoie un code 400 plus un message specifiant le problème
 
   res.status(201).json({
+    username: username,
     userId: user._id,
     token: jwt.sign({ userId: user._id }),
     message: "User created !",

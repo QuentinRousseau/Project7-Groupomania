@@ -19,14 +19,22 @@ function Postinput() {
 
   async function submit(e) {
     e.preventDefault();
-    console.log(imageUrl, title, postContent);
+    console.log(imageUrl.name, title, postContent);
     setMessage("Please wait ...");
     try {
+      const token = user.token;
       const userId = user.id;
       console.log("on va faire le fetch");
-      const ret = await submitPost(userId, title, postContent, imageUrl.name);
+      const ret = await submitPost(
+        token,
+        userId,
+        title,
+        postContent,
+        imageUrl.name
+      );
       console.log("on a eu le fetch !!");
       console.log(ret);
+      setMessage(ret.message);
     } catch (e) {
       console.log("on a loupé le fetch le fetch");
       setMessage(e);
@@ -73,7 +81,6 @@ function Postinput() {
               files={imageUrl}
               onChange={(e) => {
                 setImageUrl(e.target.files[0]);
-                console.log(imageUrl);
               }}
             ></input>
             <span className="file-cta">
