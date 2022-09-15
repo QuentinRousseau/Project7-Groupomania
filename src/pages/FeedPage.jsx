@@ -6,15 +6,27 @@ import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 
 function FeedPage() {
-  useFetch();
+  const feedPageData = useFetch();
+
   return (
     <div className="feedPage">
       <Title />
       <div className="title">
         <Postinput />
       </div>
-
-      <Card></Card>
+      <div>{JSON.stringify(feedPageData)}</div>
+      {feedPageData.map((post) => (
+        <Card
+          key={post}
+          userId={post.userId}
+          title={post.title}
+          picture={post.imageUrl}
+          postContent={post.postContent}
+          creationDate={post.creationDate}
+          likes={post.likes}
+          dislikes={post.dislikes}
+        />
+      ))}
     </div>
   );
 }

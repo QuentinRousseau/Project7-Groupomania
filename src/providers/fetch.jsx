@@ -23,14 +23,15 @@ export async function useFetch() {
         });
         const FeedpageData = await response.json();
         setFeedpageData(FeedpageData);
+        console.log(FeedpageData);
+        setDataLoading(false);
       } catch (err) {
         console.log("===== error =====", err);
         setError(true);
-      } finally {
-        setDataLoading(false);
       }
     }
-    fetchAllPosts();
+    const fetchResponse = fetchAllPosts();
+    console.log(fetchResponse);
   }, []);
 
   if (error) {

@@ -18,20 +18,16 @@ function Card({
         <article className="media ">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src="#" alt="Image"></img>
+              <img src={picture} alt="Image"></img>
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>John Smith</strong> <small>@johnsmith</small>{" "}
-                <small>31m</small>
+                <strong>{userId}</strong>
+                {creationDate}
               </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                efficitur sit amet massa fringilla egestas. Nullam condimentum
-                luctus turpis.
-              </p>
+              <p>{postContent}</p>
             </div>
             <nav className="level is-mobile " id="comment">
               <div className="level-left ">
@@ -41,16 +37,18 @@ function Card({
                       icon={faHeartBroken}
                       className="iconsPost"
                     />
+                    {dislikes}
                   </span>
                 </a>
                 <a className="level-item is-danger" aria-label="like">
                   <span className="icon is-medium">
                     <FontAwesomeIcon icon={faHeart} className="iconsPost" />
+                    {likes}
                   </span>
                 </a>
               </div>
             </nav>
-          </div>{" "}
+          </div>
         </article>
         <footer className="card-footer ">
           <button className="button is-small is-danger mx-1 ">Confirmer</button>
