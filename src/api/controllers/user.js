@@ -5,13 +5,17 @@ const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export async function signup(req, res, next) {
   const { username, email, password } = req.body;
-  console.log(req.body, email);
+  console.log(req.body, email, req.body.name);
   if (!emailRegex.test(email))
     return res.status(401).json({ error: "Invalid email !" });
   if (password.length > 128)
     return res.status(401).json({ error: "Password to long !" });
   const hash = await bcrypt.hash(req.body.password, 10); // attente de la réponse du hashage du mdp
-  const user = new User({ username, email, password: hash }); // creation de l'utilisateur en attribuant le mdp hash a la place de l'initial
+  const user = new User({
+    username: req.body.name,
+    email: req.body.email,
+    password: hash,
+  }); // creation de l'utilisateur en attribuant le mdp hash a la place de l'initial
   await user
     .save() // attente de la réponse de la sauvegarde de celui ci
     .catch((error) => {
@@ -19,7 +23,7 @@ export async function signup(req, res, next) {
     }); // catch l'erreur et renvoie un code 400 plus un message specifiant le problème
 
   res.status(201).json({
-    username: username,
+    username: user.username,
     userId: user._id,
     token: jwt.sign({ userId: user._id }),
     message: "User created !",

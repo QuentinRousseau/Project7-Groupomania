@@ -8,35 +8,27 @@ export async function useFetch() {
   const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = user.token;
-    async function fetchAllPosts() {
-      setDataLoading(true);
-      try {
-        const response = await fetch(`/api/posts`, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const FeedpageData = await response.json();
-        setFeedpageData(FeedpageData);
-        console.log(FeedpageData);
-        setDataLoading(false);
-      } catch (err) {
-        console.log("===== error =====", err);
-        setError(true);
-      }
-    }
-    const fetchResponse = fetchAllPosts();
-    console.log(fetchResponse);
-  }, []);
+  const token = user.token;
 
-  if (error) {
-    return <span>Oups il y a eu un problème</span>;
+  setDataLoading(true);
+  try {
+    const response = await fetch(`/api/posts`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const FeedpageData = await response.json();
+    setFeedpageData(JSON.stringify(FeedpageData));
+    console.log(FeedpageData);
+    setDataLoading(false);
+  } catch (err) {
+    console.log("===== error =====", err);
+    setError(true);
   }
+  return FeedpageData;
 }
 
 /* function post request on submit */
