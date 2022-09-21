@@ -11,6 +11,7 @@ import Textinput from "../components/Textinput";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
+import RoadToTest from "../components/RoadToTest";
 
 function LoginPage() {
   const navigateTo = useNavigate();
@@ -46,6 +47,8 @@ function LoginPage() {
   return (
     <div className="column">
       <Title />
+      <RoadToTest />
+
       <Box id="connexionInput">
         <form onSubmit={submit} className="log">
           <div className="field ">

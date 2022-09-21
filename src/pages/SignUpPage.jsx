@@ -15,6 +15,7 @@ import { Box } from "react-bulma-components";
 import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../providers/UserContext";
+import RoadToTest from "../components/RoadToTest";
 
 function SignUpPage() {
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
@@ -52,6 +53,8 @@ function SignUpPage() {
   return (
     <div className="column ">
       <Title />
+      <RoadToTest />
+
       <Box id="connexionInput">
         <form onSubmit={submit} className="log">
           <div className="field">

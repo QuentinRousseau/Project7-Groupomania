@@ -7,6 +7,7 @@ import Title from "../components/Title";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState, useEffect } from "react";
+import RoadToTest from "../components/RoadToTest";
 
 function FeedPage() {
   // const  = useFetch();
@@ -40,6 +41,7 @@ function FeedPage() {
   return (
     <div className="feedPage">
       <Title />
+      <RoadToTest />
       <div className="title">
         <Postinput />
       </div>
