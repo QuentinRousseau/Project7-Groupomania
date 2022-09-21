@@ -1,5 +1,5 @@
 import React from "react";
-import "./loginPage.scss";
+import "./LoginPage.scss";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { loginFetch } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,4 +1,4 @@
-import "./header.scss";
+import "./Header.scss";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/homeLogoHeader.png?url";

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./signUpPage.scss";
+import "./SignUpPage.scss";
 
 import {
   faEnvelope,

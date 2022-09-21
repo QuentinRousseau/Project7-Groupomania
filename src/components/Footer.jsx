@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./footer.scss";
+import "./Footer.scss";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

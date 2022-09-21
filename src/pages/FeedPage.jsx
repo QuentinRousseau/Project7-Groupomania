@@ -1,4 +1,4 @@
-import "./feedPage.scss";
+import "./FeedPage.scss";
 import { useFetch } from "../providers/fetch";
 //import { Loader } from "../../components/Loader/Loader";
 import Card from "../components/Card";
@@ -10,9 +10,7 @@ import { useState, useEffect } from "react";
 import RoadToTest from "../components/RoadToTest";
 
 function FeedPage() {
-  // const  = useFetch();
-  // console.log(useFetch());
-  const [feedPageData, setFeedPageData] = useState({});
+  const [feedPageData, setFeedPageData] = useState([]);
   const { user } = useContext(UserContext);
 
   const token = user.token;
@@ -28,7 +26,7 @@ function FeedPage() {
             Authorization: `Bearer ${token}`,
           },
         });
-        const [feedPageData] = await response.json();
+        const feedPageData = await response.json();
         setFeedPageData(feedPageData);
         console.log(feedPageData);
       } catch (error) {
@@ -36,8 +34,8 @@ function FeedPage() {
       }
     }
     fetchAllPost();
-    console.log(feedPageData);
   }, []);
+
   return (
     <div className="feedPage">
       <Title />
@@ -45,8 +43,8 @@ function FeedPage() {
       <div className="title">
         <Postinput />
       </div>
-      <div>{feedPageData}</div>
-      {[feedPageData].map((post) => (
+
+      {feedPageData.map((post) => (
         <Card
           key={post}
           userId={post.userId}

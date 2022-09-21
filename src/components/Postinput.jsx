@@ -3,7 +3,7 @@ import { useState } from "react";
 import { submitPost } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import "./postinput.scss";
+import "./Postinput.scss";
 import { useField } from "../utils/hooks/useField";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
@@ -40,7 +40,7 @@ function Postinput() {
       setMessage(e);
     }
   }
-  //lors du submitPost le title is not defined
+
   return (
     <Box id="postBox" className="has-background-danger-light">
       <form onSubmit={submit}>

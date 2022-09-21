@@ -1,4 +1,4 @@
-import "./card.scss";
+import "./Card.scss";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
