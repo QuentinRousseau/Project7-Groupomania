@@ -1,34 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import UserContext from "./UserContext";
 
 export async function useFetch() {
-  const [FeedpageData, setFeedpageData] = useState({});
-  const [isDataLoading, setDataLoading] = useState(false);
-  const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
 
   const token = user.token;
 
-  setDataLoading(true);
-  try {
-    const response = await fetch(`/api/posts`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const FeedpageData = await response.json();
-    setFeedpageData(JSON.stringify(FeedpageData));
-    console.log(FeedpageData);
-    setDataLoading(false);
-  } catch (err) {
-    console.log("===== error =====", err);
-    setError(true);
-  }
-  return FeedpageData;
+  useEffect(() => {
+    async function fetchAllPost() {
+      try {
+        const response = await fetch(`/api/posts`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const feedPageData = await response.json();
+        console.log(feedPageData);
+      } catch (error) {
+        throw new Error();
+      }
+    }
+    fetchAllPost();
+  }, []);
 }
 
 /* function post request on submit */
@@ -85,5 +82,47 @@ export async function submitPost(token, userId, title, postContent, imageUrl) {
   }
   const data = await response.json();
   console.log("post créé", data);
+  return data;
+}
+
+export async function modifyPost(token, userId, title, postContent, imageUrl) {
+  console.log(token);
+  console.log(post);
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(post),
+  });
+  console.log(response);
+  if (!response) {
+    return Promise.reject(await response.text());
+  }
+  const data = await response.json();
+  console.log("post créé", data);
+  return data;
+}
+
+export async function deletePost(token, userId, title, postContent, imageUrl) {
+  const post = this.post;
+
+  const response = await fetch("/api/posts", {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(post),
+  });
+  console.log(response);
+  if (!response) {
+    return Promise.reject(await response.text());
+  }
+  const data = await response.json();
+  console.log("post supprimé !", data);
   return data;
 }
