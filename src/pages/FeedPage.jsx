@@ -1,12 +1,9 @@
-import "./FeedPage.scss";
-import { useFetch } from "../providers/fetch";
-//import { Loader } from "../../components/Loader/Loader";
+import { useState, useEffect, useContext } from "react";
 import Card from "../components/Card";
 import Postinput from "../components/Postinput";
 import Title from "../components/Title";
-import { useContext } from "react";
 import UserContext from "../providers/UserContext";
-import { useState, useEffect } from "react";
+import "./FeedPage.scss";
 import RoadToTest from "../components/RoadToTest";
 
 function FeedPage() {

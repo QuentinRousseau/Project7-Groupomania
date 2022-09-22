@@ -1,20 +1,20 @@
 import React, { useContext, useState } from "react";
-import "./SignUpPage.scss";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faLock,
   faCheck,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { signUpFetch } from "../providers/fetch";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Title from "../components/Title";
-import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
-import Textinput from "../components/Textinput";
 import { Link, useNavigate } from "react-router-dom";
+
+import { validMail } from "../utils/tools/validation";
+import { signUpFetch } from "../providers/fetch";
 import UserContext from "../providers/UserContext";
+import Title from "../components/Title";
+import Textinput from "../components/Textinput";
+import "./SignUpPage.scss";
 import RoadToTest from "../components/RoadToTest";
 
 function SignUpPage() {

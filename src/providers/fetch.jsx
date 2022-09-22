@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import UserContext from "./UserContext";
 
 export async function useFetch() {

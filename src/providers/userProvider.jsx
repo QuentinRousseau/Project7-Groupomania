@@ -1,6 +1,4 @@
-import { token } from "morgan";
 import { useState } from "react";
-import { loginFetch } from "./fetch";
 import UserContext from "./UserContext";
 
 export function userProvider({ children }) {

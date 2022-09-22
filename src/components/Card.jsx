@@ -3,15 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-function Card({
-  userId,
-  title,
-  postContent,
-  picture,
-  creationDate,
-  likes,
-  dislikes,
-}) {
+function Card({ userId, postContent, picture, creationDate, likes, dislikes }) {
   return (
     <div>
       <div className="box has-background-danger-light ">

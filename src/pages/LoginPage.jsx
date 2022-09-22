@@ -1,16 +1,15 @@
-import React from "react";
-import "./LoginPage.scss";
+import React, { useContext, useState } from "react";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { loginFetch } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import Title from "../components/Title";
-import { validMail } from "../utils/tools/validation";
 import { Box } from "react-bulma-components";
-import Textinput from "../components/Textinput";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+
+import { validMail } from "../utils/tools/validation";
+import Title from "../components/Title";
+import Textinput from "../components/Textinput";
+import { loginFetch } from "../providers/fetch";
 import UserContext from "../providers/UserContext";
+import "./LoginPage.scss";
 import RoadToTest from "../components/RoadToTest";
 
 function LoginPage() {

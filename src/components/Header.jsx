@@ -1,9 +1,9 @@
-import "./Header.scss";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+
 import logo from "../assets/homeLogoHeader.png?url";
 import UserContext from "../providers/UserContext";
-import { useContext } from "react";
+import "./Header.scss";
 
 function Header() {
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
