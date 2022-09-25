@@ -17,6 +17,7 @@ export async function getAllPosts(req, res, next) {
   try {
     const posts = await Post.find().then((posts) => {
       res.status(200).json(posts);
+      console.log(posts)
     });
   } catch (error) {
     res.status(400).json({ error });

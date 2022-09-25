@@ -21,7 +21,7 @@ handler.use(express.json());
 handler.use(statusDB);
 
 handler.use(router);
-handler.use("/images", express.static(path.join(__dirname, "images")));
+handler.use("/api/images", express.static(path.join(__dirname, "images")));
 
 handler.use("/api", (req, res, next) => {
   res.status(200).json({ url: req.url });
