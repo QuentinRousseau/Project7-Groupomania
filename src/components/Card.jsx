@@ -62,7 +62,7 @@ function Card({
         <footer className="card-footer ">
           <button
             className="button is-small is-danger mx-1 "
-            onClick={modifyPost}
+            // onClick={modifyPost}
           >
             Confirmer
           </button>
@@ -71,7 +71,7 @@ function Card({
 
           <button
             className="button is-small is-danger mx-1 "
-            onClick={deletePost}
+          //   onClick={deletePost}
           >
             Supprimer
           </button>

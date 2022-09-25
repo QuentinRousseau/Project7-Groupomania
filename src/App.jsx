@@ -37,15 +37,14 @@ export function App() {
 
 export default App;
 
-function CheckAuth({ auth, notAuth }) {
-  const { user } = useContext(UserContext);
-  return user.auth ? auth : notAuth;
-}
 
-const IsAuth = ({ element }) => (
-  <CheckAuth auth={element} notAuth={<Navigate to="/" replace />} />
-);
+
+const IsAuth = ({ element }) => {
+  const { user } = useContext(UserContext);
+  return user.auth ? element : <Navigate to="/login" replace />;
+};
 
 const NotAuth = ({ element }) => {
-  <CheckAuth notAuth={element} auth={<Navigate to="posts" replace />} />;
+  const { user } = useContext(UserContext);
+  return user.auth ? <Navigate to="/login" replace /> : element;
 };
