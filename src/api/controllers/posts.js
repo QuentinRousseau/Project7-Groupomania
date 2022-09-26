@@ -1,5 +1,6 @@
 import Post from "../models/Post";
 import fs from "fs";
+import { Model } from "mongoose";
 
 //Dernier ajout de fonction pour rattacher l'user et ses posts
 
@@ -15,7 +16,7 @@ export function getUserWithPosts(username) {
 
 export async function getAllPosts(req, res, next) {
   try {
-    const posts = await Post.find().populate('User').exec((posts) => {
+    const posts = await Post.find().populate({path:"User" ,model: "User"}).exec((posts) => {
       res.status(200).json(posts);
       console.log(posts)
     });

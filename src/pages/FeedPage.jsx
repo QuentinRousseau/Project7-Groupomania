@@ -3,6 +3,7 @@ import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../providers/UserContext";
+
 import "./FeedPage.scss";
 import RoadToTest from "../components/RoadToTest";
 
@@ -23,7 +24,9 @@ function FeedPage() {
             Authorization: `Bearer ${token}`,
           },
         });
+        
         const feedPageData = await response.json();
+        
         setFeedPageData(feedPageData);
         console.log(feedPageData);
       } catch (error) {
