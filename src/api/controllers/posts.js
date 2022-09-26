@@ -15,7 +15,7 @@ export function getUserWithPosts(username) {
 
 export async function getAllPosts(req, res, next) {
   try {
-    const posts = await Post.find().then((posts) => {
+    const posts = await Post.find().populate('User').exec((posts) => {
       res.status(200).json(posts);
       console.log(posts)
     });
