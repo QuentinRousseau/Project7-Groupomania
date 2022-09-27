@@ -19,9 +19,9 @@ function Card({
   likes,
   dislikes,
 }) {
-  const {user} = useContext(UserContext)
-const [isGoodUser, setIsGoodUser] = useState(false)
-if(user.id === userId){setIsGoodUser(true)};
+//   const {user} = useContext(UserContext)
+// const [isGoodUser, setIsGoodUser] = useState(false)
+// if(user.id === userId){setIsGoodUser(true)};
 
   return (
     <div>
@@ -69,7 +69,7 @@ if(user.id === userId){setIsGoodUser(true)};
             </nav>
           </div>
         </article>
-        {isGoodUser && <footer className="">
+        {/* {isGoodUser && <footer className="">
           <button
             className="button is-small is-danger mx-1 "
             // onClick={modifyPost}
@@ -85,7 +85,7 @@ if(user.id === userId){setIsGoodUser(true)};
           >
             Supprimer
           </button>
-        </footer> }
+        </footer> } */}
       </div>
     </div>
   );
