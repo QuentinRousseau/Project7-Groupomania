@@ -20,7 +20,8 @@ function Postinput() {
 
   async function submit(e) {
     e.preventDefault();
-    console.log(imageUrl.name, title, postContent);
+    console.log("vérif de la data a envoyer")
+    console.log(imageUrl, title, postContent);
     setMessage("Please wait ...");
     try {
       const token = user.token;
@@ -31,7 +32,7 @@ function Postinput() {
         userId,
         title,
         postContent,
-        imageUrl.name
+        imageUrl
       );
       console.log("on a eu le fetch !!");
       console.log(ret);

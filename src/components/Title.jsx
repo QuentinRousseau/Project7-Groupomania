@@ -5,7 +5,7 @@ import logo from "../assets/homeLogo.png?url";
 function Title() {
   return (
     <div className="title">
-      <h1 className="title has-text-danger is-1 is-inline-block mr-6" id="">
+      <h1 className="title has-text-danger is-1 is-inline-block mr-6">
         <NavLink to="/posts">
           <img
             src={logo}

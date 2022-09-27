@@ -14,11 +14,13 @@ export function getUserWithPosts(username) {
 
 // Fonctions déjà existantes
 
+// .populate({path:"User" ,model: "User"})
+
 export async function getAllPosts(req, res, next) {
   try {
-    const posts = await Post.find().populate({path:"User" ,model: "User"}).exec((posts) => {
+    const posts = await Post.find().then((posts) => {
       res.status(200).json(posts);
-      console.log(posts)
+      
     });
   } catch (error) {
     res.status(400).json({ error });
@@ -39,26 +41,28 @@ export async function getOnePost(req, res, next) {
 }
 
 export async function createPost(req, res, next) {
+  console.log("vérif de la data recue ! ")
   console.log("req.body", req.body);
   console.log("userId", req.auth);
   console.log("image", req.file);
+  
   let postObject = req.body;
-  console.log(postObject); // decoupe la requete en plusieurs champs
+  console.log(" Verif du post a l'entrée",postObject); // decoupe la requete en plusieurs champs
   delete postObject._id; // enleve l'id pour la remplacer plus tard
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
-  console.log(postObject);
+  console.log("Vérif du post modifié",postObject);
   const post = new Post({
     ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
     userId: req.auth.userId, // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs
     imageUrl: `${req.protocol}://${req.get("host")}/api/images/${
-      req.body.imageUrl
+      req.body.file.filename
     }`,
     likes: 0,
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
   });
-  console.log(post);
+  console.log("Vérif du post une fois créé et fini",post);
   await post // on attends la creation de l'objet, pour le sauvegarder, et si probleme apparait, le catch pour envoyer un message d'erreur sinon renvoyer un msg objet cree
     .save()
     .catch((error) => {

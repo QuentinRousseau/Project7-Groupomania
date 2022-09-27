@@ -62,10 +62,10 @@ export async function loginFetch(email, password) {
 export async function submitPost(token, userId, title, postContent, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
-  console.log(userId, title, postContent, imageUrl, creationDate);
+  console.log("Vérif des donées recues avant la requete POST",userId, title, postContent, imageUrl, creationDate);
   const post = { userId, title, postContent, imageUrl, creationDate };
 
-  console.log(token);
+  // console.log(token);
   console.log(post);
   const response = await fetch("/api/posts", {
     method: "POST",

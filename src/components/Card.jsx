@@ -1,11 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
+
 import "./Card.scss";
 import { modifyPost } from "../providers/fetch";
+import { useContext } from "react";
+import UserContext from "../providers/UserContext";
+import { useState } from "react";
+
+
 
 function Card({
-  userId,
+  userId,// plus tard le nom du User
   title,
   postContent,
   picture,
@@ -13,6 +19,10 @@ function Card({
   likes,
   dislikes,
 }) {
+  const {user} = useContext(UserContext)
+const [isGoodUser, setIsGoodUser] = useState(false)
+if(user.id === userId){setIsGoodUser(true)};
+
   return (
     <div>
       <div className="box has-background-danger-light ">
@@ -59,7 +69,7 @@ function Card({
             </nav>
           </div>
         </article>
-        <footer className="card-footer ">
+        {isGoodUser && <footer className="">
           <button
             className="button is-small is-danger mx-1 "
             // onClick={modifyPost}
@@ -75,7 +85,7 @@ function Card({
           >
             Supprimer
           </button>
-        </footer>
+        </footer> }
       </div>
     </div>
   );
