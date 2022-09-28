@@ -1,6 +1,6 @@
 import { Box } from "react-bulma-components";
 import { useState } from "react";
-import { submitPost } from "../providers/fetch";
+import { submitImage, submitPost } from "../providers/fetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./Postinput.scss";
@@ -27,6 +27,14 @@ function Postinput() {
       const token = user.token;
       const userId = user.id;
       console.log("on va faire le fetch");
+
+// requete post pour obtenir l'image
+      console.log(imageUrl)
+      const responseImg = await submitImage(token,imageUrl)
+      console.log(responseImg)
+      setImageUrl(responseImg)
+
+//attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
         token,
         userId,
@@ -100,7 +108,7 @@ function Postinput() {
           <button type="submit" className="button is-small is-danger mx-4 ">
             Confirmer
           </button>
-          {JSON.stringify(message)}
+          {message && JSON.stringify(message)}
         </div>
       </form>
     </Box>

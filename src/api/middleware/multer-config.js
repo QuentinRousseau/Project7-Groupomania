@@ -1,4 +1,5 @@
 import multer from "multer";
+import path from "path";
 
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -8,10 +9,11 @@ const MIME_TYPES = {
   "image/svg":"svg",
 };
 
+console.log("verif image folder",path.resolve("./public/images/"))
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     console.log("Récupération de l'image",req.file)
-    callback(null, "./public/images/");
+    callback(null, path.resolve("./public/images/"));
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");

@@ -54,9 +54,9 @@ export async function createPost(req, res, next) {
   const post = new Post({
     ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
     userId: req.auth.userId, // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs
-    imageUrl: `${req.protocol}://${req.get("host")}/api/images/${
-      req.body.file.filename
-    }`,
+     imageUrl,  //: `${req.protocol}://${req.get("host")}/api/images/${
+    //   req.body.file.filename
+    // }`,
     likes: 0,
     dislikes: 0,
     usersLiked: [],

@@ -59,12 +59,46 @@ export async function loginFetch(email, password) {
   return response.json();
 }
 
+export async function submitImage(token, imageUrl) {
+  console.log(imageUrl,token);
+
+  const imageFromData = new FormData();
+  console.log(imageFromData)
+  imageFromData.append("image",imageUrl);
+  // console.log(token);
+  console.log(imageFromData);
+
+  const response = await fetch("/api/images", {
+    method: "POST",
+    headers: {
+      Accept: "multipart/form-data",
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+    body: imageFromData,
+  });
+  console.log(response);
+  if (!response) {
+    return Promise.reject(await response.text());
+  }
+  const data = await response.json();
+  console.log("post créé", data);
+  return data;
+}
+
 export async function submitPost(token, userId, title, postContent, imageUrl) {
   const tmp_date = new Date().toISOString().split("T");
   const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
-  console.log("Vérif des donées recues avant la requete POST",userId, title, postContent, imageUrl, creationDate);
-  const post = { userId, title, postContent, imageUrl, creationDate };
+  console.log(
+    "Vérif des donées recues avant la requete POST",
+    userId,
+    title,
+    postContent,
+    imageUrl,
+    creationDate
+  );
 
+  const post = { userId, title, postContent, responseImg, creationDate };
   // console.log(token);
   console.log(post);
   const response = await fetch("/api/posts", {

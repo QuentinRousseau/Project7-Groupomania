@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import path from "path";
+// import path from "path";
 import cors from "cors";
 import statusDB from "./middleware/statusDB";
 import helmet from "./middleware/helmet";
@@ -25,4 +25,5 @@ handler.use(router);
 handler.use("/api", (req, res, next) => {
   res.status(200).json({ url: req.url });
 });
-handler.use(express.static(path.join(__dirname, "images")));
+
+// handler.use(express.static(path.join(__dirname, "images")));
