@@ -60,29 +60,24 @@ export async function loginFetch(email, password) {
 }
 
 export async function submitImage(token, imageUrl) {
-  console.log(imageUrl,token);
-
-  const imageFromData = new FormData();
-  console.log(imageFromData)
-  imageFromData.append("image",imageUrl);
-  // console.log(token);
-  console.log(imageFromData);
+  console.log(imageUrl, token);
+  const newImg = new FormData();
+  newImg.append("image", imageUrl);
 
   const response = await fetch("/api/images", {
     method: "POST",
     headers: {
-      Accept: "multipart/form-data",
-      "Content-Type": "multipart/form-data",
+      
       Authorization: `Bearer ${token}`,
     },
-    body: imageFromData,
+    body: newImg,
   });
   console.log(response);
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  console.log("post créé", data);
+  console.log("image créé", data);
   return data;
 }
 

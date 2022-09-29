@@ -1,6 +1,6 @@
 import Post from "../models/Post";
 import fs from "fs";
-import { Model } from "mongoose";
+
 
 //Dernier ajout de fonction pour rattacher l'user et ses posts
 

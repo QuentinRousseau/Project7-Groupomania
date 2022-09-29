@@ -12,7 +12,7 @@ const MIME_TYPES = {
 console.log("verif image folder",path.resolve("./public/images/"))
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    console.log("Récupération de l'image",req.file)
+    console.log("Récupération de l'image",file.originalname)
     callback(null, path.resolve("./public/images/"));
   },
   filename: (req, file, callback) => {

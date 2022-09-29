@@ -1,15 +1,11 @@
-import { faDiagramNext } from "@fortawesome/free-solid-svg-icons";
+export async function postImage(req, res, next) {
+  console.log(req.file.filename)
 
-export async function postImage(req,next, res) {
-  try{
-    let imageObject = req.body;
-let imageUrl = req.body.file;
-console.log(req.body)    ;
-next();
-  }catch (error){
-    res.status(401).json({error});
-    
-  }
-    
-    // retourne l'url de l'image
+  let imageUrl = `${req.protocol}://${req.get("host")}/api/images/${
+    req.file.filename
+  }`;
+   res.status(201).json({ imageUrl: imageUrl })
+  
+
+  // retourne l'url de l'image
 }

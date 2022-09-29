@@ -28,9 +28,11 @@ function Postinput() {
       const userId = user.id;
       console.log("on va faire le fetch");
 
+      const fileinput = document.getElementById('fileinput');
+      console.log(fileinput)
 // requete post pour obtenir l'image
       console.log(imageUrl)
-      const responseImg = await submitImage(token,imageUrl)
+      const responseImg = await submitImage(token,fileinput.files[0])
       console.log(responseImg)
       setImageUrl(responseImg)
 
@@ -87,6 +89,7 @@ function Postinput() {
           <label className="file-label">
             <input
               className="file-input"
+              id="fileinput"
               type="file"
               name="resume"
               files={imageUrl}
