@@ -9,7 +9,6 @@ import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useNavigate } from "react-router";
 
-
 function Postinput() {
   const { user } = useContext(UserContext);
 
@@ -20,7 +19,7 @@ function Postinput() {
 
   async function submit(e) {
     e.preventDefault();
-    console.log("vérif de la data a envoyer")
+    console.log("vérif de la data a envoyer");
     console.log(imageUrl, title, postContent);
     setMessage("Please wait ...");
     try {
@@ -28,26 +27,30 @@ function Postinput() {
       const userId = user.id;
       console.log("on va faire le fetch");
 
-      const fileinput = document.getElementById('fileinput');
-      console.log(fileinput)
-// requete post pour obtenir l'image
-      console.log(imageUrl)
-      const responseImg = await submitImage(token,fileinput.files[0])
-      console.log(responseImg)
-      setImageUrl(responseImg)
+      const fileinput = document.getElementById("fileinput");
+      console.log(fileinput);
+      // requete post pour obtenir l'image
+      console.log(imageUrl);
+      const responseImg = await submitImage(token, fileinput.files[0]);
+      console.log(JSON.stringify(responseImg));
+      console.log("on a créé l'image et elle est revenue.");
+      setImageUrl(responseImg.url);
+      console.log("on attribue l'url créé a imageUrl");
+      console.log(imageUrl);
 
-//attribution de l'url retour et attribution a l'objet post
+      console.log(token, userId, title, postContent, responseImg);
+
+      //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
         token,
         userId,
         title,
         postContent,
-        imageUrl
+        responseImg
       );
       console.log("on a eu le fetch !!");
       console.log(ret);
       setMessage(ret.message);
-    
     } catch (e) {
       console.log("on a loupé le fetch le fetch");
       setMessage(e);
