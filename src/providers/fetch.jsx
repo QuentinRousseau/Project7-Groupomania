@@ -93,7 +93,7 @@ export async function submitPost(token, userId, title, postContent, imageUrl) {
     creationDate
   );
 
-  const post = { userId, title, postContent, responseImg, creationDate };
+  const post = { userId, title, postContent, imageUrl, creationDate };
   // console.log(token);
   console.log(post);
   const response = await fetch("/api/posts", {

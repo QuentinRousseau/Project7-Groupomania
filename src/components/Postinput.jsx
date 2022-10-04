@@ -29,16 +29,17 @@ function Postinput() {
 
       const fileinput = document.getElementById("fileinput");
       console.log(fileinput);
+
       // requete post pour obtenir l'image
       console.log(imageUrl);
       const responseImg = await submitImage(token, fileinput.files[0]);
       console.log(JSON.stringify(responseImg));
       console.log("on a créé l'image et elle est revenue.");
-      setImageUrl(responseImg.url);
+      console.log(responseImg.imageUrl);
       console.log("on attribue l'url créé a imageUrl");
-      console.log(imageUrl);
+     
 
-      console.log(token, userId, title, postContent, responseImg);
+      console.log(token, userId, title, postContent, responseImg.imageUrl);
 
       //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
