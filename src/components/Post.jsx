@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
-import "./Card.scss";
+import "./Post.scss";
 import { modifyPost } from "../providers/fetch";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
@@ -10,7 +10,7 @@ import { useState } from "react";
 
 
 
-function Card({
+function Post({
   userId,// plus tard le nom du User
   title,
   postContent,
@@ -91,4 +91,4 @@ function Card({
   );
 }
 
-export default Card;
+export default Post;
