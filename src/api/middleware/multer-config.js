@@ -1,5 +1,6 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -8,6 +9,8 @@ const MIME_TYPES = {
   "image/webp": "webp",
   "image/svg": "svg",
 };
+
+await fs.promises.mkdir(path.resolve("./public/images/")).catch(console.error);
 
 console.log("verif image folder", path.resolve("./public/images/"));
 const storage = multer.diskStorage({

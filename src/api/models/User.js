@@ -4,18 +4,9 @@ import uniqueValidator from "mongoose-unique-validator";
 
 const userSchema = mongoose.Schema(
   {
-    tag: { type: String, require: true },
     name: { type: String },
-    // avatar: { type: String },
+    avatar: { type: String, default: "/images/default-avatar.png" },
     account: { type: mongoose.Schema.Types.ObjectId, ref: "Account" },
-    //
-    // tag:{type:String},
-    // posts: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Post",
-    //   },
-    // ],
   },
   { timestamps: { createdAt: "created_at" } }
 );

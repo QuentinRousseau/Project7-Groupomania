@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import "express-async-errors";
 // import path from "path";
 import cors from "cors";
 import statusDB from "./middleware/statusDB";
@@ -19,7 +20,6 @@ handler.use(helmet);
 handler.use(express.json());
 
 handler.use(statusDB);
-
 handler.use(router);
 
 handler.use("/api", (req, res, next) => {
@@ -27,3 +27,8 @@ handler.use("/api", (req, res, next) => {
 });
 
 // handler.use(express.static(path.join(__dirname, "images")));
+
+handler.use((error, req, res, next) => {
+  console.log(error);
+  res.status(400).json(error);
+});
