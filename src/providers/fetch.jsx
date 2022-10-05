@@ -67,7 +67,6 @@ export async function submitImage(token, imageUrl) {
   const response = await fetch("/api/images", {
     method: "POST",
     headers: {
-      
       Authorization: `Bearer ${token}`,
     },
     body: newImg,

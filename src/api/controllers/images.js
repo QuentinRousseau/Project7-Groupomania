@@ -1,11 +1,10 @@
 export async function postImage(req, res, next) {
-  console.log(req.file.filename)
+  console.log(req.file.filename);
 
-  let imageUrl = `${req.protocol}://${req.get("host")}/api/images/${
+  let imageUrl = `${req.protocol}://${req.get("host")}/images/${
     req.file.filename
   }`;
-   res.status(201).json({ imageUrl: imageUrl })
-  
+  res.status(201).json({ imageUrl: imageUrl });
 
   // retourne l'url de l'image
 }

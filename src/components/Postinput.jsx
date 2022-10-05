@@ -35,11 +35,19 @@ function Postinput() {
       const responseImg = await submitImage(token, fileinput.files[0]);
       console.log(JSON.stringify(responseImg));
       console.log("on a créé l'image et elle est revenue.");
-      console.log(responseImg.imageUrl);
-      console.log("on attribue l'url créé a imageUrl");
-     
 
-      console.log(token, userId, title, postContent, responseImg.imageUrl);
+      console.log(
+        "token",
+        token,
+        "userId",
+        userId,
+        "title",
+        title,
+        "postContent",
+        postContent,
+        "responseImg",
+        responseImg.imageUrl
+      );
 
       //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
@@ -47,7 +55,7 @@ function Postinput() {
         userId,
         title,
         postContent,
-        responseImg
+        responseImg.imageUrl
       );
       console.log("on a eu le fetch !!");
       console.log(ret);
