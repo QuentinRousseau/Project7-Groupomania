@@ -7,9 +7,10 @@ import "./Postinput.scss";
 import { useField } from "../utils/hooks/useField";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
-import { useNavigate } from "react-router";
+
 
 function Postinput() {
+   
   const { user } = useContext(UserContext);
 
   const [title, setTitle] = useField("");
@@ -60,6 +61,8 @@ function Postinput() {
       console.log("on a eu le fetch !!");
       console.log(ret);
       setMessage(ret.message);
+      
+      
     } catch (e) {
       console.log("on a loupé le fetch le fetch");
       setMessage(e);
