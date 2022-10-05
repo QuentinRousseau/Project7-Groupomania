@@ -1,4 +1,4 @@
-import Card from "../components/Card";
+import Post from "../components/Post";
 import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 import { useState, useEffect, useContext } from "react";
@@ -45,7 +45,7 @@ function FeedPage() {
       </div>
 
       {feedPageData.map((post) => (
-        <Card
+        <Post
           key={post}
           userId={post.userId}
           title={post.title}

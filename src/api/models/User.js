@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import softDelete from "mongoose-delete";
 import uniqueValidator from "mongoose-unique-validator";
 
 const userSchema = mongoose.Schema(
@@ -20,6 +21,8 @@ const userSchema = mongoose.Schema(
 );
 
 userSchema.plugin(uniqueValidator);
+
+mongoose.plugin(softDelete, { deletedAt: true, overrideMethods: true });
 
 const User =
   mongoose.models.User || mongoose.model("User", userSchema, "users");
