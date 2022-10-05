@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema(
   {
     tag: { type: String, require: true },
     name: { type: String },
-    avatar: { type: String },
+    // avatar: { type: String },
     account: { type: mongoose.Schema.Types.ObjectId, ref: "Account" },
     //
     // tag:{type:String},

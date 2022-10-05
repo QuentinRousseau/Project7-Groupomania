@@ -8,7 +8,7 @@ const accountSchema = mongoose.Schema(
     email: { type: String, required: true, unique: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: { createdAt: "created_at" } }
+  { timestamps: true }
 );
 
 accountSchema.plugin(uniqueValidator);
