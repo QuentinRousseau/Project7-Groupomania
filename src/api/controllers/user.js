@@ -68,7 +68,7 @@ export async function signup(req, res, next) {
   res.status(201).json({
     user,
     account,
-    token: jwt.sign({ userId: user._id }),
+    token: jwt.sign({ userId: account._id }),
     message: "User created !",
   }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
 }
@@ -81,7 +81,8 @@ export async function login(req, res, next) {
   if (!valid) return res.status(401).json({ error: "Invalid credentials !" });
 
   res.status(200).json({
-    userId: account._id,
+    user: account.user,
+    account,
     token: jwt.sign({ userId: account._id }), //config de jwt dans jwt.js
   });
 }

@@ -28,7 +28,7 @@ function LoginPage() {
     try {
       const response = await loginFetch(email, password);
       console.log(response);
-      userLogged.id = response.userId;
+      userLogged.id = response.user._id;
       userLogged.token = response.token;
       login(userLogged.id);
       console.log(userLogged);

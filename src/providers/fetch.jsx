@@ -2,32 +2,6 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import UserContext from "./UserContext";
 
-export async function useFetch() {
-  const { userLogged } = useContext(UserContext);
-
-  const token = userLogged.token;
-
-  useEffect(() => {
-    async function fetchAllPost() {
-      try {
-        const response = await fetch(`/api/posts`, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const feedPageData = await response.json();
-        console.log(feedPageData);
-      } catch (error) {
-        throw new Error();
-      }
-    }
-    fetchAllPost();
-  }, []);
-}
-
 /* function post request on submit */
 export async function signUpFetch(name, email, password) {
   const user = { name, email, password }; //recupération des données saisies et creation de l'objet
