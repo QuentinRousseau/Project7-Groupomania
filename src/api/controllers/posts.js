@@ -50,7 +50,7 @@ export async function createPost(req, res, next) {
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
   console.log("Vérif du post modifié", postObject);
 
-  const user = await User.findOne({ user: "name" });
+  const user = await User.findOne({ user: req.auth });
   console.log(user.name);
 
   const post = new Post({
