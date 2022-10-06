@@ -38,7 +38,7 @@ const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export async function signup(req, res, next) {
   const { name, email, password } = req.body;
-  console.log(req.body, email, req.body.name);
+  console.log("requete entrante :", req.body, email, req.body.name);
   if (!emailRegex.test(email))
     return res.status(401).json({ error: "Invalid email !" });
   if (password.length > 128)
@@ -47,23 +47,27 @@ export async function signup(req, res, next) {
   let user = new User({
     name,
   });
-  console.log(user);
+  console.log("user créé", user);
+  console.log("controle des données avant création d'account", email, password);
   let account = new Account({
     email,
     password: hash,
   });
-  console.log(account);
-  user = await user.save();
-  account = await account.save();
-  console.log(user, account);
+  console.log("account créé", account);
+  await user.save();
+  await account.save();
+  console.log("utilisateur et compte sauvegardés :", user, account);
   user.account = account._id;
   account.user = user._id;
 
-  console.log(user, account);
+  console.log("user", user, "account", account);
+
+  user = await user.save();
+  account = await account.save();
 
   res.status(201).json({
-    user: await user.save(),
-    account: await account.save(),
+    user,
+    account,
     token: jwt.sign({ userId: user._id }),
     message: "User created !",
   }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
