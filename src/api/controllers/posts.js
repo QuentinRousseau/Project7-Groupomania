@@ -55,12 +55,7 @@ export async function createPost(req, res, next) {
 
   const post = new Post({
     ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
-    // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs
-    author: user.name,
-    // likes: 0,
-    // dislikes: 0,
-    // usersLiked: [],
-    // usersDisliked: [],
+    author: user,
   });
   console.log("Vérif du post une fois créé et fini", post);
   await post // on attends la creation de l'objet, pour le sauvegarder, et si probleme apparait, le catch pour envoyer un message d'erreur sinon renvoyer un msg objet cree

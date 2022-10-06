@@ -1,50 +1,59 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-
 import "./Post.scss";
 import { modifyPost } from "../providers/fetch";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
 
-
-
 function Post({
-  userId,// plus tard le nom du User
+  author,
+  avatar,
   title,
-  postContent,
+  body,
   picture,
   creationDate,
-  likes,
-  dislikes,
+  // likes,
+  // dislikes,
 }) {
-//   const {user} = useContext(UserContext)
-// const [isGoodUser, setIsGoodUser] = useState(false)
-// if(user.id === userId){setIsGoodUser(true)};
-
+  // const { userLogged } = useContext(UserContext);
+  // const [isGoodUser, setIsGoodUser] = useState(false);
+  // if (userLogged.id == author.account) {
+  //   setIsGoodUser(true);
+  // }
+  // console.log(
+  //   "utilisateur connecté",
+  //   userLogged.id,
+  //   "user ayant créé le post",
+  //   author.account
+  // );
+  // console.log(isGoodUser);
   return (
     <div>
       <div className="box has-background-danger-light ">
         <article className="media ">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={picture} alt="Image"></img>
+              <img src={avatar} alt="Avatar"></img>
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
                 <strong>
-                  {userId}
+                  {author.name}
                   {"   "}
                 </strong>
                 {creationDate}
               </p>
               <p>{title}</p>
-              <p>{postContent}</p>
+              <figure id="file">
+                <img src={picture} alt="Image du post"></img>
+              </figure>
+              <p>{body}</p>
             </div>
-            <nav className="level is-mobile " id="comment">
+            {/* <nav className="level is-mobile " id="comment">
               <div className="level-left ">
                 <a className="level-item is-danger" aria-label="reply">
                   <span className="icon is-medium ">
@@ -53,7 +62,7 @@ function Post({
                       className="iconsPost mx-2"
                     />
 
-                    {dislikes}
+                    {/* {dislikes} 
                   </span>
                 </a>
                 <a className="level-item is-danger" aria-label="like">
@@ -62,30 +71,34 @@ function Post({
                       icon={faHeart}
                       className="iconsPost mx-2"
                     />
-                    {likes}
+                    {/* {likes} 
                   </span>
                 </a>
               </div>
-            </nav>
+            </nav> */}
           </div>
         </article>
-        {/* {isGoodUser && <footer className="">
-          <button
-            className="button is-small is-danger mx-1 "
-            // onClick={modifyPost}
-          >
-            Confirmer
-          </button>
+        {/* {isGoodUser && (
+          <footer className="">
+            <button
+              className="button is-small is-danger mx-1 "
+              // onClick={modifyPost}
+            >
+              Confirmer
+            </button>
 
-          <button className="button is-small is-danger mx-1 ">Modifier</button>
+            <button className="button is-small is-danger mx-1 ">
+              Modifier
+            </button>
 
-          <button
-            className="button is-small is-danger mx-1 "
-          //   onClick={deletePost}
-          >
-            Supprimer
-          </button>
-        </footer> } */}
+            <button
+              className="button is-small is-danger mx-1 "
+              //   onClick={deletePost}
+            >
+              Supprimer
+            </button>
+          </footer>
+        )} */}
       </div>
     </div>
   );

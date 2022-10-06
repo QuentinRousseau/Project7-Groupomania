@@ -81,17 +81,17 @@ export async function submitImage(token, imageUrl) {
 }
 
 export async function submitPost(token, user, title, body, url) {
-  console.log(
-    "Vérif des donées recues avant la requete POST",
-    user,
-    title,
-    body,
-    url
-  );
+  // console.log(
+  //   "Vérif des donées recues avant la requete POST",
+  //   user,
+  //   title,
+  //   body,
+  //   url
+  // );
 
   const post = { user, title, body, url };
-  console.log(token);
-  console.log(post);
+  // console.log(token);
+  // console.log(post);
   const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
@@ -101,7 +101,7 @@ export async function submitPost(token, user, title, body, url) {
     },
     body: JSON.stringify(post),
   });
-  console.log(response);
+  // console.log(response);
   if (!response) {
     return Promise.reject(await response.text());
   }

@@ -47,13 +47,14 @@ function FeedPage() {
       {feedPageData.map((post) => (
         <Post
           key={post}
-          userId={post.userId}
+          avatar={post.author.avatar}
+          author={post.author}
           title={post.title}
-          picture={post.imageUrl}
-          postContent={post.postContent}
-          creationDate={post.creationDate}
-          likes={post.likes}
-          dislikes={post.dislikes}
+          picture={post.url}
+          postContent={post.body}
+          creationDate={post.createdAt}
+          // likes={post.likes}  A implémenter plus tard
+          // dislikes={post.dislikes}
         />
       ))}
     </div>
