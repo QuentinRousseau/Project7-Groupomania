@@ -77,7 +77,7 @@ export async function login(req, res, next) {
   const account = await Account.findOne({ email: req.body.email });
   if (!account) return res.status(401).json({ error: "Invalid credentials !" });
   const valid = await bcrypt.compare(req.body.password, account.password);
-  console.log(valid);
+
   if (!valid) return res.status(401).json({ error: "Invalid credentials !" });
 
   res.status(200).json({

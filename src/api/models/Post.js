@@ -21,9 +21,6 @@ const postSchema = new mongoose.Schema(
       //recupere l'user concerné par la création du post et l'affiche
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      autopopulate: true,
-
-      // required: true,
     },
   },
   {
