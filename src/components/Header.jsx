@@ -8,9 +8,9 @@ import "./Header.scss";
 function Header() {
   const [active, setActive] = useState(false); //on créé une variable en booleen pour modifier l'affichage
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
-  const { user, login, logout } = useContext(UserContext);
+  const { userLogged, login, logout } = useContext(UserContext);
 
-  console.log(user);
+  console.log(userLogged);
   return (
     <nav
       className="navbar is-full is-shadowless "
@@ -43,7 +43,7 @@ function Header() {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              {!user.auth && (
+              {!userLogged.auth && (
                 <NavLink
                   className="button has-background-danger has-text-white  is-outlined"
                   to="/signup"
@@ -53,7 +53,7 @@ function Header() {
               )}
 
               <NavLink to="/login">
-                {user.auth ? (
+                {userLogged.auth ? (
                   <button
                     onClick={logout}
                     className="button is-danger is-light is-outlined"

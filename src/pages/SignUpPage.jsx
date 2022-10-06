@@ -27,8 +27,8 @@ function SignUpPage() {
   const [message, setMessage] = useState(""); // creation d'un message vide
   const [name, setName] = useState("");
   // const [avatar, setAvatar] = useField();
-   
-  const { user, login } = useContext(UserContext);
+
+  const { userLogged, login } = useContext(UserContext);
 
   const navigateTo = useNavigate();
 
@@ -39,11 +39,12 @@ function SignUpPage() {
     try {
       const response = await signUpFetch(name, email, password);
       console.log(response);
-      user.id = response.userId;
-      user.token = response.token;
-      
-      login(user.id);
-      console.log(user);
+      console.log(response.user._id);
+      userLogged.id = response.user._id;
+      userLogged.token = response.token;
+
+      login(userLogged.id);
+      console.log(userLogged);
 
       navigateTo(`/posts`);
       console.log("il est sensé aller sur /posts"); // Fonction qui permet de rediriger vers un autre url

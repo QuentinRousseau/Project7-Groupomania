@@ -3,9 +3,9 @@ import { useState } from "react";
 import UserContext from "./UserContext";
 
 export async function useFetch() {
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
-  const token = user.token;
+  const token = userLogged.token;
 
   useEffect(() => {
     async function fetchAllPost() {
@@ -80,20 +80,17 @@ export async function submitImage(token, imageUrl) {
   return data;
 }
 
-export async function submitPost(token, userId, title, postContent, imageUrl) {
-  const tmp_date = new Date().toISOString().split("T");
-  const creationDate = `${tmp_date[0]} ${tmp_date[1]}`;
+export async function submitPost(token, user, title, body, url) {
   console.log(
     "Vérif des donées recues avant la requete POST",
-    userId,
+    user,
     title,
-    postContent,
-    imageUrl,
-    creationDate
+    body,
+    url
   );
 
-  const post = { userId, title, postContent, imageUrl, creationDate };
-  // console.log(token);
+  const post = { user, title, body, url };
+  console.log(token);
   console.log(post);
   const response = await fetch("/api/posts", {
     method: "POST",

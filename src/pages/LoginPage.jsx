@@ -15,7 +15,7 @@ import RoadToTest from "../components/RoadToTest";
 function LoginPage() {
   const navigateTo = useNavigate();
 
-  const { user, login } = useContext(UserContext);
+  const { userLogged, login } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
@@ -28,10 +28,10 @@ function LoginPage() {
     try {
       const response = await loginFetch(email, password);
       console.log(response);
-      user.id = response.userId;
-      user.token = response.token;
-      login(user.id);
-      console.log(user);
+      userLogged.id = response.userId;
+      userLogged.token = response.token;
+      login(userLogged.id);
+      console.log(userLogged);
       navigateTo(`/posts`);
     } catch (e) {
       setMessage(e);

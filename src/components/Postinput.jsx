@@ -8,10 +8,8 @@ import { useField } from "../utils/hooks/useField";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 
-
 function Postinput() {
-   
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
   const [title, setTitle] = useField("");
   const [postContent, setPostContent] = useField("");
@@ -24,8 +22,8 @@ function Postinput() {
     console.log(imageUrl, title, postContent);
     setMessage("Please wait ...");
     try {
-      const token = user.token;
-      const userId = user.id;
+      const token = userLogged.token;
+      const user = userLogged.id;
       console.log("on va faire le fetch");
 
       const fileinput = document.getElementById("fileinput");
@@ -40,8 +38,8 @@ function Postinput() {
       console.log(
         "token",
         token,
-        "userId",
-        userId,
+        "user",
+        user,
         "title",
         title,
         "postContent",
@@ -53,7 +51,7 @@ function Postinput() {
       //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
         token,
-        userId,
+        user,
         title,
         postContent,
         responseImg.imageUrl
@@ -61,8 +59,6 @@ function Postinput() {
       console.log("on a eu le fetch !!");
       console.log(ret);
       setMessage(ret.message);
-      
-      
     } catch (e) {
       console.log("on a loupé le fetch le fetch");
       setMessage(e);

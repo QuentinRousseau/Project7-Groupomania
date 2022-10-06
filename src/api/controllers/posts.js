@@ -1,5 +1,6 @@
 import Post from "../models/Post";
 import fs from "fs";
+import User from "../models/User";
 
 //Dernier ajout de fonction pour rattacher l'user et ses posts
 
@@ -41,17 +42,21 @@ export async function getOnePost(req, res, next) {
 export async function createPost(req, res, next) {
   console.log("vérif de la data recue ! ");
   console.log("req.body", req.body);
-  console.log("userId", req.auth);
-  console.log("image", req.file);
+  console.log("user", req.auth);
 
   let postObject = req.body;
   console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
   delete postObject._id; // enleve l'id pour la remplacer plus tard
   delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
   console.log("Vérif du post modifié", postObject);
+
+  const user = await User.findOne({ user: "name" });
+  console.log(user);
+
   const post = new Post({
     ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
-    userId: req.auth.userId, // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs
+    // creation des compteurs likes et dislikes, ainsi que des tableau rassemblant la liste des utilisateurs
+    author: user.name,
     likes: 0,
     dislikes: 0,
     usersLiked: [],

@@ -2,27 +2,27 @@ import { useState } from "react";
 import UserContext from "./UserContext";
 
 export function userProvider({ children }) {
-  // User is the name of the "data" that gets stored in context
-  const [user, setUser] = useState({ id: "", auth: false, token: "" });
+  // userLogged is the name of the "data" that gets stored in context
+  const [userLogged, setUser] = useState({ id: "", auth: false, token: "" });
 
-  // Login updates the user data with a id parameter
-  const login = (user) => {
-    setUser((user) => ({
-      id: user.id,
+  // Login updates the userLogged data with a id parameter
+  const login = (userLogged) => {
+    setUser((userLogged) => ({
+      id: userLogged.id,
       auth: true,
-      token: user.token,
+      token: userLogged.token,
     }));
   };
-  // Logout updates the user data to default
+  // Logout updates the userLogged data to default
   const logout = () => {
-    setUser((user) => ({
+    setUser((userLogged) => ({
       id: "",
       auth: false,
       token: "",
     }));
   };
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ userLogged, login, logout }}>
       {children}
     </UserContext.Provider>
   );

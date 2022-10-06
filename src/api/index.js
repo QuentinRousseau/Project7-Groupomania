@@ -9,8 +9,6 @@ import router from "./routes/index";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 export const handler = express();
 
 handler.use(morgan("dev", { immediate: true }));

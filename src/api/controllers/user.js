@@ -55,9 +55,11 @@ export async function signup(req, res, next) {
   console.log(account);
   user = await user.save();
   account = await account.save();
-
+  console.log(user, account);
   user.account = account._id;
   account.user = user._id;
+
+  console.log(user, account);
 
   res.status(201).json({
     user: await user.save(),

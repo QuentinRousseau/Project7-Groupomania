@@ -9,9 +9,9 @@ import RoadToTest from "../components/RoadToTest";
 
 function FeedPage() {
   const [feedPageData, setFeedPageData] = useState([]);
-  const { user } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext);
 
-  const token = user.token;
+  const token = userLogged.token;
 
   useEffect(() => {
     async function fetchAllPost() {
@@ -24,9 +24,9 @@ function FeedPage() {
             Authorization: `Bearer ${token}`,
           },
         });
-        
+
         const feedPageData = await response.json();
-        
+
         setFeedPageData(feedPageData);
         console.log(feedPageData);
       } catch (error) {

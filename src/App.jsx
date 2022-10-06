@@ -37,14 +37,12 @@ export function App() {
 
 export default App;
 
-
-
 const IsAuth = ({ element }) => {
-  const { user } = useContext(UserContext);
-  return user.auth ? element : <Navigate to="/login" replace />;
+  const { userLogged } = useContext(UserContext);
+  return userLogged.auth ? element : <Navigate to="/login" replace />;
 };
 
 const NotAuth = ({ element }) => {
-  const { user } = useContext(UserContext);
-  return user.auth ? <Navigate to="/login" replace /> : element;
+  const { userLogged } = useContext(UserContext);
+  return userLogged.auth ? <Navigate to="/login" replace /> : element;
 };
