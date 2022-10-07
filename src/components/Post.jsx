@@ -1,11 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import "./Post.scss";
-import { modifyPost } from "../providers/fetch";
+
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
+import Postinput from "./Postinput";
 
 function Post({
   author,
@@ -17,19 +18,21 @@ function Post({
   // likes,
   // dislikes,
 }) {
+  // console.log(author._id);
   const date = new Date(creationDate).toLocaleString("en-GB", {
     timeZone: "GMT",
   });
+
   // const { userLogged } = useContext(UserContext);
   // const [isGoodUser, setIsGoodUser] = useState(false);
-  // if (userLogged.id == author.account) {
+  // if (userLogged.id == author._id) {
   //   setIsGoodUser(true);
   // }
   // console.log(
   //   "utilisateur connecté",
   //   userLogged.id,
   //   "user ayant créé le post",
-  //   author.account
+  //   author._id
   // );
   // console.log(isGoodUser);
   return (
@@ -48,6 +51,7 @@ function Post({
                   {author.name}
                   {"   "}
                 </strong>
+
                 {date}
               </p>
               <h3> {title}</h3>
@@ -83,27 +87,25 @@ function Post({
             </nav> */}
           </div>
         </article>
-        {/* {isGoodUser && (
-          <footer className="">
-            <button
-              className="button is-small is-danger mx-1 "
-              // onClick={modifyPost}
-            >
-              Confirmer
-            </button>
+        {/* {isGoodUser && ( */}
+        <footer className="">
+          <button
+            className="button is-small is-danger mx-1 "
+            id={`ModifyButton `}
+            // onClick={modifyInput}
+          >
+            Modifier
+          </button>
 
-            <button className="button is-small is-danger mx-1 ">
-              Modifier
-            </button>
-
-            <button
-              className="button is-small is-danger mx-1 "
-              //   onClick={deletePost}
-            >
-              Supprimer
-            </button>
-          </footer>
-        )} */}
+          <button
+            className="button is-small is-danger mx-1 "
+            id="DeleteButton"
+            //   onClick={deletePost}
+          >
+            Supprimer
+          </button>
+        </footer>
+        {/* )} */}
       </div>
     </div>
   );
