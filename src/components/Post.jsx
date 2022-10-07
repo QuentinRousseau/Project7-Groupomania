@@ -17,6 +17,9 @@ function Post({
   // likes,
   // dislikes,
 }) {
+  const date = new Date(creationDate).toLocaleString("en-GB", {
+    timeZone: "GMT",
+  });
   // const { userLogged } = useContext(UserContext);
   // const [isGoodUser, setIsGoodUser] = useState(false);
   // if (userLogged.id == author.account) {
@@ -45,13 +48,15 @@ function Post({
                   {author.name}
                   {"   "}
                 </strong>
-                {creationDate}
+                {date}
               </p>
-              <p>{title}</p>
-              <figure id="file">
-                <img src={picture} alt="Image du post"></img>
-              </figure>
-              <p>{body}</p>
+              <h3> {title}</h3>
+              <p>
+                {body}
+                <figure id="file">
+                  <img src={picture} alt="Image du post"></img>
+                </figure>
+              </p>
             </div>
             {/* <nav className="level is-mobile " id="comment">
               <div className="level-left ">
