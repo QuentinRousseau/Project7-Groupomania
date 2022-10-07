@@ -44,5 +44,5 @@ const IsAuth = ({ element }) => {
 
 const NotAuth = ({ element }) => {
   const { userLogged } = useContext(UserContext);
-  return userLogged.auth ? <Navigate to="/login" replace /> : element;
+  return userLogged.auth ? <Navigate to="/posts" replace /> : element;
 };
