@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
     account: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Account",
-      autopopulate: true,
+      select: false,
     },
   },
   { timestamps: { createdAt: "created_at" } }
