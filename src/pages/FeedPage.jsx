@@ -26,7 +26,7 @@ function FeedPage() {
         });
 
         const feedPageData = await response.json();
-
+        feedPageData.reverse();
         setFeedPageData(feedPageData);
         console.log(feedPageData);
       } catch (error) {
@@ -51,7 +51,7 @@ function FeedPage() {
           author={post.author}
           title={post.title}
           picture={post.url}
-          postContent={post.body}
+          body={post.body}
           creationDate={post.createdAt}
           // likes={post.likes}  A implémenter plus tard
           // dislikes={post.dislikes}
