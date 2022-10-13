@@ -19,6 +19,9 @@ function Post({
   // dislikes,
 }) {
   // console.log(author._id);
+
+  //  Create a var for date layout
+  
   const date = new Date(creationDate).toLocaleString("en-GB", {
     timeZone: "GMT",
   });

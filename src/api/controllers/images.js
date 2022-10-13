@@ -1,10 +1,10 @@
 export async function postImage(req, res, next) {
-  console.log(req.file.filename);
+  // console.log(req.file.filename); name's file 
 
   let imageUrl = `${req.protocol}://${req.get("host")}/images/${
     req.file.filename
-  }`;
-  res.status(201).json({ imageUrl: imageUrl });
+  }`;//create url file with the name 
+  res.status(201).json({ imageUrl: imageUrl }); 
 
-  // retourne l'url de l'image
+  // return url's image
 }

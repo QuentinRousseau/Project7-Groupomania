@@ -10,10 +10,10 @@ const accountSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      autopopulate: true,
+      autopopulate: true, //create a  relation with Object "User"
     },
   },
-  { timestamps: true }
+  { timestamps: true }  //create a  creation date & last modified date 
 );
 
 accountSchema.plugin(uniqueValidator);

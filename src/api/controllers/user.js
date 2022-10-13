@@ -6,83 +6,57 @@ import handleError from "mongoose";
 import mongoose from "mongoose";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-//fonction signup de base
-// export async function signup(req, res, next) {
-//   const { username, email, password } = req.body;
-//   console.log(req.body, email, req.body.name);
-//   if (!emailRegex.test(email))
-//     return res.status(401).json({ error: "Invalid email !" });
-//   if (password.length > 128)
-//     return res.status(401).json({ error: "Password to long !" });
-//   const hash = await bcrypt.hash(req.body.password, 10); // attente de la réponse du hashage du mdp
-//   const user = new User({
-//     username: req.body.name,
-//     email: req.body.email,
-//     password: hash,
-//   }); // creation de l'utilisateur en attribuant le mdp hash a la place de l'initial
-//   await user
-//     .save() // attente de la réponse de la sauvegarde de celui ci
-//     .catch((error) => {
-//       throw res.status(400).json({ error });
-//     }); // catch l'erreur et renvoie un code 400 plus un message specifiant le problème
 
-//   res.status(201).json({
-//     username: user.username,
-//     userId: user._id,
-//     token: jwt.sign({ userId: user._id }),
-//     message: "User created !",
-//   }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
-// }
-
-//Fonction signUp avec account et user
+//SignUp function
 
 export async function signup(req, res, next) {
-  const { name, email, password } = req.body;
+  const { name, email, password } = req.body; // retrieve data's request
   console.log("requete entrante :", req.body, email, req.body.name);
-  if (!emailRegex.test(email))
+  if (!emailRegex.test(email))  // email check
     return res.status(401).json({ error: "Invalid email !" });
-  if (password.length > 128)
+  if (password.length > 128)  //password check
     return res.status(401).json({ error: "Password to long !" });
-  const hash = await bcrypt.hash(password, 10); // attente de la réponse du hashage du mdp
-  let user = new User({
+  const hash = await bcrypt.hash(password, 10); // await hash of password
+  let user = new User({   // Creating new User with the name
     name,
   });
   console.log("user créé", user);
   console.log("controle des données avant création d'account", email, password);
-  let account = new Account({
+  let account = new Account({   //after creating user, create Account with email & password hash
     email,
-    password: hash,
+    password: hash, 
   });
   console.log("account créé", account);
   await user.save();
-  await account.save();
+  await account.save(); //  saving of Objects
   console.log("utilisateur et compte sauvegardés :", user, account);
-  user.account = account._id;
+  user.account = account._id; // Edit id beetwin them
   account.user = user._id;
 
   console.log("user", user, "account", account);
 
   user = await user.save();
-  account = await account.save();
-
+  account = await account.save(); // Saving Objects after modifications
   res.status(201).json({
     user,
     account,
     token: jwt.sign({ userId: account._id }),
     message: "User created !",
-  }); // sinon renvoie d'un code 201 et d'un message pour specifier la creation de l'utilisateur
+  });
 }
 
+
+//  Login function
 export async function login(req, res, next) {
-  const account = await Account.findOne({ email: req.body.email });
+  const account = await Account.findOne({ email: req.body.email }); //  Search Account with mail of request
   if (!account) return res.status(401).json({ error: "Invalid credentials !" });
-  const valid = await bcrypt.compare(req.body.password, account.password);
+  const valid = await bcrypt.compare(req.body.password, account.password);  //  Compare password of request & password of DB
 
   if (!valid) return res.status(401).json({ error: "Invalid credentials !" });
   console.log(account.user._id);
   res.status(200).json({
     user: account.user._id,
     account,
-    token: jwt.sign({ userId: account._id }), //config de jwt dans jwt.js
+    token: jwt.sign({ userId: account._id }), //config  jwt in jwt.js
   });
 }

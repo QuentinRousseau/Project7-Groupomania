@@ -3,21 +3,18 @@ import fs from "fs";
 import User from "../models/User";
 import mongoose from "mongoose";
 
-//Dernier ajout de fonction pour rattacher l'user et ses posts
+//Example of populate()
 
-export function getUserWithPosts(username) {
-  return User.findOne({ username: username })
-    .populate("posts")
-    .exec((err, posts) => {
-      console.log("Populated User " + posts);
-    });
-}
-
-// Fonctions déjà existantes
-
-// .populate({path:"User" ,model: "User"})
+// export function getUserWithPosts(username) {
+//   return User.findOne({ username: username })
+//     .populate("posts")
+//     .exec((err, posts) => {
+//       console.log("Populated User " + posts);
+//     });
+// }
 
 export async function getAllPosts(req, res, next) {
+  //  Search all Posts named "posts"
   try {
     const posts = await Post.find().then((posts) => {
       console.log(posts);
@@ -30,25 +27,28 @@ export async function getAllPosts(req, res, next) {
 }
 
 export async function createPost(req, res, next) {
+  //  Checking of datas in request
   console.log("vérif de la data recue ! ");
   console.log("req.body", req.body);
   console.log("user", req.auth.userId);
 
+  //  Create const postObject for Object "Post" creating
   let postObject = req.body;
-  console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
-  delete postObject._id; // enleve l'id pour la remplacer plus tard
-  delete postObject._userId; // enleve l'userId pour l'attribuer plus tard
-  console.log("Vérif du post modifié", postObject);
+  console.log(" Verif du post a l'entrée", postObject); // check request
+  delete postObject._id; // remove id 
+  delete postObject._userId; // remove userId 
+  console.log("Vérif du post modifié", postObject); //  Check  postObject after modification
 
   const user = await User.findOne({ user: req.auth.userId });
-  console.log("nom du user trouvé", user.name);
+  console.log("nom du user trouvé", user.name); // Search user in the DB with de Account's id
+  // => voir ce qui bug, ressort toujours le premier compte créé
 
   const post = new Post({
-    ...postObject, // creation d'un objet post en attribuant les champs de la requete + l'userId (l'utilisateur qui cree la post) et la creation de l'URL de l'image
-    author: user, //mongoose.Types.ObjectId(user),
+    ...postObject, // Creating Object post with request datas & userId & Url image
+     author: user, //mongoose.Types.ObjectId(user), le Types.ObjectId ressort un "null"
   });
   console.log("Vérif du post une fois créé et fini", post);
-  await post // on attends la creation de l'objet, pour le sauvegarder, et si probleme apparait, le catch pour envoyer un message d'erreur sinon renvoyer un msg objet cree
+  await post // await post creation before saving 
     .save()
     .catch((error) => {
       res.status(400).json({ error });
@@ -56,6 +56,7 @@ export async function createPost(req, res, next) {
     .then(() => res.status(201).json({ message: "Objet enregistré !" }));
 }
 
+// modifier la fonction pour séparer l'image ou la modifier , ainsi que le post
 export async function modifyPost(req, res, next) {
   const postObject = (await req.file)
     ? {
@@ -76,6 +77,7 @@ export async function modifyPost(req, res, next) {
     .catch((error) => res.status(401).json({ error }));
 }
 
+// modifier la fonction pour selectionner le bon post a supprimer
 export async function deletePost(req, res, next) {
   const post = await Post.findOne({ _id: req.params.id });
 
@@ -94,18 +96,6 @@ export async function deletePost(req, res, next) {
 
   res.status(200).json({ message: "Objet supprimé !" });
 }
-
-// export async function getOnePost(req, res, next) {
-//   await Post.findOne({ _id: req.params.id })
-//     .then((post) => {
-//       res.status(200).json(post);
-//     })
-//     .catch((error) => {
-//       res.status(404).json({
-//         error: error,
-//       });
-//     });
-// }
 
 //Fonction pour liker et disliker un post
 
