@@ -17,7 +17,6 @@ export async function getAllPosts(req, res, next) {
   //  Search all Posts named "posts"
   try {
     const posts = await Post.find().then((posts) => {
-      console.log(posts);
       res.status(200).json(posts);
     });
   } catch (error) {
@@ -28,13 +27,10 @@ export async function getAllPosts(req, res, next) {
 
 export async function createPost(req, res, next) {
   //  Checking of datas in request
-  console.log("vérif de la data recue ! ");
-  console.log("req.body", req.body);
-  console.log("req.body.author : ", req.body.author._id);
-  console.log("user", req.auth.userId);
+
 
   //  Create const postObject for Object "Post" creating
-  if (req.auth.userId !== req.body.author._id)
+  if (req.auth.userId !== req.body.author)
     return res.status(400).json("Not Authorized");
 
   let postObject = req.body;

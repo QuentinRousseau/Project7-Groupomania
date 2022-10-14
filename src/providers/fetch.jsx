@@ -34,8 +34,7 @@ export async function loginFetch(email, password) {
 }
 
 export async function submitImage(token, imageUrl) {
-  console.log(imageUrl, token);
-  const newImg = new FormData();
+  const newImg = new FormData(); 
   newImg.append("image", imageUrl);
 
   const response = await fetch("/api/images", {

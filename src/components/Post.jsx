@@ -13,16 +13,17 @@ function Post({
   avatar,
   title,
   body,
-  picture,
-  creationDate,
+  url,
+  createdAt,
   // likes,
   // dislikes,
 }) {
-  // console.log(author._id);
+  console.log("j'affiche l'auteur du post", author._id
+,"la date de création", createdAt);
 
   //  Create a var for date layout
 
-  const date = new Date(creationDate).toLocaleString("en-GB", {
+  const date = new Date(createdAt).toLocaleString("en-GB", {
     timeZone: "GMT",
   });
 
@@ -51,7 +52,7 @@ function Post({
             <div className="content">
               <p>
                 <strong>
-                  {author}
+                  {author.name}
                   {"   "}
                 </strong>
 
@@ -61,7 +62,7 @@ function Post({
               <p>
                 {body}
                 <figure id="file">
-                  <img src={picture} alt="Image du post"></img>
+                  <img src={url} alt="Image du post"></img>
                 </figure>
               </p>
             </div>

@@ -18,35 +18,16 @@ function Postinput() {
 
   async function submit(e) {
     e.preventDefault();
-    console.log("vérif de la data a envoyer");
-    console.log(imageUrl, title, postContent);
     setMessage("Please wait ...");
     try {
       const token = userLogged.token;
       const user = userLogged.id;
-      console.log("on va faire le fetch");
 
       const fileinput = document.getElementById("fileinput");
-      console.log(fileinput);
 
       // requete post pour obtenir l'image
-      console.log(imageUrl);
-      const responseImg = await submitImage(token, fileinput.files[0]);
-      console.log(JSON.stringify(responseImg));
-      console.log("on a créé l'image et elle est revenue.");
 
-      console.log(
-        "token",
-        token,
-        "user",
-        user,
-        "title",
-        title,
-        "postContent",
-        postContent,
-        "responseImg",
-        responseImg.imageUrl
-      );
+      const responseImg = await submitImage(token, fileinput.files[0]);
 
       //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(
@@ -56,12 +37,10 @@ function Postinput() {
         postContent,
         responseImg.imageUrl
       );
-      console.log("on a eu le fetch !!");
       console.log(ret);
       setMessage(ret.message);
-    } catch (e) {
-      console.log("on a loupé le fetch le fetch");
-      setMessage(e);
+    } catch (error) {
+      setMessage(error);
     }
   }
 
