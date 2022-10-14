@@ -26,9 +26,6 @@ export async function getAllPosts(req, res, next) {
 }
 
 export async function createPost(req, res, next) {
-  //  Checking of datas in request
-
-
   //  Create const postObject for Object "Post" creating
   if (req.auth.userId !== req.body.author)
     return res.status(400).json("Not Authorized");

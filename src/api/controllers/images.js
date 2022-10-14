@@ -1,5 +1,4 @@
 export async function postImage(req, res, next) {
-
   let imageUrl = `${req.protocol}://${req.get("host")}/images/${
     req.file.filename
   }`; //create url file with the name

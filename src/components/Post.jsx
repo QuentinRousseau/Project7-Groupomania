@@ -8,22 +8,12 @@ import UserContext from "../providers/UserContext";
 import { useState } from "react";
 import Postinput from "./Postinput";
 
-function Post({
-  author,
-  avatar,
-  title,
-  body,
-  url,
-  createdAt,
-  // likes,
-  // dislikes,
-}) {
-  console.log("j'affiche l'auteur du post", author._id
-,"la date de création", createdAt);
+function Post(post) {
 
+  console.log("avatar:  ",post.author.avatar,"     image   :",post.url)
   //  Create a var for date layout
 
-  const date = new Date(createdAt).toLocaleString("en-GB", {
+  const date = new Date(post.createdAt).toLocaleString("en-GB", {
     timeZone: "GMT",
   });
 
@@ -45,24 +35,24 @@ function Post({
         <article className="media ">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={avatar} alt="Avatar"></img>
+              <img src={post.author.avatar} alt="Avatar"></img>
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
                 <strong>
-                  {author.name}
+                  {post.author.name}
                   {"   "}
                 </strong>
 
                 {date}
               </p>
-              <h3> {title}</h3>
+              <h3> {post.title}</h3>
               <p>
-                {body}
+                {post.body}
                 <figure id="file">
-                  <img src={url} alt="Image du post"></img>
+                  <img src={post.url} alt="Image du post"></img>
                 </figure>
               </p>
             </div>
