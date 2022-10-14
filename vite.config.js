@@ -4,10 +4,8 @@ import mix from "vite-plugin-mix";
 import history from "vite-plugin-history";
 import eslint from "vite-plugin-eslint";
 
-console.log(mix);
 // https://vitejs.dev/config/
 export default defineConfig({
-  
   clearScreen: false,
   plugins: [
     mix.default({

@@ -21,7 +21,7 @@ function Post({
   // console.log(author._id);
 
   //  Create a var for date layout
-  
+
   const date = new Date(creationDate).toLocaleString("en-GB", {
     timeZone: "GMT",
   });
@@ -51,7 +51,7 @@ function Post({
             <div className="content">
               <p>
                 <strong>
-                  {author.name}
+                  {author}
                   {"   "}
                 </strong>
 

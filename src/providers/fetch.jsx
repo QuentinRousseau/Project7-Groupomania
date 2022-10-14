@@ -54,16 +54,16 @@ export async function submitImage(token, imageUrl) {
   return data;
 }
 
-export async function submitPost(token, user, title, body, url) {
-  // console.log(
-  //   "Vérif des donées recues avant la requete POST",
-  //   user,
-  //   title,
-  //   body,
-  //   url
-  // );
+export async function submitPost(token, author, title, body, url) {
+  console.log(
+    "Vérif des donées recues avant la requete POST",
+    author,
+    title,
+    body,
+    url
+  );
 
-  const post = { user, title, body, url };
+  const post = { author, title, body, url };
   // console.log(token);
   // console.log(post);
   const response = await fetch("/api/posts", {

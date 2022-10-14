@@ -3,6 +3,7 @@ import Postinput from "../components/Postinput";
 import Title from "../components/Title";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../providers/UserContext";
+import { useUpdate } from "../providers/Update";
 
 import "./FeedPage.scss";
 import RoadToTest from "../components/RoadToTest";
@@ -10,6 +11,7 @@ import RoadToTest from "../components/RoadToTest";
 function FeedPage() {
   const [feedPageData, setFeedPageData] = useState([]);
   const { userLogged } = useContext(UserContext);
+  const lastUpdate = useUpdate();
 
   const token = userLogged.token;
 
@@ -34,28 +36,18 @@ function FeedPage() {
       }
     }
     fetchAllPost();
-  }, []);
+  }, [lastUpdate]);
 
   return (
     <div className="feedPage">
       <Title />
       <RoadToTest />
       <div className="title">
-        <Postinput />
+        <Postinput key={lastUpdate} />
       </div>
 
       {feedPageData.map((post) => (
-        <Post
-          key={post}
-          avatar={post.author.avatar}
-          author={post.author}
-          title={post.title}
-          picture={post.url}
-          body={post.body}
-          creationDate={post.createdAt}
-          // likes={post.likes}  A implémenter plus tard
-          // dislikes={post.dislikes}
-        />
+        <Post key={post._id} {...post} />
       ))}
     </div>
   );

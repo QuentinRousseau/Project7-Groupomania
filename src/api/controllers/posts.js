@@ -30,25 +30,25 @@ export async function createPost(req, res, next) {
   //  Checking of datas in request
   console.log("vérif de la data recue ! ");
   console.log("req.body", req.body);
+  console.log("req.body.author : ", req.body.author._id);
   console.log("user", req.auth.userId);
 
   //  Create const postObject for Object "Post" creating
-  let postObject = req.body;
-  console.log(" Verif du post a l'entrée", postObject); // check request
-  delete postObject._id; // remove id 
-  delete postObject._userId; // remove userId 
-  console.log("Vérif du post modifié", postObject); //  Check  postObject after modification
+  if (req.auth.userId !== req.body.author._id)
+    return res.status(400).json("Not Authorized");
 
-  const user = await User.findOne({ user: req.auth.userId });
-  console.log("nom du user trouvé", user.name); // Search user in the DB with de Account's id
-  // => voir ce qui bug, ressort toujours le premier compte créé
+  let postObject = req.body;
+  console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
+  delete postObject._id; // remove id
+
+  console.log("Vérif du post modifié", postObject);
 
   const post = new Post({
     ...postObject, // Creating Object post with request datas & userId & Url image
-     author: user, //mongoose.Types.ObjectId(user), le Types.ObjectId ressort un "null"
+    author: req.auth.userId,
   });
   console.log("Vérif du post une fois créé et fini", post);
-  await post // await post creation before saving 
+  await post // await post creation before saving
     .save()
     .catch((error) => {
       res.status(400).json({ error });
@@ -56,14 +56,11 @@ export async function createPost(req, res, next) {
     .then(() => res.status(201).json({ message: "Objet enregistré !" }));
 }
 
-// modifier la fonction pour séparer l'image ou la modifier , ainsi que le post
 export async function modifyPost(req, res, next) {
   const postObject = (await req.file)
     ? {
-        ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
+        ...JSON.parse(req.body.json),
+        url: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
       }
     : { ...req.body };
 
@@ -77,7 +74,6 @@ export async function modifyPost(req, res, next) {
     .catch((error) => res.status(401).json({ error }));
 }
 
-// modifier la fonction pour selectionner le bon post a supprimer
 export async function deletePost(req, res, next) {
   const post = await Post.findOne({ _id: req.params.id });
 
