@@ -121,6 +121,6 @@ export async function submitDelete(post, token, _id) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  console.log("post supprimé !", data);
+  console.log("response :", data);
   return data;
 }

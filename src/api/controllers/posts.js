@@ -69,16 +69,17 @@ export async function modifyPost(req, res, next) {
 }
 
 export async function deletePost(req, res, next) {
+  // Authorization check
+  if (req.body.author._id != req.auth.userId)
+    return res.status(401).json({ error: "Not authorized" });
+
+  // Find post & change boolean "deleted"
   const post = await Post.findByIdAndUpdate(
     { _id: req.params.id },
     { deleted: true }
   );
+
   if (!post) return res.status(400).json({ error: "Post not found !" });
-
-  if (post.author._id != req.auth.userId)
-    return res.status(401).json({ error: "Not authorized" });
-
-  console.log("post.author: ", post.deleted);
 
   res.status(200).json({ message: "Objet supprimé !" });
 }
