@@ -7,7 +7,7 @@ import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
 import Postinput from "./Postinput";
-import { submitDelete } from "../providers/fetch";
+import { modifyPost, submitDelete } from "../providers/fetch";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
@@ -35,20 +35,34 @@ function Post(post) {
     const ret = await submitDelete(post, token, _id);
     console.log(ret);
   }
-  //
-  // const [isGoodUser, setIsGoodUser] = useState(false);
-  // if (userLogged.id == author._id) {
-  //   setIsGoodUser(true);
-  // }
-  // console.log(
-  //   "utilisateur connecté",
-  //   userLogged.id,
-  //   "user ayant créé le post",
-  //   author._id
-  // );
-  // console.log(isGoodUser);
+
+  async function modifyInput() {
+    const _id = post._id;
+    const token = userLogged.token;
+    console.log(
+      "post concerné  :   ",
+      post,
+      "    id du post    :",
+      _id,
+      "    token : ",
+      token
+    );
+
+    console.log("je modifie un post groooos");
+  }
+
+  const isGoodUser = userLogged.id === post.author._id ? true : false;
+  console.log(
+    "utilisateur connecté",
+    userLogged.id,
+    "user ayant créé le post",
+    post.author._id
+  );
+  const isAdmin = userLogged.admin;
+  console.log("est ce un admin ?", isAdmin);
+  console.log("est ce le bon createur du post ?", isGoodUser);
   return (
-    <div>
+    <div className=" ">
       <div className="box has-background-danger-light ">
         <article className="media ">
           <div className="media-left">
@@ -99,25 +113,25 @@ function Post(post) {
             </nav> */}
           </div>
         </article>
-        {/* {isGoodUser && ( */}
-        <footer className="">
-          <button
-            className="button is-small is-danger mx-1 "
-            id={`ModifyButton `}
-            // onClick={modifyInput}
-          >
-            Modifier
-          </button>
+        {(isGoodUser || isAdmin) && (
+          <footer className="">
+            <button
+              className="button is-small is-danger mx-1 "
+              id={`ModifyButton `}
+              onClick={modifyInput}
+            >
+              Modifier
+            </button>
 
-          <button
-            className="button is-small is-danger mx-1 "
-            id="DeleteButton"
-            onClick={deletePost}
-          >
-            Supprimer
-          </button>
-        </footer>
-        {/* )} */}
+            <button
+              className="button is-small is-danger mx-1 "
+              id="DeleteButton"
+              onClick={deletePost}
+            >
+              Supprimer
+            </button>
+          </footer>
+        )}
       </div>
     </div>
   );

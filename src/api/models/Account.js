@@ -13,7 +13,7 @@ const accountSchema = mongoose.Schema(
       autopopulate: true, //create a  relation with Object "User"
     },
   },
-  { timestamps: true }  //create a  creation date & last modified date 
+  { timestamps: true } //create a  creation date & last modified date
 );
 
 accountSchema.plugin(uniqueValidator);

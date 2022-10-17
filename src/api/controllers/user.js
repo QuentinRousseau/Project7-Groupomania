@@ -38,6 +38,7 @@ export async function signup(req, res, next) {
 
   user = await user.save();
   account = await account.save(); // Saving Objects after modifications
+
   res.status(201).json({
     user,
     account,
