@@ -62,7 +62,7 @@ function Post(post) {
   console.log("est ce un admin ?", isAdmin);
   console.log("est ce le bon createur du post ?", isGoodUser);
   return (
-    <div className=" ">
+    <div className="postBox  is-fluid">
       <div className="box has-background-danger-light ">
         <article className="media ">
           <div className="media-left">
@@ -79,14 +79,13 @@ function Post(post) {
                 </strong>
 
                 {date}
+                <h3 className="title is-4"> {post.title}</h3>
               </p>
-              <h3> {post.title}</h3>
-              <p>
-                {post.body}
-                <figure id="file">
-                  <img src={post.url} alt="Image du post"></img>
-                </figure>
-              </p>
+
+              <figure id="file">
+                <img src={post.url} alt="Image du post"></img>
+              </figure>
+              <p className="subtitle is-6">{post.body}</p>
             </div>
             {/* <nav className="level is-mobile " id="comment">
               <div className="level-left ">
