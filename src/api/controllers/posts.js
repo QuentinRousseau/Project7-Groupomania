@@ -2,6 +2,7 @@ import Post from "../models/Post";
 import fs from "fs";
 import User from "../models/User";
 import mongoose from "mongoose";
+import softDelete from "mongoose-delete";
 
 //Example of populate()
 
@@ -68,20 +69,16 @@ export async function modifyPost(req, res, next) {
 }
 
 export async function deletePost(req, res, next) {
-  const post = await Post.findOne({ _id: req.params.id });
-
+  const post = await Post.findByIdAndUpdate(
+    { _id: req.params.id },
+    { deleted: true }
+  );
   if (!post) return res.status(400).json({ error: "Post not found !" });
 
-  if (post.userId != req.auth.userId)
+  if (post.author._id != req.auth.userId)
     return res.status(401).json({ error: "Not authorized" });
 
-  const filename = post.imageUrl.split("images/")[1];
-
-  await fs.promises.unlink(`images/${filename}`);
-
-  await Post.deleteOne({ _id: req.params.id }).catch((error) => {
-    throw res.status(401).json({ error });
-  });
+  console.log("post.author: ", post.deleted);
 
   res.status(200).json({ message: "Objet supprimé !" });
 }

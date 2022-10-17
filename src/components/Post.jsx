@@ -7,17 +7,35 @@ import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
 import Postinput from "./Postinput";
+import { submitDelete } from "../providers/fetch";
 
 function Post(post) {
+  const { userLogged } = useContext(UserContext);
 
-  console.log("avatar:  ",post.author.avatar,"     image   :",post.url)
+  // console.log("avatar:  ", post.author.avatar, "     image   :", post.url);
   //  Create a var for date layout
 
   const date = new Date(post.createdAt).toLocaleString("en-GB", {
     timeZone: "GMT",
   });
 
-  // const { userLogged } = useContext(UserContext);
+  async function deletePost() {
+    const _id = post._id;
+    const token = userLogged.token;
+
+    console.log(
+      "post concerné  :   ",
+      post,
+      "    id du post    :",
+      _id,
+      "    token : ",
+      token
+    );
+
+    const ret = await submitDelete(post, token, _id);
+    console.log(ret);
+  }
+  //
   // const [isGoodUser, setIsGoodUser] = useState(false);
   // if (userLogged.id == author._id) {
   //   setIsGoodUser(true);
@@ -94,7 +112,7 @@ function Post(post) {
           <button
             className="button is-small is-danger mx-1 "
             id="DeleteButton"
-            //   onClick={deletePost}
+            onClick={deletePost}
           >
             Supprimer
           </button>

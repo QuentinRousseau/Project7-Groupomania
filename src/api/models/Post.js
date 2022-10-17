@@ -29,7 +29,7 @@ const postSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+postSchema.plugin(softDelete, { deletedAt: true, overrideMethods: true });
 mongoose.plugin(softDelete, { deletedAt: true, overrideMethods: true });
 mongoose.plugin(mongooseAutoPopulate);
 

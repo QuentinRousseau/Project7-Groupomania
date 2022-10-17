@@ -34,7 +34,7 @@ export async function loginFetch(email, password) {
 }
 
 export async function submitImage(token, imageUrl) {
-  const newImg = new FormData(); 
+  const newImg = new FormData();
   newImg.append("image", imageUrl);
 
   const response = await fetch("/api/images", {
@@ -104,10 +104,10 @@ export async function modifyPost(token, userId, title, postContent, imageUrl) {
   return data;
 }
 
-export async function deletePost(token, userId, title, postContent, imageUrl) {
-  const post = this.post;
-
-  const response = await fetch("/api/posts", {
+export async function submitDelete(post, token, _id) {
+  console.log(post, token, _id);
+  console.log("post test a envoyer  ", JSON.stringify(post));
+  const response = await fetch(`/api/posts/${_id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
