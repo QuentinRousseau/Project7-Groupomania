@@ -7,6 +7,7 @@ import "./Postinput.scss";
 import { useField } from "../utils/hooks/useField";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
+import { useNavigate } from "react-router";
 
 function Postinput() {
   const { userLogged } = useContext(UserContext);
@@ -15,6 +16,8 @@ function Postinput() {
   const [postContent, setPostContent] = useField("");
   const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
+
+  const navigateTo = useNavigate();
 
   async function submit(e) {
     e.preventDefault();
@@ -39,6 +42,7 @@ function Postinput() {
       );
       console.log(ret);
       setMessage(ret.message);
+      navigateTo("/login"); // voir avec yoann pour amélioration
     } catch (error) {
       setMessage(error);
     }

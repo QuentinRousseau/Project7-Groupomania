@@ -8,17 +8,17 @@ import UserContext from "../providers/UserContext";
 import { useState } from "react";
 import Postinput from "./Postinput";
 import { modifyPost, submitDelete } from "../providers/fetch";
+import { useNavigate } from "react-router";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
+  const navigateTo = useNavigate();
 
   // console.log("avatar:  ", post.author.avatar, "     image   :", post.url);
   //  Create a var for date layout
 
-  const date = new Date(post.createdAt).toLocaleString("en-GB", {
-    timeZone: "GMT",
-  });
-
+  const date = new Date(post.createdAt).toLocaleDateString("fr-FR");
+  const time = new Date(post.createdAt).toLocaleTimeString("fr-FR");
   async function deletePost() {
     const _id = post._id;
     const token = userLogged.token;
@@ -34,6 +34,7 @@ function Post(post) {
 
     const ret = await submitDelete(post, token, _id);
     console.log(ret);
+    navigateTo("/login"); // voir avec yoann pour amélioration
   }
 
   async function modifyInput() {
@@ -75,10 +76,13 @@ function Post(post) {
               <p>
                 <strong>
                   {post.author.name}
-                  {"   "}
+                  {"       "}
                 </strong>
 
                 {date}
+                {"         "}
+                {"         "}
+                {time}
                 <h3 className="title is-4"> {post.title}</h3>
               </p>
 
