@@ -98,7 +98,7 @@ function LoginPage() {
           {/**rajouter l'url de l'id connecté en plus ? */}
           <NavLink
             to={"/signup"}
-            className="subtitle has-text-centered mt-4 is-6 is-small has-text-black"
+            className="subtitle has-text-centered  is-6 is-small has-text-black"
           >
             <p>Pas encore insrcit ? Creer votre compte</p>
           </NavLink>
