@@ -40,33 +40,31 @@ function Header() {
         </a>
       </div>
       <div className={`navbar-menu  ${active && "is-active"}`}>
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              {!userLogged.auth && (
-                <NavLink
-                  className="button has-background-danger has-text-white  is-outlined"
-                  to="/signup"
-                >
-                  <strong>S'inscrire</strong>
-                </NavLink>
-              )}
-
-              <NavLink to="/login">
-                {userLogged.auth ? (
-                  <button
-                    onClick={logout}
-                    className="button is-danger is-light is-outlined"
-                  >
-                    Se Deconnecter
-                  </button>
-                ) : (
-                  <button className="button is-danger is-light is-outlined">
-                    Se Connecter
-                  </button>
-                )}
+        <div className="navbar-end navbar-item">
+          <div className="buttons">
+            {!userLogged.auth && (
+              <NavLink
+                className="button is-danger is-light is-outlined"
+                to="/signup"
+              >
+                <p>S'inscrire</p>
               </NavLink>
-            </div>
+            )}
+
+            <NavLink to="/login">
+              {userLogged.auth ? (
+                <button
+                  onClick={logout}
+                  className="button is-danger is-light is-outlined"
+                >
+                  Se Deconnecter
+                </button>
+              ) : (
+                <button className="button is-danger is-light is-outlined">
+                  Se Connecter
+                </button>
+              )}
+            </NavLink>
           </div>
         </div>
       </div>

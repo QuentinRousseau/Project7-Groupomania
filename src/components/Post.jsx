@@ -89,7 +89,8 @@ function Post(post) {
               <figure id="file">
                 <img src={post.url} alt="Image du post"></img>
               </figure>
-              <p className="subtitle is-6">{post.body}</p>
+
+              <p className="subtitle is-6 mb-5">{post.body}</p>
             </div>
             {/* <nav className="level is-mobile " id="comment">
               <div className="level-left ">

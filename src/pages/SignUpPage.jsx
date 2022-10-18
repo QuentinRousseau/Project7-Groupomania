@@ -141,14 +141,14 @@ function SignUpPage() {
             >
               S'inscrire
             </button>
-            {JSON.stringify(message)}
+            <p>{message}</p>
           </div>
         </form>
         <Link
           to={"/login"}
           className="subtitle has-text-centered  is-6 is-small has-text-black"
         >
-          <p>Pas encore insrcit ? Creer votre compte</p>
+          <p className="mt-4">Pas encore insrcit ? Creer votre compte</p>
         </Link>
       </Box>
     </div>

@@ -100,7 +100,7 @@ function LoginPage() {
             to={"/signup"}
             className="subtitle has-text-centered  is-6 is-small has-text-black"
           >
-            <p>Pas encore insrcit ? Creer votre compte</p>
+            <p className="mt-4">Pas encore insrcit ? Creer votre compte</p>
           </NavLink>
         </form>
       </Box>
