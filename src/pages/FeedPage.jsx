@@ -1,12 +1,11 @@
 import Post from "../components/Post";
 import Postinput from "../components/Postinput";
-import Title from "../components/Title";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../providers/UserContext";
 //import { lastUpdate}  from "../providers/Update.jsx";
 
 import "./FeedPage.scss";
-import RoadToTest from "../components/RoadToTest";
+
 import { Container } from "react-bulma-components";
 
 function FeedPage() {
@@ -45,7 +44,6 @@ function FeedPage() {
 
   return (
     <Container className="feedPage">
-      <RoadToTest />
       <div className="title">
         <Postinput /*key=lastUpdate*/ />
       </div>

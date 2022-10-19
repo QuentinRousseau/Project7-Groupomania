@@ -28,7 +28,9 @@ function Header() {
 
         <a
           role="button"
-          className={`navbar-burger ${active && "is-active"}`}
+          className={`navbar-burger  ${
+            active && "is-active"
+          } has-text-white mt-2`}
           onClick={toggleActive}
           aria-label="menu"
           aria-expanded="false"
@@ -39,7 +41,9 @@ function Header() {
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div className={`navbar-menu  ${active && "is-active"}`}>
+      <div
+        className={`navbar-menu  ${active && "is-active"} has-background-dark`}
+      >
         <div className="navbar-end navbar-item">
           <div className="buttons">
             {!userLogged.auth && (

@@ -5,12 +5,11 @@ import { Box } from "react-bulma-components";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { validMail } from "../utils/tools/validation";
-import Title from "../components/Title";
+
 import Textinput from "../components/Textinput";
 import { loginFetch } from "../providers/fetch";
 import UserContext from "../providers/UserContext";
 import "./LoginPage.scss";
-import RoadToTest from "../components/RoadToTest";
 
 function LoginPage() {
   const navigateTo = useNavigate();
@@ -44,10 +43,8 @@ function LoginPage() {
   };
 
   return (
-    <div className="column">
-      <RoadToTest />
-
-      <Box id="connexionInput">
+    <div className="column ">
+      <Box id="connexionInput" className="has-background-primary">
         <form onSubmit={submit} className="log">
           <div className="field ">
             <label className="label">Connexion</label>
@@ -59,7 +56,7 @@ function LoginPage() {
                 type="text"
                 isValid={isEmailValid}
               />
-              {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-danger" */}
+              {/**si la regex est bonne, ajouter "is-succes" a la class, sinon ajouter "is-primary" */}
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>

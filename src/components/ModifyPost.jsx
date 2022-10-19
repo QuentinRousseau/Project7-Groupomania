@@ -81,7 +81,7 @@ function Postinput(post = { title: "", body: "", url: "" }) {
 
         {/**mettre le bouton update file dans un autre composant? */}
 
-        <div className="file is-small has-name is-danger is-centered">
+        <div className="file is-small has-name is-primary is-centered">
           <label className="file-label">
             <input
               className="file-input"
@@ -104,7 +104,7 @@ function Postinput(post = { title: "", body: "", url: "" }) {
               {/*le "?" vérifie la donnée avant d'appeler le name*/}
             </span>
           </label>
-          <button type="submit" className="button is-small is-danger mx-4 ">
+          <button type="submit" className="button is-small is-primary mx-4 ">
             Confirmer
           </button>
           {message && JSON.stringify(message)}

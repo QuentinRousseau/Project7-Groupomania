@@ -96,7 +96,7 @@ function Post(post) {
             </div>
             {/* <nav className="level is-mobile " id="comment">
               <div className="level-left ">
-                <a className="level-item is-danger" aria-label="reply">
+                <a className="level-item is-primary" aria-label="reply">
                   <span className="icon is-medium ">
                     <FontAwesomeIcon
                       icon={faHeartBroken}
@@ -106,7 +106,7 @@ function Post(post) {
                     {/* {dislikes} 
                   </span>
                 </a>
-                <a className="level-item is-danger" aria-label="like">
+                <a className="level-item is-primary" aria-label="like">
                   <span className="icon is-medium">
                     <FontAwesomeIcon
                       icon={faHeart}
@@ -124,7 +124,7 @@ function Post(post) {
       {(isGoodUser || isAdmin) && (
         <footer className="">
           <button
-            className="button is-small is-danger mx-1 "
+            className="button is-small is-primary mx-1 "
             id={`ModifyButton `}
             onClick={modifyInput}
           >
@@ -132,7 +132,7 @@ function Post(post) {
           </button>
 
           <button
-            className="button is-small is-danger mx-1 "
+            className="button is-small is-primary mx-1 "
             id="DeleteButton"
             onClick={deletePost}
           >

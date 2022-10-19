@@ -13,12 +13,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { validMail } from "../utils/tools/validation";
 import { signUpFetch } from "../providers/fetch";
 import UserContext from "../providers/UserContext";
-import Title from "../components/Title";
-import Textinput from "../components/Textinput";
-import { useField } from "../utils/hooks/useField";
-import "./SignUpPage.scss";
 
-import RoadToTest from "../components/RoadToTest";
+import Textinput from "../components/Textinput";
+
+import "./SignUpPage.scss";
 
 function SignUpPage() {
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
@@ -60,9 +58,7 @@ function SignUpPage() {
 
   return (
     <div className="column ">
-      <RoadToTest />
-
-      <Box id="connexionInput">
+      <Box id="connexionInput" className="has-background-primary">
         <form onSubmit={submit} className="log">
           <div className="field">
             <label className="label">Inscription</label>
@@ -147,7 +143,7 @@ function SignUpPage() {
           to={"/login"}
           className="subtitle has-text-centered  is-6 is-small has-text-black"
         >
-          <p className="mt-4">Pas encore insrcit ? Creer votre compte</p>
+          <p className="mt-4">Vous possédez déjà un compte ? Connectez-vous </p>
         </Link>
       </Box>
     </div>
