@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-import logo from "../assets/homeLogoHeader.png?url";
+import logo from "../assets/icon-left-font-monochrome-white.png?url";
 import UserContext from "../providers/UserContext";
 import "./Header.scss";
 
@@ -13,7 +13,7 @@ function Header() {
   console.log(userLogged);
   return (
     <nav
-      className="navbar is-full is-shadowless "
+      className="navbar is-full is-shadowless has-background-dark "
       role="navigation"
       aria-label="main navigation"
     >
@@ -23,7 +23,7 @@ function Header() {
           width="200"
           height="2000"
           alt="Logo de l'entreprise Groupomania"
-          className="image is-hidden-desktop mt-5 "
+          className="image ml-4 my-3 "
         ></img>
 
         <a

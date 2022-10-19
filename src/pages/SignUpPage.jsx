@@ -60,7 +60,6 @@ function SignUpPage() {
 
   return (
     <div className="column ">
-      <Title />
       <RoadToTest />
 
       <Box id="connexionInput">

@@ -7,6 +7,7 @@ import UserContext from "../providers/UserContext";
 
 import "./FeedPage.scss";
 import RoadToTest from "../components/RoadToTest";
+import { Container } from "react-bulma-components";
 
 function FeedPage() {
   const [feedPageData, setFeedPageData] = useState([]);
@@ -43,8 +44,7 @@ function FeedPage() {
   );
 
   return (
-    <div className="feedPage">
-      <Title />
+    <Container className="feedPage">
       <RoadToTest />
       <div className="title">
         <Postinput /*key=lastUpdate*/ />
@@ -53,7 +53,7 @@ function FeedPage() {
       {feedPageData.map((post) => (
         <Post key={post._id} {...post} />
       ))}
-    </div>
+    </Container>
   );
 }
 

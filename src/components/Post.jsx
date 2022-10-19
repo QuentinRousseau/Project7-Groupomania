@@ -9,10 +9,12 @@ import { useState } from "react";
 import Postinput from "./Postinput";
 import { modifyPost, submitDelete } from "../providers/fetch";
 import { useNavigate } from "react-router";
+import { Box } from "react-bulma-components";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
   const navigateTo = useNavigate();
+  const [isEditing, setEditing] = useState(false);
 
   // console.log("avatar:  ", post.author.avatar, "     image   :", post.url);
   //  Create a var for date layout
@@ -63,8 +65,8 @@ function Post(post) {
   console.log("est ce un admin ?", isAdmin);
   console.log("est ce le bon createur du post ?", isGoodUser);
   return (
-    <div className="postBox  is-fluid">
-      <div className="box has-background-danger-light ">
+    <Box className="box has-background-danger-light  is-fluid">
+      {!isEditing && (
         <article className="media ">
           <div className="media-left">
             <figure className="image is-64x64">
@@ -117,27 +119,28 @@ function Post(post) {
             </nav> */}
           </div>
         </article>
-        {(isGoodUser || isAdmin) && (
-          <footer className="">
-            <button
-              className="button is-small is-danger mx-1 "
-              id={`ModifyButton `}
-              onClick={modifyInput}
-            >
-              Modifier
-            </button>
+      )}
+      {isEditing && <modifyPost post={post} />}
+      {(isGoodUser || isAdmin) && (
+        <footer className="">
+          <button
+            className="button is-small is-danger mx-1 "
+            id={`ModifyButton `}
+            onClick={modifyInput}
+          >
+            Modifier
+          </button>
 
-            <button
-              className="button is-small is-danger mx-1 "
-              id="DeleteButton"
-              onClick={deletePost}
-            >
-              Supprimer
-            </button>
-          </footer>
-        )}
-      </div>
-    </div>
+          <button
+            className="button is-small is-danger mx-1 "
+            id="DeleteButton"
+            onClick={deletePost}
+          >
+            Supprimer
+          </button>
+        </footer>
+      )}
+    </Box>
   );
 }
 

@@ -45,7 +45,6 @@ function LoginPage() {
 
   return (
     <div className="column">
-      <Title />
       <RoadToTest />
 
       <Box id="connexionInput">
