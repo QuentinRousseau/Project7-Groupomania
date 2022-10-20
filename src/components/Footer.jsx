@@ -3,7 +3,7 @@ import "./Footer.scss";
 
 function Footer() {
   return (
-    <footer className="footer has-background-dark has-text-white mt-6">
+    <footer className="footer has-background-dark has-text-white">
       <div className="content has-text-centered is-small">
         <p>
           Developpé par{" "}

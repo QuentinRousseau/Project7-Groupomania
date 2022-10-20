@@ -1,15 +1,15 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import "./Post.scss";
 
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
-import Postinput from "./Postinput";
-import { modifyPost, submitDelete } from "../providers/fetch";
+import { submitDelete } from "../providers/fetch";
 import { useNavigate } from "react-router";
 import { Box } from "react-bulma-components";
+import ModifyPost from "./ModifyPost";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
@@ -39,31 +39,9 @@ function Post(post) {
     navigateTo("/login"); // voir avec yoann pour amélioration
   }
 
-  async function modifyInput() {
-    const _id = post._id;
-    const token = userLogged.token;
-    console.log(
-      "post concerné  :   ",
-      post,
-      "    id du post    :",
-      _id,
-      "    token : ",
-      token
-    );
-
-    console.log("je modifie un post groooos");
-  }
-
   const isGoodUser = userLogged.id === post.author._id ? true : false;
-  console.log(
-    "utilisateur connecté",
-    userLogged.id,
-    "user ayant créé le post",
-    post.author._id
-  );
+
   const isAdmin = userLogged.admin;
-  console.log("est ce un admin ?", isAdmin);
-  console.log("est ce le bon createur du post ?", isGoodUser);
   return (
     <Box className="box has-background-danger-light  is-fluid">
       {!isEditing && (
@@ -94,7 +72,7 @@ function Post(post) {
 
               <p className="subtitle is-6 mb-5">{post.body}</p>
             </div>
-            {/* <nav className="level is-mobile " id="comment">
+            <nav className="level is-mobile " id="comment">
               <div className="level-left ">
                 <a className="level-item is-primary" aria-label="reply">
                   <span className="icon is-medium ">
@@ -103,7 +81,7 @@ function Post(post) {
                       className="iconsPost mx-2"
                     />
 
-                    {/* {dislikes} 
+                    {post.dislikes}
                   </span>
                 </a>
                 <a className="level-item is-primary" aria-label="like">
@@ -112,27 +90,27 @@ function Post(post) {
                       icon={faHeart}
                       className="iconsPost mx-2"
                     />
-                    {/* {likes} 
+                    {post.likes}
                   </span>
                 </a>
               </div>
-            </nav> */}
+            </nav>
           </div>
         </article>
       )}
-      {isEditing && <modifyPost post={post} />}
+      {isEditing && <ModifyPost post={post} />}
       {(isGoodUser || isAdmin) && (
         <footer className="">
           <button
-            className="button is-small is-primary mx-1 "
+            className="button is-small is-danger mx-1 "
             id={`ModifyButton `}
-            onClick={modifyInput}
+            onClick={() => setEditing((val) => !val)}
           >
             Modifier
           </button>
 
           <button
-            className="button is-small is-primary mx-1 "
+            className="button is-small is-danger mx-1 "
             id="DeleteButton"
             onClick={deletePost}
           >

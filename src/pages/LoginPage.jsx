@@ -43,7 +43,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="column ">
+    <div className="column pt-6">
       <Box id="connexionInput" className="has-background-primary">
         <form onSubmit={submit} className="log">
           <div className="field ">
