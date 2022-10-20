@@ -21,13 +21,14 @@ function ModifyPost(post = { title, body, url }) {
     post.url
   );
 
-  const image = e.target.image.files[0];
-  const title = e.target.title;
-  const body = e.target.body;
-
   const { userLogged } = useContext(UserContext);
   const navigateTo = useNavigate();
 
+  // const a utiliser ?
+
+  // const [title, setTitle] = useField(post.title);
+  // const [postContent, setPostContent] = useField(post.body);
+  // const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
 
   async function submit(e) {
@@ -37,11 +38,13 @@ function ModifyPost(post = { title, body, url }) {
       const token = userLogged.token;
       const user = userLogged.id;
 
+      // const a bouger d'endroit ?
       const image = e.target.image.files[0];
       const title = e.target.title;
       const body = e.target.body;
 
       // requete post pour obtenir l'image
+      // Voir pour checker si l'image est modifiée ou non ?
 
       const responseImg = await submitImage(token, image);
 
@@ -49,7 +52,7 @@ function ModifyPost(post = { title, body, url }) {
       const ret = await submitPost(token, user, title, body, image);
       console.log(ret);
       setMessage(ret.message);
-      navigateTo("/login"); // voir avec yoann pour amélioration
+      navigateTo("/login");
     } catch (error) {
       setMessage(error);
     }
