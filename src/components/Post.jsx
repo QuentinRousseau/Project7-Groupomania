@@ -6,7 +6,7 @@ import "./Post.scss";
 import { useContext } from "react";
 import UserContext from "../providers/UserContext";
 import { useState } from "react";
-import { submitDelete } from "../providers/fetch";
+import { submitDelete, submitLikes } from "../providers/fetch";
 import { useNavigate } from "react-router";
 import { Box } from "react-bulma-components";
 import ModifyPost from "./ModifyPost";
@@ -15,6 +15,24 @@ function Post(post) {
   const { userLogged } = useContext(UserContext);
   const navigateTo = useNavigate();
   const [isEditing, setEditing] = useState(false);
+  const [like, setLike] = useState(0);
+
+  async function updateLikes() {
+    const _id = post._id;
+    const token = userLogged.token;
+    const user = userLogged.id;
+
+    console.log(
+      "voici l'id du post:    ",
+      _id,
+      "voici le token pour l'envoi :    ",
+      token
+    );
+
+    const ret = await submitLikes(token, _id, user, like);
+    console.log(ret);
+    navigateTo("/login");
+  }
 
   // console.log("avatar:  ", post.author.avatar, "     image   :", post.url);
   //  Create a var for date layout
@@ -74,8 +92,20 @@ function Post(post) {
             </div>
             <nav className="level is-mobile " id="comment">
               <div className="level-left ">
-                <a className="level-item is-primary" aria-label="reply">
-                  <span className="icon is-medium ">
+                <a
+                  className="level-item is-primary "
+                  aria-label="reply"
+                  onClick={(e) => (
+                    setLike(-1),
+                    console.log(
+                      "état du like a la fin du onClick dislike",
+                      like
+                    ),
+                    // updateLikes(),
+                    console.log("fin du onClick")
+                  )}
+                >
+                  <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
                       icon={faHeartBroken}
                       className="iconsPost mx-2"
@@ -84,8 +114,17 @@ function Post(post) {
                     {post.dislikes}
                   </span>
                 </a>
-                <a className="level-item is-primary" aria-label="like">
-                  <span className="icon is-medium">
+                <a
+                  className="level-item is-primary"
+                  aria-label="like"
+                  onClick={(e) => (
+                    setLike(1),
+                    console.log("état du like", like),
+                    // updateLikes(),
+                    console.log("fin du onClick")
+                  )}
+                >
+                  <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
                       icon={faHeart}
                       className="iconsPost mx-2"

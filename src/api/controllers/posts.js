@@ -86,49 +86,57 @@ export async function deletePost(req, res, next) {
 
 //Fonction pour liker et disliker un post
 
-// export async function likeOrDislike(req, res, next) {
-//   // getsauceId => const myPost
-//   // hasLike => myPost.userliked.includes(userId)
-//   // hasDislike => myPost.userdisLiked.includes(userId)
-//   // if(hasLike) => enlever l'user de la liste et enlever 1 au compteur de like
-//   // if(hasDislike) => enlever l'user de la liste et enlever 1 au compteur de dislike
-//   //  if(like === 1) => ajouter l'user a la liste et ajouter 1 au au compteur de like
-//   //  if(like === -1) => ajouter l'user a la liste et ajouter 1 au compteur de dislike
-//   // sauvegarde sur mongoDB => myPost.save()
-//   // res.status(200).json(message:" updated !");
+export async function likeOrDislike(req, res, next) {
+  // getsauceId => const myPost
+  // hasLike => myPost.userliked.includes(userId)
+  // hasDislike => myPost.userdisLiked.includes(userId)
+  // if(hasLike) => enlever l'user de la liste et enlever 1 au compteur de like
+  // if(hasDislike) => enlever l'user de la liste et enlever 1 au compteur de dislike
+  //  if(like === 1) => ajouter l'user a la liste et ajouter 1 au au compteur de like
+  //  if(like === -1) => ajouter l'user a la liste et ajouter 1 au compteur de dislike
+  // sauvegarde sur mongoDB => myPost.save()
+  // res.status(200).json(message:" updated !");
 
-//   const like = req.body.like; // 1 || 0 || -1
-//   const userId = req.auth.userId; // recupere l'userid qui est connecté
-//   const postId = req.params.id; // id de la sauce recupéré dans l'url de la requete
-//   const myPost = await Post.findById(postId); // recherche la sauce concernée par la req
-//   const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
-//   const hasDislike = myPost.usersDisliked.includes(userId); //vérifie que l'utilisateur est présent dans la liste "likes"
+  console.log(
+    "corps de la requete:   ",
+    req.body,
+    "user qui doit etre ajouté",
+    req.auth.userId
+  );
 
-//   //a voir pour une refactorisation plus performante
+  const like = req.body.like; // 1 || 0 || -1
+  const userId = req.auth.user; // recupere l'userid qui est connecté
+  const postId = req.params.id; // id de la sauce recupéré dans l'url de la requete
+  const myPost = await Post.findById(postId); // recherche la sauce concernée par la req
+  const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
+  const hasDislike = myPost.usersDisliked.includes(userId); //vérifie que l'utilisateur est présent dans la liste "likes"
 
-//   // gestion du like === 0 et reset de la requete user
-//   if (hasLike) {
-//     myPost.likes = myPost.likes - 1;
-//     myPost.usersLiked = myPost.usersLiked.filter((id) => id !== userId);
-//   }
-//   if (hasDislike) {
-//     myPost.dislikes = myPost.dislikes - 1;
-//     myPost.usersDisliked = myPost.usersDisliked.filter((id) => id !== userId);
-//   }
+  console.log(myPost);
+  //a voir pour une refactorisation plus performante
 
-//   // cas de like
-//   if (like === 1) {
-//     myPost.likes = myPost.likes + 1;
-//     myPost.usersLiked.push(userId);
-//   }
+  // gestion du like === 0 et reset de la requete user
+  if (hasLike) {
+    myPost.likes = myPost.likes - 1;
+    myPost.usersLiked = myPost.usersLiked.filter((id) => id !== userId);
+  }
+  if (hasDislike) {
+    myPost.dislikes = myPost.dislikes - 1;
+    myPost.usersDisliked = myPost.usersDisliked.filter((id) => id !== userId);
+  }
 
-//   // cas de dislike
-//   if (like === -1) {
-//     myPost.dislikes = myPost.dislikes + 1;
-//     myPost.usersDisliked.push(userId);
-//   }
-//   //sauvegarde des likes/dislikes de la sauce
-//   await myPost.save().catch((error) => res.status(401).json({ error }));
+  // cas de like
+  if (like === 1) {
+    myPost.likes = myPost.likes + 1;
+    myPost.usersLiked.push(userId);
+  }
 
-//   res.status(200).json({ message: " likes update !" });
-// }
+  // cas de dislike
+  if (like === -1) {
+    myPost.dislikes = myPost.dislikes + 1;
+    myPost.usersDisliked.push(userId);
+  }
+  //sauvegarde des likes/dislikes de la sauce
+  await myPost.save().catch((error) => res.status(401).json({ error }));
+
+  res.status(200).json({ message: " likes update !" });
+}

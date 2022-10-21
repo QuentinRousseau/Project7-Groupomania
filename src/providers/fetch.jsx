@@ -1,3 +1,4 @@
+import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import UserContext from "./UserContext";
@@ -80,6 +81,31 @@ export async function submitPost(token, author, title, body, url) {
   }
   const data = await response.json();
   console.log("post créé", data);
+  return data;
+}
+export async function submitLikes(token, _id, user, like) {
+  console.log(" Voici le token", token);
+  console.log("Voici l'id du post a liker", _id);
+
+  const PostToLike = { user: user, like: like };
+
+  console.log(" check de l'objet avant envoie", PostToLike);
+
+  const response = await fetch(`/api/posts/` + _id + `/like`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(PostToLike),
+  });
+  console.log(response);
+  if (!response) {
+    return Promise.reject(await response.text());
+  }
+  const data = await response.json();
+  console.log("retour data", data);
   return data;
 }
 

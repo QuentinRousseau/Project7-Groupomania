@@ -69,7 +69,7 @@ function ModifyPost(post = { title, body, url }) {
             placeholder="Titre"
             name="title"
             value={post.title}
-            onInput={title}
+            // onInput={title}
           ></input>
         </div>
       </div>
@@ -83,7 +83,7 @@ function ModifyPost(post = { title, body, url }) {
             name="body"
             placeholder="Contenu du post"
             value={post.body}
-            onInput={body}
+            // onInput={body}
           ></input>
         </div>
       </div>
@@ -98,7 +98,7 @@ function ModifyPost(post = { title, body, url }) {
             type="file"
             name="image"
             files={post.url}
-            onChange={image}
+            // onChange={image}
           ></input>
           <span className="file-cta">
             <span className="file-icon">
