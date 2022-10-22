@@ -10,6 +10,8 @@ import { submitDelete, submitLikes } from "../providers/fetch";
 import { useNavigate } from "react-router";
 import { Box } from "react-bulma-components";
 import ModifyPost from "./ModifyPost";
+import { useEffect } from "react";
+import e from "cors";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
@@ -17,24 +19,20 @@ function Post(post) {
   const [isEditing, setEditing] = useState(false);
   const [like, setLike] = useState(0);
 
+  useEffect(() => {
+    console.log("état du like", like), updateLikes();
+  });
+
   async function updateLikes() {
     const _id = post._id;
     const token = userLogged.token;
     const user = userLogged.id;
 
-    console.log(
-      "voici l'id du post:    ",
-      _id,
-      "voici le token pour l'envoi :    ",
-      token
-    );
-
     const ret = await submitLikes(token, _id, user, like);
     console.log(ret);
-    navigateTo("/login");
+    // navigateTo("/login");
   }
 
-  // console.log("avatar:  ", post.author.avatar, "     image   :", post.url);
   //  Create a var for date layout
 
   const date = new Date(post.createdAt).toLocaleDateString("fr-FR");
@@ -81,9 +79,8 @@ function Post(post) {
                 {"         "}
                 {"         "}
                 {time}
-                <h3 className="title is-4"> {post.title}</h3>
               </p>
-
+              <h3 className="title is-4"> {post.title}</h3>
               <figure id="file">
                 <img src={post.url} alt="Image du post"></img>
               </figure>
@@ -95,13 +92,12 @@ function Post(post) {
                 <a
                   className="level-item is-primary "
                   aria-label="reply"
-                  onClick={(e) => (
+                  onClick={() => (
                     setLike(-1),
                     console.log(
                       "état du like a la fin du onClick dislike",
                       like
                     ),
-                    // updateLikes(),
                     console.log("fin du onClick")
                   )}
                 >
@@ -119,8 +115,7 @@ function Post(post) {
                   aria-label="like"
                   onClick={(e) => (
                     setLike(1),
-                    console.log("état du like", like),
-                    // updateLikes(),
+                    console.log("état du like a la fin du onClick like", like),
                     console.log("fin du onClick")
                   )}
                 >
