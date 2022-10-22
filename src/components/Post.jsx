@@ -93,7 +93,7 @@ function Post(post) {
                   className="level-item is-primary "
                   aria-label="reply"
                   onClick={() => (
-                    setLike(-1),
+                    like == 0 ? setLike(-1) : setLike(0),
                     console.log(
                       "état du like a la fin du onClick dislike",
                       like
@@ -114,7 +114,7 @@ function Post(post) {
                   className="level-item is-primary"
                   aria-label="like"
                   onClick={(e) => (
-                    setLike(1),
+                    like == 0 ? setLike(1) : setLike(0),
                     console.log("état du like a la fin du onClick like", like),
                     console.log("fin du onClick")
                   )}

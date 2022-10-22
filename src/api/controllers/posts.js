@@ -1,6 +1,8 @@
 import Post from "../models/Post";
 import fs from "fs";
 import User from "../models/User";
+
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 import softDelete from "mongoose-delete";
 
@@ -105,23 +107,27 @@ export async function likeOrDislike(req, res, next) {
   );
 
   const like = req.body.like; // 1 || 0 || -1
-  const userId = req.auth.userId; // recupere l'userid qui est connecté
-  const postId = req.params.id; // id de la sauce recupéré dans l'url de la requete
-  const myPost = await Post.findById(postId); // recherche la sauce concernée par la req
-  const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
-  const hasDislike = myPost.usersDisliked.includes(userId); //vérifie que l'utilisateur est présent dans la liste "likes"
+  const userId = await User.findById(req.auth.userId); // recupere l'userid qui est connecté
+  const postId = req.params.id; // id du post recupéré dans l'url de la requete
+  const myPost = await Post.findById(postId); // recherche du post concernée par la req
+  const hasLike = myPost.usersLiked.includes(ObjectId(userId)); // vérifie que l'utilisateur est présent dans la liste "likes"
+  const hasDislike = myPost.usersDisliked.includes(ObjectId(userId)); //vérifie que l'utilisateur est présent dans la liste "likes"
 
-  console.log("mon   post retrouvé :   ", myPost);
+  console.log("a-t-il liké ce post?    ", hasLike);
+  console.log("a-t-il disliké ce post ?   ", hasDislike);
+  console.log("quel est l'userId ? : ", userId);
   //a voir pour une refactorisation plus performante
 
   // gestion du like === 0 et reset de la requete user
   if (hasLike) {
     myPost.likes = myPost.likes - 1;
-    myPost.usersLiked = myPost.usersLiked.filter((_id) => _id !== userId);
+    myPost.usersLiked = myPost.usersLiked.filter((_id) => _id !== userId._id);
   }
   if (hasDislike) {
     myPost.dislikes = myPost.dislikes - 1;
-    myPost.usersDisliked = myPost.usersDisliked.filter((_id) => _id !== userId);
+    myPost.usersDisliked = myPost.usersDisliked.filter(
+      (_id) => _id !== userId._id
+    );
   }
 
   // cas de like
