@@ -58,6 +58,7 @@ function Post(post) {
   const isGoodUser = userLogged.id === post.author._id ? true : false;
 
   const isAdmin = userLogged.admin;
+
   return (
     <Box className="box has-background-danger-light  is-fluid">
       {!isEditing && (
