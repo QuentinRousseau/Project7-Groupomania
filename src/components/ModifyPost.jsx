@@ -26,9 +26,9 @@ function ModifyPost(post = { title, body, url }) {
 
   // const a utiliser ?
 
-  // const [title, setTitle] = useField(post.title);
-  // const [postContent, setPostContent] = useField(post.body);
-  // const [imageUrl, setImageUrl] = useField();
+  const [title, setTitle] = useField(post.title);
+  const [body, setBody] = useField(post.body);
+  const [imageUrl, setImageUrl] = useField();
   const [message, setMessage] = useState("");
 
   async function submit(e) {
@@ -49,7 +49,7 @@ function ModifyPost(post = { title, body, url }) {
       const responseImg = await submitImage(token, image);
 
       //attribution de l'url retour et attribution a l'objet post
-      const ret = await submitPost(token, user, title, body, image);
+      const ret = await submitPostModified(token, user, title, body, image);
       console.log(ret);
       setMessage(ret.message);
       navigateTo("/login");
@@ -69,7 +69,7 @@ function ModifyPost(post = { title, body, url }) {
             placeholder="Titre"
             name="title"
             value={post.title}
-            // onInput={title}
+            onInput={title}
           ></input>
         </div>
       </div>
@@ -83,7 +83,7 @@ function ModifyPost(post = { title, body, url }) {
             name="body"
             placeholder="Contenu du post"
             value={post.body}
-            // onInput={body}
+            onInput={body}
           ></input>
         </div>
       </div>
@@ -98,7 +98,7 @@ function ModifyPost(post = { title, body, url }) {
             type="file"
             name="image"
             files={post.url}
-            // onChange={image}
+            onInput={imageUrl}
           ></input>
           <span className="file-cta">
             <span className="file-icon">
