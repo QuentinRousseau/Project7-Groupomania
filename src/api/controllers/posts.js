@@ -107,7 +107,7 @@ export async function likeOrDislike(req, res, next) {
   );
 
   const like = req.body.like; // 1 || 0 || -1
-  const userId = await User.findById(req.auth.userId); // recupere l'userid qui est connecté
+  const userId = new ObjectId(req.auth.userId); // recupere l'userid qui est connecté
   const postId = req.params.id; // id du post recupéré dans l'url de la requete
   const myPost = await Post.findById(postId); // recherche du post concernée par la req
   const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
@@ -120,33 +120,47 @@ export async function likeOrDislike(req, res, next) {
 
   // gestion du like === 0 et reset de la requete user
   if (hasLike) {
-    myPost.likes = myPost.likes - 1;
-    myPost.usersLiked = myPost.usersLiked.filter((_id) => _id !== userId._id);
+    console.log(
+      "voici la fonction filter    :",
+      myPost.usersLiked.filter((id) => id !== userId)
+    );
+
+    myPost.usersLiked = myPost.usersLiked.filter(
+      (id) => id.valueOf() !== userId
+    );
   }
   if (hasDislike) {
-    myPost.dislikes = myPost.dislikes - 1;
+    console.log(
+      "voici la fonction filter    :",
+      (myPost.usersDisliked = myPost.usersDisliked.filter(
+        (id) => id.valueOf() !== userId
+      ))
+    );
+
     myPost.usersDisliked = myPost.usersDisliked.filter(
-      (_id) => _id !== userId._id
+      (id) => id.valueOf() !== userId
     );
   }
 
   // cas de like
   if (like === 1) {
-    myPost.likes = myPost.likes + 1;
     myPost.usersLiked.push(userId);
-    console.log("les utilisateurs ayant liké:  ", myPost.usersLiked);
-    console.log("les utilisateurs ayant disliké:  ", myPost.usersLiked);
   }
 
   // cas de dislike
   if (like === -1) {
-    myPost.dislikes = myPost.dislikes + 1;
     myPost.usersDisliked.push(userId);
-    console.log("les utilisateurs ayant disliké:  ", myPost.usersLiked);
-    console.log("les utilisateurs ayant liké:  ", myPost.usersLiked);
   }
+  myPost.likes = myPost.usersLiked.length;
+  myPost.dislikes = myPost.usersDisliked.length;
+  console.log("les utilisateurs ayant liké:  ", myPost.usersLiked);
+  console.log("les utilisateurs ayant disliké:  ", myPost.usersDisliked);
   //sauvegarde des likes/dislikes de la sauce
   await myPost.save().catch((error) => res.status(401).json({ error }));
 
-  res.status(200).json({ message: " likes update !" });
+  res.status(200).json({
+    message: " likes update !",
+    likes: myPost.likes,
+    dislikes: myPost.dislikes,
+  });
 }

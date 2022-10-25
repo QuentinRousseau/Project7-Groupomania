@@ -17,20 +17,27 @@ function Post(post) {
   const { userLogged } = useContext(UserContext);
   const navigateTo = useNavigate();
   const [isEditing, setEditing] = useState(false);
-  const [like, setLike] = useState(0);
 
-  useEffect(() => {
-    console.log("état du like", like), updateLikes();
-  });
+  const [likeStatus, setLikeStatus] = useState(0);
+  const [likes, setLikes] = useState(post.likes);
+  const [dislikes, setDislikes] = useState(post.dislikes);
 
-  async function updateLikes() {
-    const _id = post._id;
+  const dislike = () => updateLikes(-1);
+  const like = () => updateLikes(1);
+  async function updateLikes(action) {
+    // action étant le 1 || -1
+    const postId = post._id;
+    console.log("l'id du post a liker, disliker", postId);
     const token = userLogged.token;
-    const user = userLogged.id;
-
-    const ret = await submitLikes(token, _id, user, like);
+    console.log("le token utilisé", token);
+    const userId = userLogged.id;
+    console.log("l'utilisateur qui envoie la requete", userId);
+    const ret = await submitLikes(token, postId, userId, action);
     console.log(ret);
-    // navigateTo("/login");
+    setLikes(ret.likes);
+    setDislikes(ret.dislikes);
+    setLikeStatus(ret.action);
+    navigateTo("/posts");
   }
 
   //  Create a var for date layout
@@ -93,14 +100,7 @@ function Post(post) {
                 <a
                   className="level-item is-primary "
                   aria-label="reply"
-                  onClick={() => (
-                    like == 0 ? setLike(-1) : setLike(0),
-                    console.log(
-                      "état du like a la fin du onClick dislike",
-                      like
-                    ),
-                    console.log("fin du onClick")
-                  )}
+                  onClick={dislike}
                 >
                   <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
@@ -108,24 +108,20 @@ function Post(post) {
                       className="iconsPost mx-2"
                     />
 
-                    {post.dislikes}
+                    {dislikes}
                   </span>
                 </a>
                 <a
                   className="level-item is-primary"
                   aria-label="like"
-                  onClick={(e) => (
-                    like == 0 ? setLike(1) : setLike(0),
-                    console.log("état du like a la fin du onClick like", like),
-                    console.log("fin du onClick")
-                  )}
+                  onClick={like}
                 >
                   <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
                       icon={faHeart}
                       className="iconsPost mx-2"
                     />
-                    {post.likes}
+                    {likes}
                   </span>
                 </a>
               </div>

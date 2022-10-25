@@ -12,12 +12,10 @@ const postSchema = new mongoose.Schema(
     usersLiked: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       default: [],
-      autopopulate: true,
     },
     usersDisliked: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       default: [],
-      autopopulate: true,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

@@ -68,7 +68,7 @@ function ModifyPost(post = { title, body, url }) {
             type="text"
             placeholder="Titre"
             name="title"
-            value={post.title}
+            defaultValue={post.title}
             onInput={title}
           ></input>
         </div>
@@ -82,8 +82,8 @@ function ModifyPost(post = { title, body, url }) {
             type="text"
             name="body"
             placeholder="Contenu du post"
-            value={post.body}
-            onInput={body}
+            defaultValue={post.body} // defaultValue permet d'afficher la valeur de post.body et de la modifier apres
+            onInput={body} // attribution de la nouvelle valeure de body pour la modification
           ></input>
         </div>
       </div>
@@ -107,7 +107,7 @@ function ModifyPost(post = { title, body, url }) {
             <span className="file-label">Choisir un fichier</span>
           </span>
           <span className="file-name has-background-white">
-            {post.url}
+            {post.url ? post.url : setImageUrl}
             {/*le "?" vérifie la donnée avant d'appeler le name*/}
           </span>
         </label>
