@@ -112,23 +112,22 @@ export async function likeOrDislike(req, res, next) {
   const myPost = await Post.findById(postId); // recherche du post concernée par la req
   const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
   const hasDislike = myPost.usersDisliked.includes(userId); //vérifie que l'utilisateur est présent dans la liste "likes"
-
+  console.log("utilisateurs ayant liké     : ", myPost.usersLiked);
+  console.log("utilisateurs ayant disliké     : ", myPost.usersDisliked);
   console.log("a-t-il liké ce post?    ", hasLike);
   console.log("a-t-il disliké ce post ?   ", hasDislike);
   console.log("quel est l'userId ? : ", userId);
   //a voir pour une refactorisation plus performante
 
   // gestion du like === 0 et reset de la requete user
-  if (hasLike) {
+  if (hasLike)
     myPost.usersLiked = myPost.usersLiked.filter(
-      (id) => id.valueOf() === userId
+      (id) => id.valueOf() !== userId
     );
-  }
-  if (hasDislike) {
+  if (hasDislike)
     myPost.usersDisliked = myPost.usersDisliked.filter(
-      (id) => id.valueOf() === userId
+      (_id) => _id.valueOf() !== userId
     );
-  }
 
   // cas de like
   if (like === 1) {

@@ -98,7 +98,7 @@ function ModifyPost(post = { title, body, url }) {
             type="file"
             name="image"
             files={post.url}
-            onInput={imageUrl}
+            onInput={setImageUrl}
           ></input>
           <span className="file-cta">
             <span className="file-icon">
@@ -107,7 +107,7 @@ function ModifyPost(post = { title, body, url }) {
             <span className="file-label">Choisir un fichier</span>
           </span>
           <span className="file-name has-background-white">
-            {post.url ? post.url : setImageUrl}
+            {post.url}
             {/*le "?" vérifie la donnée avant d'appeler le name*/}
           </span>
         </label>
