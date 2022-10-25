@@ -120,23 +120,11 @@ export async function likeOrDislike(req, res, next) {
 
   // gestion du like === 0 et reset de la requete user
   if (hasLike) {
-    console.log(
-      "voici la fonction filter    :",
-      myPost.usersLiked.filter((id) => id === userId)
-    );
-
     myPost.usersLiked = myPost.usersLiked.filter(
       (id) => id.valueOf() === userId
     );
   }
   if (hasDislike) {
-    console.log(
-      "voici la fonction filter    :",
-      (myPost.usersDisliked = myPost.usersDisliked.filter(
-        (id) => id.valueOf() === userId
-      ))
-    );
-
     myPost.usersDisliked = myPost.usersDisliked.filter(
       (id) => id.valueOf() === userId
     );
