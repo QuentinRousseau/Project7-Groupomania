@@ -1,8 +1,3 @@
-import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect } from "react";
-import { useState } from "react";
-import UserContext from "./UserContext";
-
 /* function post request on submit */
 export async function signUpFetch(name, email, password) {
   const user = { name, email, password }; //recupération des données saisies et creation de l'objet

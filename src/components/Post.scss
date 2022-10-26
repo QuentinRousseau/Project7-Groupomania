@@ -10,3 +10,12 @@
     max-height: 500px;
   }
 }
+
+.iconsPost {
+  color: $primary-color;
+  .like {
+    --disliked {
+      color: $tertiary-color !important;
+    }
+  }
+}

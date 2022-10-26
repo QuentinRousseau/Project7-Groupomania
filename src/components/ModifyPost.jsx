@@ -12,11 +12,10 @@ import { useNavigate } from "react-router";
 function ModifyPost(post = { title, body, url }) {
   post = post.post;
 
-  const { userLogged } = useContext(UserContext);
+  const { userLogged } = useContext(UserContext); //utilisateur loggé
   const navigateTo = useNavigate();
 
-  // const a utiliser ?
-
+  // var of post
   const [title, setTitle] = useField(post.title);
   const [body, setBody] = useField(post.body);
   const [imageUrl, setImageUrl] = useField();
@@ -72,7 +71,7 @@ function ModifyPost(post = { title, body, url }) {
 
   return (
     <form className="has-background-danger-light" onSubmit={submit}>
-      <pre>{JSON.stringify({ title, imageUrl, body }, null, 2)}</pre>
+      {/* <pre>{JSON.stringify({ title, imageUrl, body }, null, 2)}</pre> */}
       <div className="field ">
         <label className="label">Titre du post</label>
         <div className="control">
@@ -105,8 +104,6 @@ function ModifyPost(post = { title, body, url }) {
         </div>
       </div>
 
-      {/**mettre le bouton update file dans un autre composant? */}
-
       <div className="file is-small has-name is-danger is-centered mb-3">
         <label className="file-label">
           <input
@@ -122,10 +119,7 @@ function ModifyPost(post = { title, body, url }) {
             </span>
             <span className="file-label">Choisir un fichier</span>
           </span>
-          <span className="file-name has-background-white">
-            {imageUrl}
-            {/*le "?" vérifie la donnée avant d'appeler le name*/}
-          </span>
+          <span className="file-name has-background-white">{imageUrl}</span>
         </label>
         <button type="submit" className="button is-small is-danger mx-4 ">
           Confirmer

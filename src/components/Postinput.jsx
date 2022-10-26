@@ -79,8 +79,6 @@ function Postinput(post = { title: "", body: "", url: "" }) {
           </div>
         </div>
 
-        {/**mettre le bouton update file dans un autre composant? */}
-
         <div className="file is-small has-name is-danger is-centered">
           <label className="file-label">
             <input

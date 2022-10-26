@@ -18,7 +18,7 @@ function Post(post) {
   const navigateTo = useNavigate();
   const [isEditing, setEditing] = useState(false);
 
-  const [likeStatus, setLikeStatus] = useState(0);
+  const [likeStatus, setLikeStatus] = useState("neutral");
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
 
@@ -106,21 +106,21 @@ function Post(post) {
                   <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
                       icon={faHeartBroken}
-                      className="iconsPost mx-2"
+                      className={`iconsPost mx-2 like--${likeStatus}`}
                     />
 
                     {dislikes}
                   </span>
                 </a>
                 <a
-                  className={`level-item is-primary like--${likeStatus}`} //rajouter du style en fonction de likeStatus
+                  className={`level-item is-primary`} //rajouter du style en fonction de likeStatus
                   aria-label="like"
                   onClick={likeStatus == "waiting" ? () => {} : like}
                 >
-                  <span className="icon is-medium has-text-black ">
+                  <span className={`icon is-medium has-text-black `}>
                     <FontAwesomeIcon
                       icon={faHeart}
-                      className="iconsPost mx-2"
+                      className="iconsPost mx-2 "
                     />
                     {likes}
                   </span>
