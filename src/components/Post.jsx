@@ -32,11 +32,12 @@ function Post(post) {
     console.log("le token utilisé", token);
     const userId = userLogged.id;
     console.log("l'utilisateur qui envoie la requete", userId);
+    setLikeStatus("waiting");
     const ret = await submitLikes(token, postId, userId, action);
     console.log(ret);
-    setLikes(ret.likes);
-    setDislikes(ret.dislikes);
-    setLikeStatus(ret.action);
+    setLikes(ret.data.likes);
+    setDislikes(ret.data.dislikes);
+    setLikeStatus(ret.data.action);
     navigateTo("/posts");
   }
 
@@ -100,7 +101,7 @@ function Post(post) {
                 <a
                   className="level-item is-primary "
                   aria-label="reply"
-                  onClick={dislike}
+                  onClick={likeStatus == "waiting" ? () => {} : dislike}
                 >
                   <span className="icon is-medium has-text-black">
                     <FontAwesomeIcon
@@ -112,11 +113,11 @@ function Post(post) {
                   </span>
                 </a>
                 <a
-                  className="level-item is-primary"
+                  className={`level-item is-primary like--${likeStatus}`} //rajouter du style en fonction de likeStatus
                   aria-label="like"
-                  onClick={like}
+                  onClick={likeStatus == "waiting" ? () => {} : like}
                 >
-                  <span className="icon is-medium has-text-black">
+                  <span className="icon is-medium has-text-black ">
                     <FontAwesomeIcon
                       icon={faHeart}
                       className="iconsPost mx-2"

@@ -6,16 +6,6 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 import softDelete from "mongoose-delete";
 
-//Example of populate()
-
-// export function getUserWithPosts(username) {
-//   return User.findOne({ username: username })
-//     .populate("posts")
-//     .exec((err, posts) => {
-//       console.log("Populated User " + posts);
-//     });
-// }
-
 export async function getAllPosts(req, res, next) {
   //  Search all Posts named "posts"
   try {
@@ -53,17 +43,21 @@ export async function createPost(req, res, next) {
 }
 
 export async function modifyPost(req, res, next) {
-  const postObject = (await req.file)
-    ? {
-        ...JSON.parse(req.body.json),
-        url: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-      }
-    : { ...req.body };
+  console.log("Requete  : ", req.body);
+  console.log("Authorization   :", req.auth);
+  console.log("Params   :", req.params);
+  const postObject = await req.body;
+  console.log(postObject);
 
-  delete postObject._userId;
-  let post = await Post.findOne({ _id: req.params.id });
+  let post = await Post.findOne({ id: req.params.id });
+
+  console.log(" c'est mon post trouvé ", post);
+
   if (!post) return res.status(400).json({ error: "Post not find" });
-  if (post.userId != req.auth.userId)
+
+  console.log(req.body.author._id != req.auth.userId || req.auth.isAdmin);
+
+  if (req.body.author._id != req.auth.userId)
     return res.status(401).json({ error: "Not authorized" });
   Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
     .then(() => res.status(200).json({ message: "Post modified !" }))
@@ -99,55 +93,44 @@ export async function likeOrDislike(req, res, next) {
   // sauvegarde sur mongoDB => myPost.save()
   // res.status(200).json(message:" updated !");
 
-  console.log(
-    "corps de la requete:   ",
-    req.body,
-    "user qui doit etre ajouté",
-    req.auth.userId
-  );
-
   const like = req.body.like; // 1 || 0 || -1
   const userId = new ObjectId(req.auth.userId); // recupere l'userid qui est connecté
   const postId = req.params.id; // id du post recupéré dans l'url de la requete
   const myPost = await Post.findById(postId); // recherche du post concernée par la req
   const hasLike = myPost.usersLiked.includes(userId); // vérifie que l'utilisateur est présent dans la liste "likes"
   const hasDislike = myPost.usersDisliked.includes(userId); //vérifie que l'utilisateur est présent dans la liste "likes"
-  console.log("utilisateurs ayant liké     : ", myPost.usersLiked);
-  console.log("utilisateurs ayant disliké     : ", myPost.usersDisliked);
-  console.log("a-t-il liké ce post?    ", hasLike);
-  console.log("a-t-il disliké ce post ?   ", hasDislike);
-  console.log("quel est l'userId ? : ", userId);
+  let action = "neutral";
   //a voir pour une refactorisation plus performante
 
   // gestion du like === 0 et reset de la requete user
   if (hasLike)
     myPost.usersLiked = myPost.usersLiked.filter(
-      (id) => id.valueOf() !== userId
+      (id) => id.valueOf() !== userId.valueOf()
     );
   if (hasDislike)
     myPost.usersDisliked = myPost.usersDisliked.filter(
-      (_id) => _id.valueOf() !== userId
+      (id) => id.valueOf() !== userId.valueOf()
     );
 
   // cas de like
-  if (like === 1) {
+  if (like === 1 && !hasLike) {
     myPost.usersLiked.push(userId);
+    action = "liked";
   }
 
   // cas de dislike
-  if (like === -1) {
+  if (like === -1 && !hasDislike) {
     myPost.usersDisliked.push(userId);
+    action = "disliked";
   }
   myPost.likes = myPost.usersLiked.length;
   myPost.dislikes = myPost.usersDisliked.length;
-  console.log("les utilisateurs ayant liké:  ", myPost.usersLiked);
-  console.log("les utilisateurs ayant disliké:  ", myPost.usersDisliked);
+
   //sauvegarde des likes/dislikes de la sauce
   await myPost.save().catch((error) => res.status(401).json({ error }));
 
   res.status(200).json({
     message: " likes update !",
-    likes: myPost.likes,
-    dislikes: myPost.dislikes,
+    data: { likes: myPost.likes, dislikes: myPost.dislikes, action },
   });
 }

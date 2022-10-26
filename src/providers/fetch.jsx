@@ -109,11 +109,14 @@ export async function submitLikes(token, _id, user, like) {
   return data;
 }
 
-export async function modifyPost(token, userId, title, postContent, imageUrl) {
+export async function modifyPost(token, _id, title, body, url, author) {
   console.log(token);
+
+  const post = { title, body, url, author };
   console.log(post);
-  const response = await fetch("/api/posts", {
-    method: "POST",
+
+  const response = await fetch(`/api/posts/${_id}`, {
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -126,7 +129,7 @@ export async function modifyPost(token, userId, title, postContent, imageUrl) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  console.log("post créé", data);
+  console.log("post modifié", data);
   return data;
 }
 

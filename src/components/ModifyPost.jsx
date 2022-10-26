@@ -10,16 +10,7 @@ import UserContext from "../providers/UserContext";
 import { useNavigate } from "react-router";
 
 function ModifyPost(post = { title, body, url }) {
-  console.log(post);
   post = post.post;
-  console.log(
-    "titre du post:  ",
-    post.title,
-    "body du post:   ",
-    post.body,
-    "url de l'image:    ",
-    post.url
-  );
 
   const { userLogged } = useContext(UserContext);
   const navigateTo = useNavigate();
@@ -36,20 +27,41 @@ function ModifyPost(post = { title, body, url }) {
     setMessage("Please wait ...");
     try {
       const token = userLogged.token;
-      const user = userLogged.id;
 
-      // const a bouger d'endroit ?
+      let responseImg = post.url;
+
+      const _id = post._id;
       const image = e.target.image.files[0];
-      const title = e.target.title;
-      const body = e.target.body;
+      const author = post.author;
 
+      console.log("y'a t il une image ? : ", image);
       // requete post pour obtenir l'image
       // Voir pour checker si l'image est modifiée ou non ?
-
-      const responseImg = await submitImage(token, image);
-
+      if (image) responseImg = await submitImage(token, image);
       //attribution de l'url retour et attribution a l'objet post
-      const ret = await submitPostModified(token, user, title, body, image);
+      console.log(
+        "    id du post    :",
+        _id,
+        "    token : ",
+        token,
+        "L'image qui va etre envoyée",
+        responseImg,
+        "le title est le suivant :   ",
+        title,
+        "le body est le suivant    : ",
+        body,
+        "ceci est l'auteur du post:   ",
+        author
+      );
+
+      const ret = await modifyPost(
+        token,
+        _id,
+        title,
+        body,
+        responseImg?.imageUrl,
+        author
+      );
       console.log(ret);
       setMessage(ret.message);
       navigateTo("/login");
@@ -60,6 +72,7 @@ function ModifyPost(post = { title, body, url }) {
 
   return (
     <form className="has-background-danger-light" onSubmit={submit}>
+      <pre>{JSON.stringify({ title, imageUrl, body }, null, 2)}</pre>
       <div className="field ">
         <label className="label">Titre du post</label>
         <div className="control">
@@ -69,7 +82,10 @@ function ModifyPost(post = { title, body, url }) {
             placeholder="Titre"
             name="title"
             defaultValue={post.title}
-            onInput={title}
+            onInput={(e) => {
+              setTitle(e.target.title);
+            }}
+            onChange={setTitle}
           ></input>
         </div>
       </div>
@@ -83,21 +99,21 @@ function ModifyPost(post = { title, body, url }) {
             name="body"
             placeholder="Contenu du post"
             defaultValue={post.body} // defaultValue permet d'afficher la valeur de post.body et de la modifier apres
-            onInput={body} // attribution de la nouvelle valeure de body pour la modification
+            onInput={setBody}
+            onChange={setBody} // attribution de la nouvelle valeure de body pour la modification
           ></input>
         </div>
       </div>
 
       {/**mettre le bouton update file dans un autre composant? */}
 
-      <div className="file is-small has-name is-danger is-centered">
+      <div className="file is-small has-name is-danger is-centered mb-3">
         <label className="file-label">
           <input
             className="file-input"
             id="fileinput"
             type="file"
             name="image"
-            files={post.url}
             onInput={setImageUrl}
           ></input>
           <span className="file-cta">
@@ -107,7 +123,7 @@ function ModifyPost(post = { title, body, url }) {
             <span className="file-label">Choisir un fichier</span>
           </span>
           <span className="file-name has-background-white">
-            {post.url}
+            {imageUrl}
             {/*le "?" vérifie la donnée avant d'appeler le name*/}
           </span>
         </label>
