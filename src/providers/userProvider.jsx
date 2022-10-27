@@ -16,7 +16,7 @@ export function userProvider({ children }) {
       id: userLogged.id,
       auth: true,
       token: userLogged.token,
-      admin: userLogged.id === "634d647432f651f7d8b1cd5d" && true,
+      admin: userLogged.id === "635a3a474312cf3cf195923a" && true,
     }));
   };
   // Logout updates the userLogged data to default

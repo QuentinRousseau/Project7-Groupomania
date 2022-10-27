@@ -12,6 +12,7 @@ const accountSchema = mongoose.Schema(
       ref: "User",
       autopopulate: true, //create a  relation with Object "User"
     },
+    admin: { type: Boolean, required: true },
   },
   { timestamps: true } //create a  creation date & last modified date
 );

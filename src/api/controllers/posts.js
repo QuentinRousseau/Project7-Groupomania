@@ -57,16 +57,20 @@ export async function modifyPost(req, res, next) {
 
   console.log(req.body.author._id != req.auth.userId || req.auth.isAdmin);
 
-  if (req.body.author._id != req.auth.userId)
+  if ((req.auth.admin = false && req.body.author._id != req.auth.userId))
     return res.status(401).json({ error: "Not authorized" });
-  Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+  Post.updateOne(
+    { _id: req.params.id },
+    { ...postObject, _id: req.params.id },
+    { updatedAt: Date.now() }
+  )
     .then(() => res.status(200).json({ message: "Post modified !" }))
     .catch((error) => res.status(401).json({ error }));
 }
 
 export async function deletePost(req, res, next) {
   // Authorization check
-  if (req.body.author._id != req.auth.userId)
+  if ((req.auth.admin = false && req.body.author._id != req.auth.userId))
     return res.status(401).json({ error: "Not authorized" });
 
   // Find post & change boolean "deleted"

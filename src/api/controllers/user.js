@@ -26,6 +26,7 @@ export async function signup(req, res, next) {
     //after creating user, create Account with email & password hash
     email,
     password: hash,
+    admin: false,
   });
   console.log("account créé", account);
   await user.save();
@@ -33,6 +34,7 @@ export async function signup(req, res, next) {
   console.log("utilisateur et compte sauvegardés :", user, account);
   user.account = account._id; // Edit id beetwin them
   account.user = user._id;
+  if (account.email === "admin@ocmail.fr") account.admin = true;
 
   console.log("user", user, "account", account);
 
@@ -42,7 +44,12 @@ export async function signup(req, res, next) {
   res.status(201).json({
     user,
     account,
-    token: jwt.sign({ accountId: account._id, userId: user._id }),
+
+    token: jwt.sign({
+      accountId: account._id,
+      userId: user._id,
+      admin: account.admin,
+    }),
     message: "User created !",
   });
 }
@@ -57,6 +64,10 @@ export async function login(req, res, next) {
   console.log(account.user._id);
   res.status(200).json({
     user: account.user,
-    token: jwt.sign({ accountId: account._id, userId: account.user._id }), //config de jwt dans jwt.js
+    token: jwt.sign({
+      accountId: account._id,
+      userId: account.user._id,
+      admin: account.admin,
+    }), //config de jwt dans jwt.js
   });
 }
