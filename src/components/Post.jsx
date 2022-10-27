@@ -103,16 +103,14 @@ function Post(post) {
                   aria-label="reply"
                   onClick={likeStatus == "waiting" ? () => {} : dislike}
                 >
-                  <span
-                    className={`icon is-medium has-text-black like--${
-                      likeStatus == "disliked"
-                        ? "disliked"
-                        : likeStatus == "liked" && "neutral"
-                    }`}
-                  >
+                  <span className={`icon is-medium has-text-black `}>
                     <FontAwesomeIcon
                       icon={faHeartBroken}
-                      className={`iconsPost mx-2 `}
+                      className={`iconsPost mx-2 like--${
+                        likeStatus == "disliked"
+                          ? "disliked"
+                          : likeStatus == "liked" && "neutral"
+                      }`}
                     />
 
                     {dislikes}
@@ -123,16 +121,14 @@ function Post(post) {
                   aria-label="like"
                   onClick={likeStatus == "waiting" ? () => {} : like}
                 >
-                  <span
-                    className={`icon ml-4 is-medium has-text-black like--${
-                      likeStatus == "liked"
-                        ? "liked"
-                        : likeStatus == "disliked" && "neutral"
-                    }`}
-                  >
+                  <span className={`icon ml-4 is-medium has-text-black `}>
                     <FontAwesomeIcon
                       icon={faHeart}
-                      className="iconsPost mx-2 "
+                      className={`iconsPost mx-2 like--${
+                        likeStatus == "liked"
+                          ? "liked"
+                          : likeStatus == "disliked" && "neutral"
+                      }`}
                     />
                     {likes}
                   </span>
@@ -146,7 +142,7 @@ function Post(post) {
       {(isGoodUser || isAdmin) && (
         <footer className="">
           <button
-            className="button is-small is-danger mx-1 "
+            className="button is-small is-danger mx-3 mt-3 "
             id={`ModifyButton `}
             onClick={() => setEditing((val) => !val)}
           >
@@ -154,7 +150,7 @@ function Post(post) {
           </button>
 
           <button
-            className="button is-small is-danger mx-1 "
+            className="button is-small is-danger mx-3 mt-3"
             id="DeleteButton"
             onClick={deletePost}
           >
