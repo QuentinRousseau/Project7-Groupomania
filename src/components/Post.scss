@@ -10,12 +10,25 @@
     max-height: 500px;
   }
 }
-
+.box {
+  max-width: 700px;
+  margin: 20px auto;
+}
 .iconsPost {
   color: $primary-color;
-  .like {
-    --disliked {
-      color: $tertiary-color !important;
-    }
+}
+.like--liked {
+  animation: liked-anim 500ms 1s ease both;
+}
+@keyframes liked-anim {
+  from {
+    transform: scale(1);
   }
+
+  to {
+    transform: scale(1.5);
+  }
+}
+.like--disliked {
+  animation: liked-anim 500ms 1s ease both;
 }

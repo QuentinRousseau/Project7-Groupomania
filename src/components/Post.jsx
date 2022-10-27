@@ -103,10 +103,16 @@ function Post(post) {
                   aria-label="reply"
                   onClick={likeStatus == "waiting" ? () => {} : dislike}
                 >
-                  <span className="icon is-medium has-text-black">
+                  <span
+                    className={`icon is-medium has-text-black like--${
+                      likeStatus == "disliked"
+                        ? "disliked"
+                        : likeStatus == "liked" && "neutral"
+                    }`}
+                  >
                     <FontAwesomeIcon
                       icon={faHeartBroken}
-                      className={`iconsPost mx-2 like--${likeStatus}`}
+                      className={`iconsPost mx-2 `}
                     />
 
                     {dislikes}
@@ -117,7 +123,13 @@ function Post(post) {
                   aria-label="like"
                   onClick={likeStatus == "waiting" ? () => {} : like}
                 >
-                  <span className={`icon is-medium has-text-black `}>
+                  <span
+                    className={`icon ml-4 is-medium has-text-black like--${
+                      likeStatus == "liked"
+                        ? "liked"
+                        : likeStatus == "disliked" && "neutral"
+                    }`}
+                  >
                     <FontAwesomeIcon
                       icon={faHeart}
                       className="iconsPost mx-2 "
