@@ -36,16 +36,12 @@ function SignUpPage() {
     setMessage("Please wait ..."); //attribution de la valeur au msg
     try {
       const response = await signUpFetch(name, email, password);
-      console.log(response);
-      console.log(response.user._id);
       userLogged.id = response.user._id;
       userLogged.token = response.token;
 
       login(userLogged.id);
-      console.log(userLogged);
 
-      navigateTo(`/posts`);
-      console.log("il est sensé aller sur /posts"); // Fonction qui permet de rediriger vers un autre url
+      navigateTo(`/posts`); // Fonction qui permet de rediriger vers un autre url
     } catch (e) {
       setMessage(e);
     }

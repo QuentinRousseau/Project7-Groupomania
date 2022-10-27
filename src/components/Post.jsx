@@ -27,11 +27,11 @@ function Post(post) {
   async function updateLikes(action) {
     // action étant le 1 || -1
     const postId = post._id;
-    console.log("l'id du post a liker, disliker", postId);
+
     const token = userLogged.token;
-    console.log("le token utilisé", token);
+
     const userId = userLogged.id;
-    console.log("l'utilisateur qui envoie la requete", userId);
+
     setLikeStatus("waiting");
     const ret = await submitLikes(token, postId, userId, action);
     console.log(ret);
@@ -48,15 +48,6 @@ function Post(post) {
   async function deletePost() {
     const _id = post._id;
     const token = userLogged.token;
-
-    console.log(
-      "post concerné  :   ",
-      post,
-      "    id du post    :",
-      _id,
-      "    token : ",
-      token
-    );
 
     const ret = await submitDelete(post, token, _id);
     console.log(ret);

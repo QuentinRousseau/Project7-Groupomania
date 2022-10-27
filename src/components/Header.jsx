@@ -10,7 +10,7 @@ function Header() {
   const toggleActive = () => setActive((state) => !state); //la fonction changera l'etat de l'élément html
   const { userLogged, login, logout } = useContext(UserContext);
 
-  console.log(userLogged);
+  // console.log(userLogged);
   return (
     <nav
       className="navbar is-full is-shadowless has-background-dark "

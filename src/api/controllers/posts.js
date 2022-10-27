@@ -24,16 +24,16 @@ export async function createPost(req, res, next) {
     return res.status(400).json("Not Authorized");
 
   let postObject = req.body;
-  console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
+  // console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
   delete postObject._id; // remove id
 
-  console.log("Vérif du post modifié", postObject);
+  // console.log("Vérif du post modifié", postObject);
 
   const post = new Post({
     ...postObject, // Creating Object post with request datas & userId & Url image
     author: req.auth.userId,
   });
-  console.log("Vérif du post une fois créé et fini", post);
+  // console.log("Vérif du post une fois créé et fini", post);
   await post // await post creation before saving
     .save()
     .catch((error) => {
@@ -43,19 +43,13 @@ export async function createPost(req, res, next) {
 }
 
 export async function modifyPost(req, res, next) {
-  console.log("Requete  : ", req.body);
-  console.log("Authorization   :", req.auth);
-  console.log("Params   :", req.params);
   const postObject = await req.body;
-  console.log(postObject);
 
   let post = await Post.findOne({ id: req.params.id });
 
-  console.log(" c'est mon post trouvé ", post);
+  // console.log(" c'est mon post trouvé ", post);
 
   if (!post) return res.status(400).json({ error: "Post not find" });
-
-  console.log(req.body.author._id != req.auth.userId || req.auth.isAdmin);
 
   if ((req.auth.admin = false && req.body.author._id != req.auth.userId))
     return res.status(401).json({ error: "Not authorized" });

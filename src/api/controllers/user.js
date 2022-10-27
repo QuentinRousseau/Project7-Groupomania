@@ -8,7 +8,7 @@ const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export async function signup(req, res, next) {
   const { name, email, password } = req.body; // retrieve data's request
-  console.log("requete entrante :", req.body, email, req.body.name);
+  // console.log("requete entrante :", req.body, email, req.body.name);
   if (!emailRegex.test(email))
     // email check
     return res.status(401).json({ error: "Invalid email !" });
@@ -20,23 +20,23 @@ export async function signup(req, res, next) {
     // Creating new User with the name
     name,
   });
-  console.log("user créé", user);
-  console.log("controle des données avant création d'account", email, password);
+  // console.log("user créé", user);
+  // console.log("controle des données avant création d'account", email, password);
   let account = new Account({
     //after creating user, create Account with email & password hash
     email,
     password: hash,
     admin: false,
   });
-  console.log("account créé", account);
+  // console.log("account créé", account);
   await user.save();
   await account.save(); //  saving of Objects
-  console.log("utilisateur et compte sauvegardés :", user, account);
+  // console.log("utilisateur et compte sauvegardés :", user, account);
   user.account = account._id; // Edit id beetwin them
   account.user = user._id;
   if (account.email === "admin@ocmail.fr") account.admin = true;
 
-  console.log("user", user, "account", account);
+  // console.log("user", user, "account", account);
 
   user = await user.save();
   account = await account.save(); // Saving Objects after modifications
@@ -61,7 +61,7 @@ export async function login(req, res, next) {
   const valid = await bcrypt.compare(req.body.password, account.password);
 
   if (!valid) return res.status(401).json({ error: "Invalid credentials !" });
-  console.log(account.user._id);
+  // console.log(account.user._id);
   res.status(200).json({
     user: account.user,
     token: jwt.sign({

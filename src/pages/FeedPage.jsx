@@ -30,7 +30,7 @@ function FeedPage() {
           const feedPageData = await response.json();
           feedPageData.reverse();
           setFeedPageData(feedPageData);
-          console.log(feedPageData);
+         
         } catch (error) {
           throw new Error();
         }

@@ -26,11 +26,11 @@ function LoginPage() {
     setMessage("Please wait ...");
     try {
       const response = await loginFetch(email, password);
-      console.log(response);
+
       userLogged.id = response.user._id;
       userLogged.token = response.token;
       login(userLogged.id);
-      console.log(userLogged);
+
       navigateTo(`/posts`);
     } catch (e) {
       setMessage(e);

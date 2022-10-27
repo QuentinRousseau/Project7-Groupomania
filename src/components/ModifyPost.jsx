@@ -33,25 +33,10 @@ function ModifyPost(post = { title, body, url }) {
       const image = e.target.image.files[0];
       const author = post.author;
 
-      console.log("y'a t il une image ? : ", image);
-      // requete post pour obtenir l'image
       // Voir pour checker si l'image est modifiée ou non ?
       if (image) responseImg = await submitImage(token, image);
+
       //attribution de l'url retour et attribution a l'objet post
-      console.log(
-        "    id du post    :",
-        _id,
-        "    token : ",
-        token,
-        "L'image qui va etre envoyée",
-        responseImg,
-        "le title est le suivant :   ",
-        title,
-        "le body est le suivant    : ",
-        body,
-        "ceci est l'auteur du post:   ",
-        author
-      );
 
       const ret = await modifyPost(
         token,
