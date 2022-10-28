@@ -100,7 +100,7 @@ function Postinput(post = { title: "", body: "", url: "" }) {
             </span>
             <span
               className="file-name has-background-white"
-              style={!imageUrl && { display: "none" }}
+              style={imageUrl ? { display: "block" } : { display: "none" }}
             >
               {imageUrl?.name}
               {/*le "?" vérifie la donnée avant d'appeler le name*/}
