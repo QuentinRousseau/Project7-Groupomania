@@ -1,12 +1,11 @@
+import { useState, useEffect, useContext } from "react";
+import { Container } from "react-bulma-components";
+
 import Post from "../components/Post";
 import Postinput from "../components/Postinput";
-import { useState, useEffect, useContext } from "react";
 import UserContext from "../providers/UserContext";
-//import { lastUpdate}  from "../providers/Update.jsx";
 
 import "./FeedPage.scss";
-
-import { Container } from "react-bulma-components";
 
 function FeedPage() {
   const [feedPageData, setFeedPageData] = useState([]);
@@ -30,7 +29,6 @@ function FeedPage() {
           const feedPageData = await response.json();
           feedPageData.reverse();
           setFeedPageData(feedPageData);
-         
         } catch (error) {
           throw new Error();
         }

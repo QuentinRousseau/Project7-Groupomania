@@ -1,13 +1,14 @@
 import { Box } from "react-bulma-components";
-import { useState } from "react";
-import { submitImage, submitPost } from "../providers/fetch";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import "./Postinput.scss";
+
+import { submitImage, submitPost } from "../providers/fetch";
 import { useField } from "../utils/hooks/useField";
-import { useContext } from "react";
 import UserContext from "../providers/UserContext";
-import { useNavigate } from "react-router";
+
+import "./Postinput.scss";
 
 function Postinput(post = { title: "", body: "", url: "" }) {
   const { userLogged } = useContext(UserContext);

@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Box } from "react-bulma-components";
 import { faEnvelope, faLock, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box } from "react-bulma-components";
-import { NavLink, useNavigate } from "react-router-dom";
 
 import { validMail } from "../utils/tools/validation";
-
 import Textinput from "../components/Textinput";
 import { loginFetch } from "../providers/fetch";
 import UserContext from "../providers/UserContext";
+
 import "./LoginPage.scss";
 
 function LoginPage() {

@@ -2,23 +2,28 @@
 
 .box {
   max-width: 700px;
+  width: 90%;
   margin: 20px auto;
 }
 .iconsPost {
   color: $primary-color;
 }
 .like--liked {
-  animation: liked-anim 500ms 1s ease both;
+  animation: liked-anim 1s 200ms ease both;
 }
 @keyframes liked-anim {
-  from {
+  0% {
     transform: scale(1);
   }
 
-  to {
+  50% {
     transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 .like--disliked {
-  animation: liked-anim 500ms 1s ease both;
+  animation: liked-anim 1s 200ms ease both;
 }

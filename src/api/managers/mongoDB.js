@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import envlocal from "./env.js";
 import autopopulate from "mongoose-autopopulate";
+import envlocal from "./env.js";
 const mongoDBUrl = envlocal.MONGODB_URL;
 // console.log(mongoDBUrl);
 if (!mongoDBUrl) throw new Error("mongoDBUrl must be set in .env");

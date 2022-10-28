@@ -1,4 +1,5 @@
 /* function post request on submit */
+
 export async function signUpFetch(name, email, password) {
   const user = { name, email, password }; //recupération des données saisies et creation de l'objet
   // console.log(user); //affichage de l'objet

@@ -1,13 +1,13 @@
-import { Box } from "react-bulma-components";
-import { useState } from "react";
-import { modifyPost, submitImage, submitPost } from "../providers/fetch";
+import { useNavigate } from "react-router";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import "./Postinput.scss";
+
+import { modifyPost, submitImage } from "../providers/fetch";
 import { useField } from "../utils/hooks/useField";
-import { useContext } from "react";
 import UserContext from "../providers/UserContext";
-import { useNavigate } from "react-router";
+
+import "./Postinput.scss";
 
 function ModifyPost(post = { title, body, url }) {
   post = post.post;

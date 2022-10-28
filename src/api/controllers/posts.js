@@ -1,10 +1,6 @@
-import Post from "../models/Post";
-import fs from "fs";
-import User from "../models/User";
-
 import { ObjectId } from "mongodb";
-import mongoose from "mongoose";
-import softDelete from "mongoose-delete";
+
+import Post from "../models/Post";
 
 export async function getAllPosts(req, res, next) {
   //  Search all Posts named "posts"

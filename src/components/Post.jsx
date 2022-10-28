@@ -1,17 +1,14 @@
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { Box } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-import "./Post.scss";
-
-import { useContext } from "react";
 import UserContext from "../providers/UserContext";
-import { useState } from "react";
 import { submitDelete, submitLikes } from "../providers/fetch";
-import { useNavigate } from "react-router";
-import { Box } from "react-bulma-components";
 import ModifyPost from "./ModifyPost";
-import { useEffect } from "react";
-import e from "cors";
+
+import "./Post.scss";
 
 function Post(post) {
   const { userLogged } = useContext(UserContext);
@@ -22,8 +19,17 @@ function Post(post) {
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
 
+  //  Create a var for date layout
+
+  const date = new Date(post.createdAt).toLocaleDateString("fr-FR");
+  const time = new Date(post.createdAt).toLocaleTimeString("fr-FR");
+  const isGoodUser = userLogged.id === post.author._id ? true : false;
+
+  const isAdmin = userLogged.admin;
+
   const dislike = () => updateLikes(-1);
   const like = () => updateLikes(1);
+
   async function updateLikes(action) {
     // action étant le 1 || -1
     const postId = post._id;
@@ -34,17 +40,13 @@ function Post(post) {
 
     setLikeStatus("waiting");
     const ret = await submitLikes(token, postId, userId, action);
-    console.log(ret);
+    // console.log(ret);
     setLikes(ret.data.likes);
     setDislikes(ret.data.dislikes);
     setLikeStatus(ret.data.action);
     navigateTo("/posts");
   }
 
-  //  Create a var for date layout
-
-  const date = new Date(post.createdAt).toLocaleDateString("fr-FR");
-  const time = new Date(post.createdAt).toLocaleTimeString("fr-FR");
   async function deletePost() {
     const _id = post._id;
     const token = userLogged.token;
@@ -53,10 +55,6 @@ function Post(post) {
     console.log(ret);
     navigateTo("/login"); // voir avec yoann pour amélioration
   }
-
-  const isGoodUser = userLogged.id === post.author._id ? true : false;
-
-  const isAdmin = userLogged.admin;
 
   return (
     <Box className="box has-background-danger-light  is-fluid">
