@@ -9,5 +9,5 @@ const datas = {
   posts: await Post.find(),
 };
 
-console.log(JSON.stringify(datas, null, 2));
+// console.log(JSON.stringify(datas, null, 2)); affiche les datas pour le debug
 process.exit();

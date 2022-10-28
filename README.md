@@ -1,2 +1,4 @@
 # Project7-Groupomania
-"Créez un réseau social d’entreprise" by OpenClassrooms, with React
+"Créez un réseau social d’entreprise" by OpenClassrooms, with React, Bulma, mongoDB, NodeJs, Sass.
+
+
