@@ -98,7 +98,10 @@ function Postinput(post = { title: "", body: "", url: "" }) {
               </span>
               <span className="file-label">Choisir un fichier</span>
             </span>
-            <span className="file-name has-background-white">
+            <span
+              className="file-name has-background-white"
+              style={!imageUrl && { display: "none" }}
+            >
               {imageUrl?.name}
               {/*le "?" vérifie la donnée avant d'appeler le name*/}
             </span>
