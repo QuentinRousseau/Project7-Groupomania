@@ -8,5 +8,8 @@ Chaque post peut être liké ou non, et l'admin peut modifier et supprimer tous 
 Les données sensibles sont cryptées en respectant les standards WCAG.
 
 Pour initialiser le projet, cloner le code et entrer la commande suivante dans le terminal :
+`npm i` ,
+
+ensuite effectuer la commande suivante :
 
 `npm run dev`
