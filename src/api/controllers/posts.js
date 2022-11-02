@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-import Post from "../models/Post";
+import Post from "../models/Post.js";
 
 export async function getAllPosts(req, res, next) {
   //  Search all Posts named "posts"

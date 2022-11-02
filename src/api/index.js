@@ -3,9 +3,9 @@ import morgan from "morgan";
 import "express-async-errors";
 
 import cors from "cors";
-import statusDB from "./middleware/statusDB";
-import helmet from "./middleware/helmet";
-import router from "./routes/index";
+import statusDB from "./middleware/statusDB.js";
+import helmet from "./middleware/helmet.js";
+import router from "./routes/index.js";
 
 export const handler = express();
 

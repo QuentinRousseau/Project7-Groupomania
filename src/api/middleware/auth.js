@@ -1,4 +1,4 @@
-import jwt from "../managers/jwt";
+import jwt from "../managers/jwt.js";
 
 export default (req, res, next) => {
   try {

@@ -1,6 +1,6 @@
 import express from "express";
-import auth from "../middleware/auth";
-import * as Ctrl from "../controllers/posts";
+import auth from "../middleware/auth.js";
+import * as Ctrl from "../controllers/posts.js";
 
 const router = express.Router();
 

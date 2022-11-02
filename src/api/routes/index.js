@@ -1,7 +1,7 @@
 import express from "express";
-import user from "./user";
-import posts from "./posts";
-import images from "./images";
+import user from "./user.js";
+import posts from "./posts.js";
+import images from "./images.js";
 
 const router = express.Router();
 

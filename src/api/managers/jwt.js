@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import env from "./env";
-import envlocal from "./env";
+import env from "./env.js";
+import envlocal from "./env.js";
 
 const JWT_SECRET = envlocal.JWT_SECRET;
 const JWT_EXPIRE = env.JWT_EXPIRE;

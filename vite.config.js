@@ -11,7 +11,7 @@ export default defineConfig({
     mix.default({
       handler: "./src/api/index.js",
       //server: "./src/api/server.js",
-      /*buildTo chemin ou sera construit le serveur*/
+      buildTo: "./apidist",
     }),
     history({
       index: "./index.html",

@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-import jwt from "../managers/jwt";
-import User from "../models/User";
-import Account from "../models/Account";
+import jwt from "../managers/jwt.js";
+import User from "../models/User.js";
+import Account from "../models/Account.js";
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 //SignUp function
