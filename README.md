@@ -17,3 +17,11 @@ Pour initialiser le projet, cloner le code et entrer la commande suivante dans l
 ensuite effectuer la commande suivante :
 
 `npm run dev`
+
+Pour build , effectuer la commande suivante:
+
+`npm run build `
+
+et ensuite lancer le serveur avec la comande :
+
+`node src/api/server` et se rendre à l'url correspondante.
