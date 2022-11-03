@@ -1,6 +1,6 @@
 # Project7-Groupomania
 
-"Créez un réseau social d’entreprise" by OpenClassrooms, with React, Bulma, mongoDB, NodeJs, Sass.
+"Créez un réseau social d’entreprise" by OpenClassrooms, with Vite, React, Bulma, mongoDB, NodeJs, Sass.
 
 Le but du projet est donc de créer un réseau social d'entreprise, de pouvoir s'inscrire / s'authentifier , de créer / modifier / supprimer des posts.
 Chaque post peut être liké ou non, et l'admin peut modifier et supprimer tous les posts.
