@@ -7,9 +7,9 @@ Chaque post peut être liké ou non, et l'admin peut modifier et supprimer tous 
 
 Les données sensibles sont cryptées en respectant les standards WCAG.
 
-### Prerequisites
+### Pré-requis
 
-You will need to have Node and `npm` installed locally on your machine.
+Vous devez avoir `npm` d'installé sur votre machine.
 
 Pour initialiser le projet, cloner le code et entrer la commande suivante dans le terminal :
 `npm i` ,
