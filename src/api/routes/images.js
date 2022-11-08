@@ -10,6 +10,5 @@ const router = express.Router();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 router.get("/", express.static(path.join(__dirname, "images")));
-router.post("/", multer, auth, Ctrl.postImage); //voir pour enlever auth (pour les avatars ??)
-//
+router.post("/", multer, auth, Ctrl.postImage);
 export default router;

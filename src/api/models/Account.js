@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 import softDelete from "mongoose-delete";
-import mongooseAutoPopulate from "mongoose-autopopulate";
+import mongooseAutoPopulate from "mongoose-autopopulate"; // créé un lien entre deux ObjectId
 
 const accountSchema = mongoose.Schema(
   {

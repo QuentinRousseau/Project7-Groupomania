@@ -1,10 +1,10 @@
 import express from "express";
-import morgan from "morgan";
-import "express-async-errors";
+import morgan from "morgan"; // renvoie les données au terminal pour check les requêtes
+import "express-async-errors"; // gestion d'erreurs
 
-import cors from "cors";
+import cors from "cors"; // gere les autorisations lors des requetes HTTP (sécurité)
 import statusDB from "./middleware/statusDB.js";
-import helmet from "./middleware/helmet.js";
+import helmet from "./middleware/helmet.js"; // gère les entêtes lors des requetes HTTP (sécurité)
 import router from "./routes/index.js";
 
 export const handler = express();

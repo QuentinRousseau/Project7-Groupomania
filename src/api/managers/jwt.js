@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken"; // génère les token pour augmenter la sécurité
 import env from "./env.js";
 import envlocal from "./env.js";
 
