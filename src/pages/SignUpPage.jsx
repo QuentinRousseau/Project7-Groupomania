@@ -19,7 +19,7 @@ import "./SignUpPage.scss";
 
 function SignUpPage() {
   const [email, setEmail] = useState(""); // l'etat de l'email de base est vide
-  const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
+  const [isEmailValid, setEmailValid] = useState(false); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState(""); //verif du mdp
   const [message, setMessage] = useState(""); // creation d'un message vide
   const [name, setName] = useState("");

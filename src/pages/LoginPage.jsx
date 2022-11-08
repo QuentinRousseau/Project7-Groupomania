@@ -17,7 +17,7 @@ function LoginPage() {
   const { userLogged, login } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
-  const [isEmailValid, setEmailValid] = useState(true); //etat de la verif de l'email de base est sur OK
+  const [isEmailValid, setEmailValid] = useState(false); //etat de la verif de l'email de base est sur OK
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
