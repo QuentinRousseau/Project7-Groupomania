@@ -11,7 +11,7 @@ export function userProvider({ children }) {
   });
 
   // Login updates the userLogged data with a id parameter
-  const login = (userLogged) => {
+  const login = () => {
     setUser((userLogged) => ({
       id: userLogged.id,
       auth: true,
@@ -21,7 +21,7 @@ export function userProvider({ children }) {
   };
   // Logout updates the userLogged data to default
   const logout = () => {
-    setUser((userLogged) => ({
+    setUser(() => ({
       id: "",
       auth: false,
       token: "",

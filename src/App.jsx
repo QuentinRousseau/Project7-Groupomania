@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import FeedPage from "./pages/FeedPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 import UserContext from "./providers/UserContext";
 import "./App.scss";
 
