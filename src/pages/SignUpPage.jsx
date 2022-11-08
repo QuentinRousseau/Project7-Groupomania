@@ -5,7 +5,6 @@ import {
   faLock,
   faCheck,
   faUser,
-  faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import { Box } from "react-bulma-components";
 import { Link, useNavigate } from "react-router-dom";
