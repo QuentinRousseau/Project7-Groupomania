@@ -45,17 +45,15 @@ export async function modifyPost(req, res, next) {
 
   // console.log(" c'est mon post trouvé ", post);
 
-  if (!post) return res.status(400).json({ error: "Post not find" });
+  if (!post) throw new Error("Post not find");
 
   if ((req.auth.admin = false && req.body.author._id != req.auth.userId))
     return res.status(401).json({ error: "Not authorized" });
-  Post.updateOne(
-    { _id: req.params.id },
-    { ...postObject, _id: req.params.id },
-    { updatedAt: Date.now() }
-  )
-    .then(() => res.status(200).json({ message: "Post modified !" }))
-    .catch((error) => res.status(401).json({ error }));
+
+  await Post.updateOne({ _id: req.params.id }, postObject).catch((error) => {
+    throw res.status(401).json({ error });
+  });
+  res.status(200).json({ message: "Post modified !" });
 }
 
 export async function deletePost(req, res, next) {

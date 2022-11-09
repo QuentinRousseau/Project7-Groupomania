@@ -23,6 +23,7 @@ handler.use("/api", (req, res, next) => {
 });
 
 handler.use((error, req, res, next) => {
+  if (!(error instanceof Error)) return;
   console.log(error);
-  res.status(400).json(error);
+  res.status(400).json({ error: error.message });
 });
