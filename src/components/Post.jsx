@@ -21,8 +21,8 @@ function Post(post) {
 
   //  Create a var for date layout
 
-  const date = new Date(post.createdAt).toLocaleDateString("fr-FR");
-  const time = new Date(post.createdAt).toLocaleTimeString("fr-FR");
+  const date = new Date(post.updatedAt).toLocaleDateString("fr-FR");
+  const time = new Date(post.updatedAt).toLocaleTimeString("fr-FR");
   const isGoodUser = userLogged.id === post.author._id ? true : false;
 
   const isAdmin = userLogged.admin;
