@@ -29,6 +29,8 @@ function LoginPage() {
 
       userLogged.id = response.user._id;
       userLogged.token = response.token;
+      userLogged.admin = userLogged.id == "636cdc8c2e6460efdba30563" && true;
+
       login(userLogged.id);
 
       navigateTo(`/posts`);

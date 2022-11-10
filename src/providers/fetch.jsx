@@ -2,7 +2,6 @@
 
 export async function signUpFetch(name, email, password) {
   const user = { name, email, password }; //recupération des données saisies et creation de l'objet
-  // console.log(user); //affichage de l'objet
 
   const response = await fetch("/api/auth/signup", {
     method: "POST",
@@ -17,7 +16,6 @@ export async function signUpFetch(name, email, password) {
 
 export async function loginFetch(email, password) {
   const user = { email, password };
-  // console.log(user);
 
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -41,19 +39,18 @@ export async function submitImage(token, imageUrl) {
     },
     body: newImg,
   });
-  // console.log(response);
+
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  // console.log("image créé", data);
+
   return data;
 }
 
 export async function submitPost(token, author, title, body, url) {
   const post = { author, title, body, url };
-  // console.log(token);
-  // console.log(post);
+
   const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
@@ -63,12 +60,12 @@ export async function submitPost(token, author, title, body, url) {
     },
     body: JSON.stringify(post),
   });
-  // console.log(response);
+
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  // console.log("post créé", data);
+
   return data;
 }
 export async function submitLikes(token, _id, user, like) {
@@ -83,12 +80,12 @@ export async function submitLikes(token, _id, user, like) {
     },
     body: JSON.stringify(PostToLike),
   });
-  // console.log(response);
+
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  // console.log("retour data", data);
+
   return data;
 }
 
@@ -104,12 +101,12 @@ export async function modifyPost(token, _id, title, body, url, author) {
     },
     body: JSON.stringify(post),
   });
-  // console.log(response);
+
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  // console.log("post modifié", data);
+
   return data;
 }
 
@@ -123,11 +120,11 @@ export async function submitDelete(post, token, _id) {
     },
     body: JSON.stringify(post),
   });
-  // console.log(response);
+
   if (!response) {
     return Promise.reject(await response.text());
   }
   const data = await response.json();
-  // console.log("response :", data);
+
   return data;
 }

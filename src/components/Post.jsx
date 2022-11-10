@@ -18,11 +18,23 @@ function Post(post) {
   const [likeStatus, setLikeStatus] = useState("neutral");
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   //  Create a var for date layout
 
-  const date = new Date(post.updatedAt).toLocaleDateString("fr-FR");
-  const time = new Date(post.updatedAt).toLocaleTimeString("fr-FR");
+  const createdDate = new Date(post.createdAt).toLocaleDateString("fr-FR");
+  const createdTime = new Date(post.createdAt).toLocaleTimeString("fr-FR");
+
+  const updatedDate = new Date(post.updatedAt).toLocaleDateString("fr-FR");
+  const updatedTime = new Date(post.updatedAt).toLocaleTimeString("fr-FR");
+
   const isGoodUser = userLogged.id === post.author._id ? true : false;
 
   const isAdmin = userLogged.admin;
@@ -40,7 +52,7 @@ function Post(post) {
 
     setLikeStatus("waiting");
     const ret = await submitLikes(token, postId, userId, action);
-    // console.log(ret);
+
     setLikes(ret.data.likes);
     setDislikes(ret.data.dislikes);
     setLikeStatus(ret.data.action);
@@ -67,17 +79,22 @@ function Post(post) {
           </div>
           <div className="media-content">
             <div className="content">
-              <p>
+              <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                 <strong>
                   {post.author.name}
                   {"       "}
                 </strong>
 
-                {date}
+                {createdDate}
                 {"         "}
                 {"         "}
-                {time}
+                {createdTime}
               </p>
+              {isHovering && (
+                <p>
+                  Modifié le : {updatedDate} à {updatedTime}
+                </p>
+              )}
               <h3 className="title is-4"> {post.title}</h3>
               <figure id="file">
                 <img src={post.url} alt="Image du post"></img>

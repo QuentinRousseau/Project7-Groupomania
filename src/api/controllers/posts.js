@@ -20,16 +20,14 @@ export async function createPost(req, res, next) {
     return res.status(400).json("Not Authorized");
 
   let postObject = req.body;
-  // console.log(" Verif du post a l'entrée", postObject); // decoupe la requete en plusieurs champs
-  delete postObject._id; // remove id
 
-  // console.log("Vérif du post modifié", postObject);
+  delete postObject._id; // remove id
 
   const post = new Post({
     ...postObject, // Creating Object post with request datas & userId & Url image
     author: req.auth.userId,
   });
-  // console.log("Vérif du post une fois créé et fini", post);
+
   await post // await post creation before saving
     .save()
     .catch((error) => {
@@ -42,8 +40,6 @@ export async function modifyPost(req, res, next) {
   const postObject = await req.body;
 
   let post = await Post.findOne({ id: req.params.id });
-
-  // console.log(" c'est mon post trouvé ", post);
 
   if (!post) throw new Error("Post not find");
 
