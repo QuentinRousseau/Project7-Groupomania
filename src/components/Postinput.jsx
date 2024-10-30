@@ -1,12 +1,12 @@
-import { Box } from "react-bulma-components";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useState } from "react";
+import { Box } from "react-bulma-components";
+import { useNavigate } from "react-router";
 
 import { submitImage, submitPost } from "../providers/fetch";
-import { useField } from "../utils/hooks/useField";
 import UserContext from "../providers/UserContext";
+import { useField } from "../utils/hooks/useField";
 
 import "./Postinput.scss";
 
@@ -27,11 +27,11 @@ function Postinput(post = { title: "", body: "", url: "" }) {
       const token = userLogged.token;
       const user = userLogged.id;
 
-      const image = e.target.image.files[0];
+      const image = e.target.image.files[0]|| "";
 
       // requete post pour obtenir l'image
-
-      const responseImg = await submitImage(token, image);
+      let responseImg={imageUrl:image}
+      if(image){responseImg= await submitImage(token, image);}
 
       //attribution de l'url retour et attribution a l'objet post
       const ret = await submitPost(

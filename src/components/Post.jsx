@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
-import { Box } from "react-bulma-components";
+import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartBroken, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useState } from "react";
+import { Box } from "react-bulma-components";
+import { useNavigate } from "react-router";
 
 import UserContext from "../providers/UserContext";
 import { submitDelete, submitLikes } from "../providers/fetch";
@@ -96,9 +96,9 @@ function Post(post) {
                 </p>
               )}
               <h3 className="title is-4"> {post.title}</h3>
-              <figure id="file">
+              {post.url &&<figure id="file">
                 <img src={post.url} alt="Image du post"></img>
-              </figure>
+              </figure>}
 
               <p className="subtitle is-6 mb-5">{post.body}</p>
             </div>

@@ -11,7 +11,7 @@ const statusDB = mongoose.connect(mongoDBUrl, {
   useUnifiedTopology: true,
 });
 
-await statusDB;
+statusDB;
 if (!statusDB) {
   throw new Error("Connexion à MongoDB échouée !");
 } else {

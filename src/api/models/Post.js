@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     body: { type: String, required: true },
-    url: { type: String, required: true },
+    url: { type: String, default: "" },
     likes: { type: Number, default: 0 },
     dislikes: { type: Number, default: 0 },
     usersLiked: {
