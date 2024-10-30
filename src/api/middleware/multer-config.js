@@ -9,6 +9,7 @@ const MIME_TYPES = {
   "image/webp": "webp",
   "image/svg": "svg",
 };
+// BUG TO RESOLVE
 
 fs.promises.mkdir(path.resolve("./public/images/")).catch(console.error); //Creating a file "Images" if this file doesn't exist
 
