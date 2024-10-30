@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken"; // génère les token pour augmenter la sécurité
 import env from "./env.js";
-import envlocal from "./env.js";
 
-const JWT_SECRET = envlocal.JWT_SECRET;
+const JWT_SECRET = env.JWT_SECRET;
 const JWT_EXPIRE = env.JWT_EXPIRE;
 
 if (!JWT_SECRET) throw new Error(" JWT_SECRET must be set in .env");

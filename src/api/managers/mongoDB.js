@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import autopopulate from "mongoose-autopopulate";
-import envlocal from "./env.js";
-const mongoDBUrl = envlocal.MONGODB_URL;
+import env from "./env.js";
+const mongoDBUrl = env.MONGODB_URL;
 
 if (!mongoDBUrl) throw new Error("mongoDBUrl must be set in .env");
 
