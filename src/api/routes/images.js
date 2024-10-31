@@ -9,7 +9,7 @@ import multer from "../middleware/multer-config.js";
 const router = express.Router();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.warn(`voici la valeur de dirname ${__dirname}`)
-console.warn(`voici la valeur de express static ${express.static(path.join(__dirname, "images"))}`)
+console.warn(`voici la valeur de express static ${path.join(__dirname, "images")}`)
 
 router.get("/", express.static(path.join(__dirname, "images")));
 router.post("/", multer, auth, Ctrl.postImage);
