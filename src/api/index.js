@@ -9,7 +9,8 @@ import helmet from "./middleware/helmet.js"; // gère les entêtes lors des requ
 import statusDB from "./middleware/statusDB.js";
 import router from "./routes/index.js";
 
-import path, { dirname } from "path";
+import { dirname } from "path";
+import { savePath } from './middleware/multer-config.js';
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const handler = express();
@@ -22,7 +23,7 @@ handler.use(express.json());
 handler.use(statusDB);
 handler.use(router);
 
-handler.use(express.static(path.resolve("./images")));
+handler.use(express.static(savePath));
 handler.use("/api", (req, res, next) => {
   res.status(200).json({ url: req.url });
 });
