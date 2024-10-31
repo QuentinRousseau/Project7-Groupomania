@@ -8,6 +8,10 @@ import helmet from "./middleware/helmet.js"; // gère les entêtes lors des requ
 import statusDB from "./middleware/statusDB.js";
 import router from "./routes/index.js";
 
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 export const handler = express();
 handler.use(morgan("dev", { immediate: true }));
 handler.use(morgan("dev", { immediate: false }));
@@ -18,6 +22,7 @@ handler.use(express.json());
 handler.use(statusDB);
 handler.use(router);
 
+app.use(express.static(path.resolve(__dirname, "./images")));
 handler.use("/api", (req, res, next) => {
   res.status(200).json({ url: req.url });
 });
