@@ -7,6 +7,6 @@ import multer, { savePath } from "../middleware/multer-config.js";
 const router = express.Router();
 console.warn(`voici le path pour récupérer les images ${savePath}`)
 
-router.get("/", express.static(savePath));
+router.get(`${savePath}`, express.static(savePath));
 router.post("/", multer, auth, Ctrl.postImage);
 export default router;
