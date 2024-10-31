@@ -22,7 +22,7 @@ handler.use(express.json());
 handler.use(statusDB);
 handler.use(router);
 
-app.use(express.static(path.resolve(__dirname, "./images")));
+handler.use(express.static(path.resolve(__dirname, "./images")));
 handler.use("/api", (req, res, next) => {
   res.status(200).json({ url: req.url });
 });
