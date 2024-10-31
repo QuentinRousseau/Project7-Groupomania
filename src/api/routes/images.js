@@ -6,6 +6,7 @@ import auth from "../middleware/auth.js";
 import multer from "../middleware/multer-config.js";
 
 const router = express.Router();
+console.warn(`voici le `)
 
 router.get("/", express.static(path.resolve("./images")));
 router.post("/", multer, auth, Ctrl.postImage);

@@ -12,13 +12,14 @@ const MIME_TYPES = {
   "image/svg": "svg",
 };
 // BUG TO RESOLVE
+const savePath = path.resolve("/opt/render/project/src/build/images")
 
-fs.promises.mkdir(path.resolve(__dirname, "./images")).catch(console.error); //Creating a file "Images" if this file doesn't exist
+fs.promises.mkdir(savePath).catch(console.error); //Creating a file "Images" if this file doesn't exist
 
-console.log("check image folder : ", path.resolve("./images")); // Check of file exist
+console.log("check image folder : ", savePath); // Check of file exist
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, path.resolve("./images"));
+    callback(null, savePath);
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
