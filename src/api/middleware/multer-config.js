@@ -1,6 +1,7 @@
 import fs from "fs";
 import multer from "multer";
 import path from "path";
+import { __dirname } from "..";
 
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -11,7 +12,7 @@ const MIME_TYPES = {
 };
 // BUG TO RESOLVE
 
-fs.promises.mkdir(path.resolve("./images/")).catch(console.error); //Creating a file "Images" if this file doesn't exist
+fs.promises.mkdir(path.resolve(__dirname, "./images")).catch(console.error); //Creating a file "Images" if this file doesn't exist
 
 console.log("check image folder : ", path.resolve("./images/")); // Check of file exist
 const storage = multer.diskStorage({
