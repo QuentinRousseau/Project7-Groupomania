@@ -12,7 +12,7 @@ const MIME_TYPES = {
   "image/svg": "svg",
 };
 // BUG TO RESOLVE
-const savePath = path.resolve("/opt/render/project/src/build/images")
+export const savePath = path.resolve("/opt/render/project/src/build/images")
 
 fs.promises.mkdir(savePath).catch(console.error); //Creating a file "Images" if this file doesn't exist
 
