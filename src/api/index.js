@@ -8,9 +8,8 @@ import helmet from "./middleware/helmet.js"; // gère les entêtes lors des requ
 import statusDB from "./middleware/statusDB.js";
 import router from "./routes/index.js";
 
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-export const __dirname = dirname(fileURLToPath(import.meta.url));
+import path from "path";
+import { __dirname } from './middleware/multer-config.js';
 
 export const handler = express();
 handler.use(morgan("dev", { immediate: true }));

@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import { __dirname } from "../index.js";
+import { __dirname } from "../middleware/multer-config.js";
 
 import * as Ctrl from "../controllers/images.js";
 import auth from "../middleware/auth.js";
